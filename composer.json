@@ -1,6 +1,6 @@
 {
     "name":"bright-cloud-studio/modal-gallery",
-    "description":"Create a gallery where each slide cam have unlimited hotspot links that trigger modal boxes.",
+    "description":"Create a gallery where each slide can contain unlimited hotspot links which trigger modal boxes.",
     "homepage": "http://brightcloudstudio.com/",
     "keywords":["contao", "modal", "gallery", "bright", "cloud", "studio"],
     "type":"contao-module",
