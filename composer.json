@@ -1,34 +1,37 @@
 {
-    "name":"stjeanmark/simple_modal_gallery",
-    "description":"A simple gallery where each image can have multiple hotspots which trigger a modal box.",
-    "homepage": "http://markstjean.com/",
-    "keywords":["contao", "simple", "modal", "gallery", "Mark St. Jean"],
+    "name":"bright-cloud-studio/modal-gallery",
+    "description":"Create a gallery where each slide cam have unlimited hotspot links that trigger modal boxes.",
+    "homepage": "http://brightcloudstudio.com/",
+    "keywords":["contao", "modal", "gallery", "bright", "cloud", "studio"],
     "type":"contao-module",
     "license":"LGPL-3.0-or-later",
     "authors":[
         {
-            "name":"Mark St. Jean",
-            "homepage":"http://markstjean.com/"
+            "name":"Bright Cloud Studio",
+            "homepage":"https://brightcloudstudio.com"
         }
     ],
     "require":{
-        "php": "~5.4 || ~7.0",
-        "contao/core-bundle":"^3.5.9 || ~4.1",
+        "php": "^7.4",
+        "contao/core-bundle": "^4.9",
 	"menatwork/contao-multicolumnwizard-bundle": "^3.4.10",
-	"contao-community-alliance/composer-plugin":"^2.4.1 || ~3.0"
     },
-    "autoload":{
-        "psr-0": {
-            "Asc\\": [
-                "system/modules/simple_modal_gallery/library"
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bcs\\": [
+                "system/modules/modal_gallery/library/Bcs"
             ]
-        } 
+        }
     },
     "extra": {
         "contao": {
             "sources": {
-                "system/modules/simple_modal_gallery": "system/modules/simple_modal_gallery"
+                "system/modules/modal_gallery": "system/modules/modal_gallery"
             }
         }
-	}
+    },
+    "minimum-stability": "dev"
 }
