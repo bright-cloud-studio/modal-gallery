@@ -1,4 +1,2 @@
-# Simple Modal Gallery
-by Mark St. Jean ( http://www.markstjean.com )
-
-A simple gallery where each image can have multiple hotspots which trigger a modal box.
+# Bright Cloud Studio's Modal Gallery
+## Create a gallery where each slide can have unlimited hotspot links which trigger modal boxes.
