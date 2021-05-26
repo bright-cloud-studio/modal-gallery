@@ -1,0 +1,32 @@
+<!–– This is for each listing, list off each one
+<div class="location_full">
+	<div class='name'><?php echo $this->name; ?></div>
+	<div class='address'>
+		<?php if($this->contact_name != ""){echo $this->contact_name . "<br>";} ?>
+		<?php if($this->contact_name_2 != ""){echo $this->contact_name_2 . "<br>";} ?>
+		<?php if($this->contact_name_3 != ""){echo $this->contact_name_3 . "<br>";} ?>
+		<?php echo $this->address; ?><br>
+		<?php if($this->address_2 != ""){echo $this->address_2 . "<br>";} ?>
+		<?php echo $this->city; ?>, <?php echo $this->state; ?><br>
+		<?php echo $this->listing_zip; ?><br>
+		<a href="tel:<?php echo $this->phone; ?>"><?php echo $this->phone; ?></a>
+	</div>
+	<!–– Searchable cat ids ––>
+	<div class="hidden_cat_id">
+		<?php 
+			for ($x = 0; $x < count($this->pid); $x++) {
+    			echo $this->pid[$x] . ",";
+			} 
+		?>
+	</div>
+	<!–– Searchable zips ––>
+	<div class="hidden_zip">
+		<?php echo $this->zip; ?>
+	</div>
+	
+	<?php if ($this->url): ?>
+	<div class='link'><a href="<?php echo $this->url; ?>"><?php echo $this->url; ?></a></div>
+	<?php endif; ?>
+</div> ––>
+
+<h2>This is an individual slide<h2>

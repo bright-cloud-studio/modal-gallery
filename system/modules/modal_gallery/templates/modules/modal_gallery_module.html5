@@ -1,0 +1,93 @@
+<!–– pull categories from database ––>
+<div class="slide_container">
+	
+	<!-- This is the thumbnails -->
+	<div class="row">
+		<?php
+			$this->import('Database');
+			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+			$slideCounter = 1;
+			while($result->next())
+			{
+				$objFile = \FilesModel::findByUuid($result->slide_image);
+				$strPath = $objFile->path;
+				?>
+				
+				<div class="column">
+					<img class="demo cursor" src="<?= $strPath; ?>" style="width:100%" onclick="currentSlide(<?= $slideCounter ?>)" alt="<?php echo $result->slide_name; ?>">
+				</div>
+				
+				<?php
+				$slideCounter++;
+			}
+		?>
+	</div>
+
+	<!-- This is the main image, which will contain the modal links -->
+	<div class="main_container">
+		<?php
+			$this->import('Database');
+			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+			$thumbCounter = 1;
+			$triggerCounter = 1;
+			$triggerLinkCounter = 1;
+			while($result->next())
+			{
+				$objFile = \FilesModel::findByUuid($result->slide_image);
+				$strPath = $objFile->path;
+				?>
+				
+				<div class="mySlides">
+					<div class="numbertext"><?= $thumbCounter ?> / 6</div>
+					<img src="<?= $strPath; ?>" style="width:100%" id="id_<?= $thumbCounter ?>">
+					
+					
+					<div class="modals">
+					<?php
+						$links = unserialize($result->hotspot_links);
+					?>
+
+						<div class="modals_container">
+							<?php
+							foreach($links as $link)
+							{
+								list($width, $height) = getimagesize($strPath);
+								$percentWidth = ($link['hotspot_x'] / $width) * 100;
+								$percentHeight = ($link['hotspot_y'] / $height) * 100;
+							?>
+								
+								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;"class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $result->hotspot_icon ?></a>
+							<?php
+								$triggerLinkCounter++;
+							}
+							
+							foreach($links as $link)
+							{
+							?>
+								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>">
+									<div class="modal_title">
+										<?php echo $link['hotspot_title']; ?>
+									</div>
+									<div class="modal_text">
+										<?php echo $link['hotspot_text']; ?>
+									</div>
+								</div>
+							<?php
+								$triggerCounter++;
+							}
+							?>
+						</div>
+					</div>
+				</div>
+
+				<?php
+				$thumbCounter++;
+			}
+		?>
+	
+
+		<a class="prev" onclick="plusSlides(-1)">❮</a>
+		<a class="next" onclick="plusSlides(1)">❯</a>
+		
+	</div>
+</div>
