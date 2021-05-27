@@ -65,6 +65,9 @@
 							{
 							?>
 								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>">
+									<div class="modal_close">
+										<p onclick="closeModal('<?= $triggerLinkCounter; ?>')">X</a>
+									</div>
 									<div class="modal_title">
 										<?php echo $link['hotspot_title']; ?>
 									</div>
