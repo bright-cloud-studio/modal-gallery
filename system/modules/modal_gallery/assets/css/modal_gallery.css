@@ -130,6 +130,7 @@ img {
 .modal_close:hover {
 	color: #b9b9b9;
 }
+.modal_close p { margin-bottom: 0; }
 .modal_trigger {
 	color: #00c017;
 	font-weight: 700;
