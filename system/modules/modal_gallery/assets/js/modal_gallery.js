@@ -41,7 +41,7 @@ function triggerModal(id) {
 }
 
 // close the modal when the X is clicked
-function triggerModal(id) {
+function closeModal(id) {
   
   console.log("close_id: " + id);
   var hoverInv = document.getElementsByClassName("modal_wrapper");
