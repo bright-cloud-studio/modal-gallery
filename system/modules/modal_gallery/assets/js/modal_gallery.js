@@ -29,7 +29,7 @@ function showSlides(n) {
 
 function triggerModal(id) {
   
-  console.log("id: " + id);
+  console.log("trigger_id: " + id);
   var hoverInv = document.getElementsByClassName("modal_wrapper");
   for (var i=0; i<hoverInv.length; i++){
        hoverInv[i].style.display = "none";
@@ -37,5 +37,16 @@ function triggerModal(id) {
   
   var modal = document.getElementById("modal_"+id);
     modal.style.display = "block";
+  return;
+}
+
+// close the modal when the X is clicked
+function triggerModal(id) {
+  
+  console.log("close_id: " + id);
+  var hoverInv = document.getElementsByClassName("modal_wrapper");
+  for (var i=0; i<hoverInv.length; i++){
+       hoverInv[i].style.display = "none";
+  }
   return;
 }
