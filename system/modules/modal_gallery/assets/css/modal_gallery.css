@@ -105,7 +105,6 @@ img {
 
 
 /* Modals */
-
 .modals_container {
 	position: absolute;
 	top: 0;
@@ -113,16 +112,27 @@ img {
 	height:100%;
 }
 .modal_wrapper {
+	position: relative;
 	background-color: #bdbdbd;
 	padding: 10px;
 	margin: 5px;
 	display: none;
 	max-width: 400px;
 }
+.modal_close {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #ffffff;
+	width: 20px;
+	cursor: pointer;
+}
+.modal_close:hover {
+	color: #b9b9b9;
+}
 .modal_trigger {
 	color: #00c017;
 	font-weight: 700;
 	position: absolute;
 }
-
 .prev, .next { display: none; }
