@@ -22,7 +22,7 @@ var intervalId = window.setInterval(function(){
             var deleteOld = document.getElementById("modal_helper");
             if(deleteOld != null)
                 deleteOld.remove();
-            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget'><img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p></div>");
+            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p></div>");
 
             var myImg = document.getElementById("hotspot_image");
             myImg.onmousedown = GetCoordinates;
@@ -75,6 +75,8 @@ function GetCoordinates(e)
   PosX = PosX - ImgPos[0];
   PosY = PosY - ImgPos[1];
     
-  document.getElementById("x").innerHTML = (PosX / myImg.width) * 100;
-  document.getElementById("y").innerHTML = (PosY / myImg.height) * 100;;
+  //document.getElementById("x").innerHTML = (PosX / myImg.width) * 100;
+  //document.getElementById("y").innerHTML = (PosY / myImg.height) * 100;
+    document.getElementById("x").innerHTML = PosX;
+    document.getElementById("y").innerHTML = PosY;
 }
