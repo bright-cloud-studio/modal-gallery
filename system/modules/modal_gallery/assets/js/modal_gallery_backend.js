@@ -77,6 +77,6 @@ function GetCoordinates(e)
     
   //document.getElementById("x").innerHTML = (PosX / myImg.width) * 100;
   //document.getElementById("y").innerHTML = (PosY / myImg.height) * 100;
-    document.getElementById("x").innerHTML = PosX;
-    document.getElementById("y").innerHTML = PosY;
+    document.getElementById("x").innerHTML = e.pageX;
+    document.getElementById("y").innerHTML = e.pageY;
 }
