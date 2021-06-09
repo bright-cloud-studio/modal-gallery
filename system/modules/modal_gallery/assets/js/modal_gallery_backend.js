@@ -19,7 +19,10 @@ var intervalId = window.setInterval(function(){
         if(lastSrc != src )
         {
             lastSrc = src;
-            toAppend.insertAdjacentHTML("afterend", "<img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p>");
+            var deleteOld = document.getElementById("modal_helper");
+            if(deleteOld != null)
+                deleteOld.remove();
+            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget'><img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p></div>");
 
             var myImg = document.getElementById("hotspot_image");
             myImg.onmousedown = GetCoordinates;
