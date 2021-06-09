@@ -29,6 +29,8 @@ img {
   display: none;
 }
 
+i a { border: none; }
+
 /* Add a pointer when hovering over the thumbnail images */
 .cursor {
   cursor: pointer;
