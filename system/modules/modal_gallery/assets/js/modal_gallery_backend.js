@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
+var lastSrc ="";
+
 var intervalId = window.setInterval(function(){
     
     var picture = document.getElementsByClassName("gimage");
@@ -13,14 +15,18 @@ var intervalId = window.setInterval(function(){
     var src = title.substr(0,title.indexOf(' ')); 
     
     if(src != '') {
+  
+        if(lastSrc != src )
+        {
+            lastSrc = src;
+            toAppend.insertAdjacentHTML("afterend", "<img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p>");
 
-       toAppend.insertAdjacentHTML("afterend", "<img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p>");
-        
-        var myImg = document.getElementById("hotspot_image");
-        myImg.onmousedown = GetCoordinates;
-        
-        //stop running once we have found our image
-        //clearInterval(intervalId) 
+            var myImg = document.getElementById("hotspot_image");
+            myImg.onmousedown = GetCoordinates;
+
+            //stop running once we have found our image
+            //clearInterval(intervalId) 
+        }
     }
 }, 1000);
 
