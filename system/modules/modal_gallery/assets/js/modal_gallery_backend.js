@@ -22,7 +22,7 @@ var intervalId = window.setInterval(function(){
             var deleteOld = document.getElementById("modal_helper");
             if(deleteOld != null)
                 deleteOld.remove();
-            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p>X:<span id='x'></span></p><p>Y:<span id='y'></span></p></div>");
+            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates, use them below for where you'd like the modal link to show.</p><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
 
             var myImg = document.getElementById("hotspot_image");
             myImg.onmousedown = GetCoordinates;
