@@ -52,8 +52,8 @@
 							foreach($links as $link)
 							{
 								list($width, $height) = getimagesize($strPath);
-								$percentWidth = ($link['hotspot_x'] / $width) * 100;
-								$percentHeight = ($link['hotspot_y'] / $height) * 100;
+								$percentWidth = $link['hotspot_x'];
+								$percentHeight = $link['hotspot_y'];
 							?>
 								
 								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;"class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $result->hotspot_icon ?></a>
