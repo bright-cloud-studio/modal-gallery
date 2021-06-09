@@ -29,6 +29,17 @@ function showSlides(n) {
 
 function triggerModal(id) {
   
+  
+  //make all images opaque by half
+  var i, j;
+  var slideImageContainer = document.getElementsByClassName("main_container");
+  for (i = 0; i < slideImageContainer.length; i++) {
+    var slideImages = slideImageContainer[i].getElementsByTagName("image");
+       for (j = 0; j < slideImageContainer.length; j++) {
+         slideImages[j].style.opacity = 0.5;
+       }
+  }
+  
   console.log("trigger_id: " + id);
   var hoverInv = document.getElementsByClassName("modal_wrapper");
   for (var i=0; i<hoverInv.length; i++){
@@ -42,6 +53,17 @@ function triggerModal(id) {
 
 // close the modal when the X is clicked
 function closeModal(id) {
+  
+    //make all images opaque by half
+  var i, j;
+  var slideImageContainer = document.getElementsByClassName("main_container");
+  for (i = 0; i < slideImageContainer.length; i++) {
+    var slideImages = slideImageContainer[i].getElementsByTagName("image");
+       for (j = 0; j < slideImageContainer.length; j++) {
+         slideImages[j].style.opacity = 1;
+       }
+  }
+  
   
   console.log("close_id: " + id);
   var hoverInv = document.getElementsByClassName("modal_wrapper");
