@@ -20,7 +20,7 @@ var intervalId = window.setInterval(function(){
         myImg.onmousedown = GetCoordinates;
         
         //stop running once we have found our image
-        clearInterval(intervalId) 
+        //clearInterval(intervalId) 
     }
 }, 1000);
 
