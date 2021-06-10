@@ -3,24 +3,26 @@
 	
 	<!-- This is the thumbnails -->
 	<div class="row">
-		<?php
-			$this->import('Database');
-			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
-			$slideCounter = 1;
-			while($result->next())
-			{
-				$objFile = \FilesModel::findByUuid($result->slide_image);
-				$strPath = $objFile->path;
-				?>
-				
-				<div class="column">
-					<img class="demo cursor" src="<?= $strPath; ?>" style="width:100%" onclick="currentSlide(<?= $slideCounter ?>)" alt="<?php echo $result->slide_name; ?>">
-				</div>
-				
-				<?php
-				$slideCounter++;
-			}
-		?>
+		<div class="thumb_container">
+			<?php
+				$this->import('Database');
+				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+				$slideCounter = 1;
+				while($result->next())
+				{
+					$objFile = \FilesModel::findByUuid($result->slide_image);
+					$strPath = $objFile->path;
+					?>
+
+					<div class="column">
+						<img class="demo cursor" src="<?= $strPath; ?>" style="width:100%" onclick="currentSlide(<?= $slideCounter ?>)" alt="<?php echo $result->slide_name; ?>">
+					</div>
+
+					<?php
+					$slideCounter++;
+				}
+			?>
+		</div>
 	</div>
 
 	<!-- This is the main image, which will contain the modal links -->
