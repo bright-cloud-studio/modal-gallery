@@ -2,6 +2,7 @@
 var slideIndex = 1;
 showSlides(slideIndex);
 
+
 function plusSlides(n) {
 	showSlides(slideIndex += n);
 }
@@ -20,6 +21,15 @@ function showSlides(n) {
 				noOpenModals = false;
 		}
 	if(noOpenModals == true) {
+	
+		var myElement = document.getElementById('column_' . n);
+		var topPos = myElement.offsetTop;
+	
+		document.getElementById('thumb_container').scrollTop = topPos;
+		
+		
+	
+	
 		var i;
 		var slides = document.getElementsByClassName("mySlides");
 		var dots = document.getElementsByClassName("demo");
