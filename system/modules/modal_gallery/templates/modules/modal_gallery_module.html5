@@ -14,7 +14,7 @@
 					$strPath = $objFile->path;
 					?>
 
-					<div class="column column_<?= $slideCounter ?>" id="column_<?= $slideCounter ?>>
+					<div class="column column_<?= $slideCounter ?>" id="column_<?= $slideCounter ?>">
 						<img class="demo cursor" src="<?= $strPath; ?>" style="width:100%" onclick="currentSlide(<?= $slideCounter ?>)" alt="<?php echo $result->slide_name; ?>">
 					</div>
 
