@@ -13,10 +13,9 @@ img {
 
 /* Position the image container (needed to position the left and right arrows) */
 .main_container {
-  position: relative;
+ 	position: relative;
+	background-color: #000000;
 }
-
-
 .slide_container {
 	display:flex;
 	width: 1200px;
