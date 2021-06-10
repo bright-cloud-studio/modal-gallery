@@ -21,7 +21,11 @@ img {
 	width: 1200px;
 	margin: auto;
 }
-.row { width: 200px; }
+
+.slide_container .row {
+	width: 200px;
+	overflow:scroll;
+}
 
 /* Hide the images by default */
 .mySlides {
