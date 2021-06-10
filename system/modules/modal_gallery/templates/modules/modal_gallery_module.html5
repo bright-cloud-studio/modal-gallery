@@ -3,7 +3,7 @@
 	
 	<!-- This is the thumbnails -->
 	<div class="row">
-		<div class="thumb_container">
+		<div class="thumb_container" id="thumb_container">
 			<?php
 				$this->import('Database');
 				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
