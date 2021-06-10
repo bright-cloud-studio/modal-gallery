@@ -28,8 +28,6 @@ img {
   display: none;
 }
 
-i a { border: none; }
-
 /* Add a pointer when hovering over the thumbnail images */
 .cursor {
   cursor: pointer;
@@ -136,8 +134,9 @@ i a { border: none; }
 }
 .modal_close p { margin-bottom: 0; }
 .modal_trigger {
-	color: #00c017;
+	color: #e4ff00;
 	font-weight: 700;
 	position: absolute;
+	border: 0;
 }
 .prev, .next { display: none; }
