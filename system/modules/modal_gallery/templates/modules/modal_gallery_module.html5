@@ -68,7 +68,7 @@
 								$percentWidth = $link['hotspot_x'];
 								$percentHeight = $link['hotspot_y'];
 							?>
-								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>" style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;">
+								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>" style="left: <?= $percentWidth+2 ?>%; top: <?= $percentHeight ?>%;">
 									<div class="modal_close">
 										<p onclick="closeModal('<?= $triggerLinkCounter; ?>')">X</a>
 									</div>
