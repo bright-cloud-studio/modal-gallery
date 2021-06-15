@@ -1,5 +1,10 @@
 <?php
 
+/**************************************************/
+/* UPDATE TO BE "MODAL GALLERY" AKA THE TOP LEVEL */
+/**************************************************/
+
+
 /**
  * Bright Cloud Studio's Modal Gallery
  *
