@@ -56,6 +56,27 @@ function triggerModal(id) {
 	for (var i=0; i<hoverInv.length; i++){
 		hoverInv[i].style.display = "none";
 	}
+	
+	// if the modal is outside the parent push it back inside
+	
+	// get the divs position
+	
+	function isOverflown(element) {
+		return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
+	}
+
+	var els = document.getElementById("modal_"+id);
+	for (var i = 0; i < els.length; i++) {
+		var el = els[i];
+		el.style.borderColor = (isOverflown(el) ? 'red' : 'green');
+		console.log("Element #" + i + " is " + (isOverflown(el) ? '' : 'not ') + "overflown.");
+	}
+	
+	
+	// get the parent position
+	
+	// if outside move it back inside
+	
 
 	var modal = document.getElementById("modal_"+id);
 	modal.style.display = "block";
