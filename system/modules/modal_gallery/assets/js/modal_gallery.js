@@ -62,14 +62,15 @@ function triggerModal(id) {
 	// get the divs position
 	var ourModal = document.getElementById("modal_"+id);
 	var modalPos = ourModal.getBoundingClientRect();
-	
-	var ourParent = ourModal.parent();
-	var parentPos = ourParent.getBoundingClientRect();
-	
 	console.log("Modal Position X: " + ourModal.offsetLeft);
 	console.log("Modal Position X + width: " + (ourModal.offsetLeft.x + modalPos.width));
 	
-	console.log("Parent width: " + parentPos.width);
+	// get the parents position
+	var modalParent = document.getElementsByClassName("modals_container");
+	for (i = 0; i < modalParent.length; i++) {
+		var parentPos = modalParent[i].getBoundingClientRect();
+		console.log("Parent Position: " + parentPos.width);
+	}
 	
 	
 	// get the parent position
