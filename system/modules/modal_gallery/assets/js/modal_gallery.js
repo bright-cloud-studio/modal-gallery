@@ -60,17 +60,14 @@ function triggerModal(id) {
 	// if the modal is outside the parent push it back inside
 	
 	// get the divs position
+	var ourModal = document.getElementById("modal_"+id);
+	var positionInfo = ourModal.getBoundingClientRect();
+	var height = positionInfo.height;
+	var width = positionInfo.width;
 	
-	function isOverflown(element) {
-		return element.scrollHeight > element.clientHeight || element.scrollWidth > element.clientWidth;
-	}
-
-	var els = document.getElementById("modal_"+id);
-	for (var i = 0; i < els.length; i++) {
-		var el = els[i];
-		el.style.borderColor = (isOverflown(el) ? 'red' : 'green');
-		console.log("Element #" + i + " is " + (isOverflown(el) ? '' : 'not ') + "overflown.");
-	}
+	
+	console.log("Modal Position X: " + ourModal.offsetLeft);
+	console.log("Modal Position X + width: " + (ourModal.offsetLeft.x + positionInfo.width));
 	
 	
 	// get the parent position
