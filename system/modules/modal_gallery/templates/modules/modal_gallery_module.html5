@@ -58,15 +58,17 @@
 								$percentHeight = $link['hotspot_y'];
 							?>
 								
-								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;"class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $result->hotspot_icon ?></a>
+								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $result->hotspot_icon ?></a>
 							<?php
 								$triggerLinkCounter++;
 							}
 							
 							foreach($links as $link)
 							{
+								$percentWidth = $link['hotspot_x'];
+								$percentHeight = $link['hotspot_y'];
 							?>
-								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>">
+								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>" style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;">
 									<div class="modal_close">
 										<p onclick="closeModal('<?= $triggerLinkCounter; ?>')">X</a>
 									</div>
