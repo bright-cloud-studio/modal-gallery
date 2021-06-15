@@ -128,9 +128,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
 	),
-	'slide_name' => array
+	'modal_gallery_name' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_name'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_name'],
 		'inputType'               => 'text',
 		'default'		 => '',
 		'search'                  => true,
@@ -146,95 +146,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'eval'                    => array('mandatory'=>true, 'useRawRequestData'=>true, 'tl_class'=>'w50'),
 		'sql'                     => "varchar(255) NOT NULL default ''"
 	),
-	'slide_image' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image'],
-		'inputType'               => 'fileTree',
-		'default'		  => '',
-		'search'                  => true,
-		'eval' => [
-			'tl_class' => 'clr',
-			'mandatory' => true, 
-			'fieldType' => 'radio', 
-			'filesOnly' => true, 
-			'mandatory' => true
-		],
-		'sql'                    => ['type' => 'binary', 'length' => 16, 'notnull' => false, 'fixed' => true]
-	),
-	'slide_image_size' => array
-	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_size'],
-		'exclude'               => true,
-		'inputType'             => 'imageSize',
-		'options'               => \Contao\System::getImageSizes(),
-		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
-		'eval'                  => [
-			'rgxp'=>'natural',
-			'includeBlankOption'=>true,
-			'nospace'=>true,
-			'helpwizard'=>true,
-			'tl_class'=>'long'
-		],
-		'sql'                   => ['type' => 'string', 'length' => 64, 'default' => '']
-	),
-	'slide_image_meta' => array
-	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_meta'],
-		'inputType'             => 'metaWizard',
-		'options'               => \Contao\System::getImageSizes(),
-		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
-		'eval'                  => [
-			'allowHtml'=>true,
-			'nospace'=>true,
-			'metaFields'    => array
-			(
-				'title'           => 'maxlength="255"',
-				'alt'             => 'maxlength="255"',
-				'link'            => array('attributes'=>'maxlength="255"', 'dcaPicker'=>true),
-				'caption'         => array('type'=>'textarea')
-			),
-			'helpwizard'=>true,
-			'tl_class'=>'long',
-			'dcaPicker'=>true
-		],
-		'sql'                   => "blob NULL"
-	),
-	'hotspot_links' => array
-		(
-			'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_links'],
-			'inputType'				=> 'multiColumnWizard',
-			'eval' => array
-			(
-				'columnFields'			=> array
-				(
-					'hotspot_x' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_x'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
-					),
-					'hotspot_y' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_y'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
-					),
-					'hotspot_title' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_title'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
-					),
-					'hotspot_text' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_text'],
-						'inputType'				=> 'textarea',
-						'eval'                	=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
-					),
-				),
-			),
-			'sql'					=> "blob NULL",
-		),
 	'published' => array
 	(
 		'exclude'                 => true,
