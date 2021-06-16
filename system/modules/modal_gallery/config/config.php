@@ -23,6 +23,7 @@ $GLOBALS['FE_MOD']['modal_gallery']['modal_gallery_module'] 	= 'Bcs\Module\Modal
 
 /* Models */
 $GLOBALS['TL_MODELS']['tl_modal_gallery']						= 'Bcs\Model\ModalGallery';
+$GLOBALS['TL_MODELS']['tl_modal_gallery_slide']						= 'Bcs\Model\ModalGallerySlide';
 
 /* Add Backend JS */
 if (TL_MODE == 'BE')
