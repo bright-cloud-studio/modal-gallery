@@ -11,7 +11,7 @@
 **/
 
  
-namespace Asc\Model;
+namespace Bcs\Model;
 
 class ModalGallerySlide extends \Model
 {
