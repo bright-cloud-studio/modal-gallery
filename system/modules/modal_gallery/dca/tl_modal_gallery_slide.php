@@ -29,7 +29,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
             (
                 'id'					=> 	'primary',
                 'alias'					=>  'index',
-		'pid,published,featured,start,stop'	=> 'index'
+		'pid,published'				=> 'index'
             )
         )
     ),
