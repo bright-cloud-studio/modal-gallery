@@ -13,7 +13,7 @@
 
 /* Back end modules */
 $GLOBALS['BE_MOD']['content']['modal_gallery'] = array(
-	'tables' => array('tl_modal_gallery'),
+	'tables' => array('tl_modal_gallery', 'tl_modal_gallery_slide'),
 	'icon'   => 'system/modules/modal_gallery/assets/icons/modal_gallery.png',
 	'exportLocations' => array('Bcs\Backend\ModalGalleryBackend', 'exportModalGallery')
 );
