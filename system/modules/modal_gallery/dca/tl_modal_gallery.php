@@ -21,14 +21,15 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Config
     'config' => array
     (
-        'dataContainer'               => 'Table',
-        'enableVersioning'            => true,
+        'dataContainer'			=> 'Table',
+        'enableVersioning'		=> true,
+	'ctable'			=> array('tl_modal_gallery_slides'),
         'sql' => array
         (
             'keys' => array
             (
-                'id' 	=> 	'primary',
-                'alias' =>  'index'
+                'id' 		=> 	'primary',
+                'alias' 	=>	'index'
             )
         )
     ),
@@ -58,12 +59,19 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         ),
         'operations' => array
         (
-            'edit' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['edit'],
-                'href'                => 'act=edit',
-                'icon'                => 'edit.gif'
-            ),
+		'edit' => array
+		(
+			'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['edit'],
+			'href'                => 'table=tl_modal_gallery_slides',
+			'icon'                => 'edit.svg'
+		),
+		'editheader' => array
+		(
+			'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['edit'],
+			'href'                => 'act=edit',
+			'icon'                => 'edit.svg',
+			'button_callback'	=> array('tl_modaL_gallery', 'editHeader')
+		),
             'copy' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['copy'],
@@ -156,3 +164,12 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	)		
     )
 );
+
+
+class tl_modal_gallery extends Backend
+{
+	public function editHeader($row, $href, $label, $title, $icon, $attributes)
+	{
+		return $this->User->canEditFieldsOf('tl_modal_gallery') ? '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . StringUtil::specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ' : Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
+	}
+}
