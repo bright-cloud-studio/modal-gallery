@@ -1,5 +1,8 @@
 <?php
 
+
+use Bcs\ModalGallerySlide;
+
 /**************************************************/
 /* UPDATE TO BE "MODAL GALLERY" AKA THE TOP LEVEL */
 /**************************************************/
