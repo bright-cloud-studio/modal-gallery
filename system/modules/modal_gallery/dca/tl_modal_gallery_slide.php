@@ -14,7 +14,7 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
 **/
 
-/* Table tl_modal_gallery_slides */
+/* Table tl_modal_gallery_slide */
 $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 (
     // Config
