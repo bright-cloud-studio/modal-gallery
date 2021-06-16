@@ -14,11 +14,11 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
 **/
 
-/* Table tl_modal_gallery */
-$GLOBALS['TL_DCA']['tl_modal_gallery'] = array
+/* Table tl_modal_gallery_slides */
+$GLOBALS['TL_DCA']['tl_modal_gallery_slides'] = array
 (
     // Config
-    'config' => array
+	'config' => array
     (
         'dataContainer'               => 'Table',
         'enableVersioning'            => true,
@@ -59,33 +59,33 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['edit'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.gif'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['copy'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['copy'],
                 'href'                => 'act=copy',
                 'icon'                => 'copy.gif'
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['delete'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.gif',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'toggle' => array
 	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['toggle'],
+		'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['toggle'],
 		'icon'                => 'visible.gif',
 		'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
 		'button_callback'     => array('Bcs\Backend\ModalGalleryBackend', 'toggleIcon')
 	    ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['show'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.gif'
             )
@@ -115,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'alias' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['alias'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['alias'],
 		'exclude'                 => true,
 		'inputType'               => 'text',
 		'search'                  => true,
@@ -129,7 +129,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_name' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_name'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['slide_name'],
 		'inputType'               => 'text',
 		'default'		 => '',
 		'search'                  => true,
@@ -138,7 +138,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'hotspot_icon' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_icon'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_icon'],
 		'inputType'               => 'text',
 		'default'		 => '',
 		'search'                  => true,
@@ -147,7 +147,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_image' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['slide_image'],
 		'inputType'               => 'fileTree',
 		'default'		  => '',
 		'search'                  => true,
@@ -162,7 +162,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_image_size' => array
 	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_size'],
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['slide_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
 		'options'               => \Contao\System::getImageSizes(),
@@ -178,7 +178,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_image_meta' => array
 	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_meta'],
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['slide_image_meta'],
 		'inputType'             => 'metaWizard',
 		'options'               => \Contao\System::getImageSizes(),
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
@@ -200,7 +200,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'hotspot_links' => array
 		(
-			'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_links'],
+			'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_links'],
 			'inputType'				=> 'multiColumnWizard',
 			'eval' => array
 			(
@@ -208,25 +208,25 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 				(
 					'hotspot_x' => array
 					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_x'],
+						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_x'],
 						'inputType'				=> 'text',
 						'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
 					),
 					'hotspot_y' => array
 					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_y'],
+						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_y'],
 						'inputType'				=> 'text',
 						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
 					),
 					'hotspot_title' => array
 					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_title'],
+						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_title'],
 						'inputType'				=> 'text',
 						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
 					),
 					'hotspot_text' => array
 					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_text'],
+						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slides']['hotspot_text'],
 						'inputType'				=> 'textarea',
 						'eval'                	=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
 					),
@@ -237,7 +237,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	'published' => array
 	(
 		'exclude'                 => true,
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['published'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slides']['published'],
 		'inputType'               => 'checkbox',
 		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
 		'sql'                     => "char(1) NOT NULL default ''"
