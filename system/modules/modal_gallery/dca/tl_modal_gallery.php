@@ -24,6 +24,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         'dataContainer'			=> 'Table',
         'enableVersioning'		=> true,
 	'ctable'			=> array('tl_modal_gallery_slides'),
+	'switchToEdit'			=> true,
         'sql' => array
         (
             'keys' => array
@@ -34,14 +35,15 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         )
     ),
  
-    // List
-    'list' => array
-    (
-        'sorting' => array
-        (
-            'mode'                    => 0,
-            'panelLayout'             => 'filter;search,limit'
-        ),
+	// List
+	'list' => array
+	(
+		'sorting' => array
+		(
+			'mode'			=> 1,
+			'fields'		=> array('title'),
+			'panelLayout'		=> 'filter;search,limit'
+        	),
         'label' => array
         (
             'fields'                  => array('slide_name'),
@@ -67,9 +69,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		),
 		'editheader' => array
 		(
-			'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['edit'],
+			'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['editheader'],
 			'href'                => 'act=edit',
-			'icon'                => 'edit.svg',
+			'icon'                => 'header.svg',
 			'button_callback'	=> array('tl_modaL_gallery', 'editHeader')
 		),
             'copy' => array
