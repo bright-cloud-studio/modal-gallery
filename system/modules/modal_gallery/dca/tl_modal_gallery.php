@@ -106,7 +106,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},slide_name,hotspot_icon,slide_image,slide_image_size,slide_image_meta;{hotspot_legend},hotspot_links;{publish_legend},published;'
+        'default'                     => '{slide_legend},title,modal_gallery_name,hotspot_icon;{publish_legend},published;'
     ),
  
     // Fields
@@ -180,6 +180,6 @@ class tl_modal_gallery extends Backend
 {
 	public function editHeader($row, $href, $label, $title, $icon, $attributes)
 	{
-		return $this->User->canEditFieldsOf('tl_modal_gallery') ? '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . StringUtil::specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ' : Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
+		return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . StringUtil::specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ' : Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
 	}
 }
