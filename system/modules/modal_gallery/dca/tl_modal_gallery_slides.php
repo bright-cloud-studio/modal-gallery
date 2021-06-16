@@ -22,12 +22,14 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slides'] = array
     (
         'dataContainer'               => 'Table',
         'enableVersioning'            => true,
+	'ptable'			=> 'tl_modal_gallery',
         'sql' => array
         (
             'keys' => array
             (
-                'id' 	=> 	'primary',
-                'alias' =>  'index'
+                'id'					=> 	'primary',
+                'alias'					=>  'index',
+		'pid,published,featured,start,stop'	=> 'index'
             )
         )
     ),
@@ -37,7 +39,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slides'] = array
     (
         'sorting' => array
         (
-            'mode'                    => 0,
+            'mode'                    => 4,
             'panelLayout'             => 'filter;search,limit'
         ),
         'label' => array
@@ -105,6 +107,12 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slides'] = array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
+	'pid' => array
+	    {
+		    'foreignKey'		=> 'tl_modal_gallery.title',
+		    'sql'			=> "int(10) unsigned NOT NULL default 0",
+		    'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
+	    }
         'tstamp' => array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
