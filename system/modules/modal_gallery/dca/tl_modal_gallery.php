@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     (
         'dataContainer'			=> 'Table',
         'enableVersioning'		=> true,
-	'ctable'			=> array('tl_modal_gallery_slides'),
+	'ctable'			=> array('tl_modal_gallery_slide'),
 	'switchToEdit'			=> true,
         'sql' => array
         (
