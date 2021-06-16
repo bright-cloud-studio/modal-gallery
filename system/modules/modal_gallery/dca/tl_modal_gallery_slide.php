@@ -108,11 +108,11 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
 	'pid' => array
-	    {
+	    (
 		    'foreignKey'		=> 'tl_modal_gallery.title',
 		    'sql'			=> "int(10) unsigned NOT NULL default 0",
 		    'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
-	    }
+	    ),
         'tstamp' => array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
