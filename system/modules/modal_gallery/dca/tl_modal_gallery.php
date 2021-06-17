@@ -43,7 +43,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	(
 		'sorting' => array
 		(
-			'mode'			=> 1,
+			'mode'			=> 0,
 			'fields'		=> array('title'),
 			'panelLayout'		=> 'filter;search,limit'
         	),
