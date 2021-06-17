@@ -34,60 +34,61 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
         )
     ),
  
-    // List
-    'list' => array
-    (
-        'sorting' => array
-        (
-            'mode'                    => 0,
-            'panelLayout'             => 'filter;search,limit'
-        ),
-        'global_operations' => array
-        (
-            'all' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-                'href'                => 'act=select',
-                'class'               => 'header_edit_all',
-                'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-            )
-        ),
-        'operations' => array
-        (
-            'edit' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit'],
-                'href'                => 'act=edit',
-                'icon'                => 'edit.gif'
-            ),
-            'copy' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['copy'],
-                'href'                => 'act=copy',
-                'icon'                => 'copy.gif'
-            ),
-            'delete' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['delete'],
-                'href'                => 'act=delete',
-                'icon'                => 'delete.gif',
-                'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-            ),
-            'toggle' => array
-	    (
-		'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['toggle'],
-		'icon'                => 'visible.gif',
-		'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-		'button_callback'     => array('Bcs\Backend\ModalGalleryBackend', 'toggleIcon')
-	    ),
-            'show' => array
-            (
-                'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['show'],
-                'href'                => 'act=show',
-                'icon'                => 'show.gif'
-            )
-        )
-    ),
+	// List
+	'list' => array
+	(
+		'sorting' => array
+		(
+			'mode'			=> 1,
+			'fields'		=> array('slide_name'),
+			'panelLayout'		=> 'filter;search,limit'
+        	),
+		'global_operations' => array
+		(
+			'all' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
+				'href'                => 'act=select',
+				'class'               => 'header_edit_all',
+				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
+			)
+		),
+		'operations' => array
+		(
+			'edit' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit'],
+				'href'                => 'act=edit',
+				'icon'                => 'edit.gif'
+			),
+			'copy' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['copy'],
+				'href'                => 'act=copy',
+				'icon'                => 'copy.gif'
+			),
+			'delete' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['delete'],
+				'href'                => 'act=delete',
+				'icon'                => 'delete.gif',
+				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+			),
+			'toggle' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['toggle'],
+				'icon'                => 'visible.gif',
+				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
+				'button_callback'     => array('Bcs\Backend\ModalGalleryBackend', 'toggleIcon')
+			),
+			'show' => array
+			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['show'],
+				'href'                => 'act=show',
+				'icon'                => 'show.gif'
+			)
+		)
+	),
  
     // Palettes
     'palettes' => array
