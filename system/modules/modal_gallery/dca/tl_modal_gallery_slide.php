@@ -27,8 +27,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
         (
             'keys' => array
             (
-                'id'					=> 	'primary',
-                'alias'					=>  'index',
+                'id'					=> 'primary',
+                'alias'					=> 'index',
 		'pid,published'				=> 'index'
             )
         )
@@ -236,7 +236,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 					(
 						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
 						'inputType'				=> 'textarea',
-						'eval'                	=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
+						'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
 					),
 				),
 			),
