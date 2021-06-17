@@ -42,11 +42,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
             'mode'                    => 4,
             'panelLayout'             => 'filter;search,limit'
         ),
-        'label' => array
-        (
-            'fields'                  => array('slide_name'),
-            'format'                  => '%s'
-        ),
         'global_operations' => array
         (
             'all' => array
@@ -62,7 +57,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
             'edit' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit'],
-                'href'                => 'act=edit',
+                'href'                => 'table=tl_modal_gallery_slide',
                 'icon'                => 'edit.gif'
             ),
             'copy' => array
