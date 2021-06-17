@@ -43,6 +43,11 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 			'fields'		=> array('slide_name'),
 			'panelLayout'		=> 'filter;search,limit'
         	),
+		'label' => array
+		(
+			'fields'                  => array('slide_name'),
+			'format'                  => '%s'
+		),
 		'global_operations' => array
 		(
 			'all' => array
