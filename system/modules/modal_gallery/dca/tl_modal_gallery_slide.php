@@ -140,15 +140,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
 		'sql'                     => "varchar(255) NOT NULL default ''"
 	),
-	'hotspot_icon' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_icon'],
-		'inputType'               => 'text',
-		'default'		 => '',
-		'search'                  => true,
-		'eval'                    => array('mandatory'=>true, 'useRawRequestData'=>true, 'tl_class'=>'w50'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
-	),
 	'slide_image' => array
 	(
 		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'],
