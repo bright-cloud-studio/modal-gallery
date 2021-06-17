@@ -57,7 +57,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
             'edit' => array
             (
                 'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit'],
-                'href'                => 'table=tl_modal_gallery_slide',
+                'href'                => 'act=edit',
                 'icon'                => 'edit.gif'
             ),
             'copy' => array
