@@ -49,7 +49,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         	),
         'label' => array
         (
-            'fields'                  => array('slide_name'),
+            'fields'                  => array('title'),
             'format'                  => '%s'
         ),
         'global_operations' => array
@@ -123,14 +123,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
         ),
-	'title' => array
-	(
-		'exclude'                 => true,
-		'search'                  => true,
-		'inputType'               => 'text',
-		'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
-	),
 	'sorting' => array
 	(
 		'sql'                    	=> "int(10) unsigned NOT NULL default '0'"
@@ -149,9 +141,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
 	),
-	'modal_gallery_name' => array
+	'title' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_name'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_title'],
 		'inputType'               => 'text',
 		'default'		 => '',
 		'search'                  => true,
@@ -183,6 +175,6 @@ class tl_modal_gallery extends Backend
 {
 	public function editHeader($row, $href, $label, $title, $icon, $attributes)
 	{
-		return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . StringUtil::specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a> ' . Image::getHtml(preg_replace('/\.svg$/i', '_.svg', $icon)) . ' ';
+		return '<a href="' . $this->addToUrl($href . '&amp;id=' . $row['id']) . '" title="' . StringUtil::specialchars($title) . '"' . $attributes . '>' . Image::getHtml($icon, $label) . '</a>';
 	}
 }
