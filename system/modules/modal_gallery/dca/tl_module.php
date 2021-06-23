@@ -17,18 +17,8 @@ $GLOBALS['TL_DCA']['tl_module']['palettes']['modal_gallery_module'] 		= '{title_
 $GLOBALS['TL_DCA']['tl_module']['fields']['selectedGallery'] = array
 (
 	'label' 			=> &$GLOBALS['TL_LANG']['tl_module']['selectedGallery'],
-	'exclude' 			=> true,
-	'inputType' 		=> 'select',
-	'default'			=> 'name',
-	'options' 			=> 
-		array(
-			'alias'			=> 'Alias', 
-			'name'			=> 'Name', 
-			'first_name'	=> 'First Name', 
-			'last_name'		=> 'Last Name', 
-			'title'			=> 'Title', 
-			'company'		=> 'Company'
-		),
+	'inputType' 			=> 'select',
+	'options_callback'		  => array('Bcs\Backend\ModalGalleryBackend', 'getGalleries'),
 	'eval' 				=> array('tl_class'=>'clr w50'),
-	'sql' 				=> "varchar(32) NOT NULL default 'name'"
+	'sql' 				=> "varchar(255) NOT NULL default ''"
 );
