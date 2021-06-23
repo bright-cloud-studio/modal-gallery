@@ -6,7 +6,7 @@
 		<div class="thumb_container" id="thumb_container">
 			<?php
 				$this->import('Database');
-				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slides WHERE published=1")->execute();
 				$slideCounter = 1;
 				while($result->next())
 				{
@@ -29,7 +29,7 @@
 	<div class="main_container">
 		<?php
 			$this->import('Database');
-			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slides WHERE published=1")->execute();
 			$thumbCounter = 1;
 			$triggerCounter = 1;
 			$triggerLinkCounter = 1;
