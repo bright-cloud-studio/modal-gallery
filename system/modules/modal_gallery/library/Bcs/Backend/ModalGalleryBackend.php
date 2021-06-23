@@ -88,5 +88,25 @@ class ModalGalleryBackend extends \Backend
 		}
 
 		return $varValue;
-	}	
+	}
+	
+	public function getGalleries() { 
+		$galleries = array();
+		$this->import('Database');
+		$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+		while($result->next())
+		{
+			$galleries = $galleries + array($result->id => $result->title);
+		}
+		return $galleries;
+		
+		
+		#return array(
+		#	'1' => 'Onee',
+		#	'2' => 'Twoo',
+		#	'3' => 'Threee',
+		#	'4' => 'Fourr'
+		#);
+	}
+	
 }
