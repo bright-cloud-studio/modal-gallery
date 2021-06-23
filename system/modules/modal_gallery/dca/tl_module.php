@@ -14,7 +14,7 @@
 $GLOBALS['TL_DCA']['tl_module']['palettes']['modal_gallery_module'] 		= '{title_legend},name,headline,type;{select_gallery_legend},selectedGallery;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
 
 // Sort Fields
-$GLOBALS['TL_DCA']['tl_module']['fields']['recordSortField'] = array
+$GLOBALS['TL_DCA']['tl_module']['fields']['selectedGallery'] = array
 (
 	'label' 			=> &$GLOBALS['TL_LANG']['tl_module']['selectedGallery'],
 	'exclude' 			=> true,
