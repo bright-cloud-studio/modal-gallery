@@ -3,7 +3,7 @@
  
 
 /* Fields */
-$GLOBALS['TL_LANG']['tl_module']['selectedGallery'] 		= array('Select Gallery', 'Select which gallery to display.');
+$GLOBALS['TL_LANG']['tl_module']['selectedGallery'] 		= array('Galleries Available', 'Select which available gallery this front end module will display.');
 
 /* Legends */
-$GLOBALS['TL_LANG']['tl_module']['select_gallery_legend'] 	= array('Pick A Gallery', 'Pick which gallery this module will show.');
+$GLOBALS['TL_LANG']['tl_module']['select_gallery_legend'] 	= "Select a Gallery";
