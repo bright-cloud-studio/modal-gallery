@@ -1,4 +1,5 @@
 <!–– pull categories from database ––>
+
 <div class="slide_container">
 	
 	<!-- This is the thumbnails -->
@@ -6,7 +7,7 @@
 		<div class="thumb_container" id="thumb_container">
 			<?php
 				$this->import('Database');
-				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slides WHERE published=1")->execute();
+				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
 				$slideCounter = 1;
 				while($result->next())
 				{
@@ -29,7 +30,7 @@
 	<div class="main_container">
 		<?php
 			$this->import('Database');
-			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slides WHERE published=1")->execute();
+			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
 			$thumbCounter = 1;
 			$triggerCounter = 1;
 			$triggerLinkCounter = 1;
@@ -58,7 +59,7 @@
 								$percentHeight = $link['hotspot_y'];
 							?>
 								
-								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $result->hotspot_icon ?></a>
+								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><i class="fas fa-bullseye"></i></a>
 							<?php
 								$triggerLinkCounter++;
 							}
