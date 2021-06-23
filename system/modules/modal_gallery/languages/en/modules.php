@@ -15,3 +15,5 @@ $GLOBALS['TL_LANG']['MOD']['modal_gallery'] = array('Modal Gallery', 'Add slides
 
 /* Front end modules */
 $GLOBALS['TL_LANG']['FMD']['modal_gallery_module'] 	= array('Modal Gallery', 'The front end module that displays the gallery.');
+
+$GLOBALS['TL_LANG']['tl_module']['selectedGallery'] 		= array('Select Gallery', 'Select which gallery to display.');
