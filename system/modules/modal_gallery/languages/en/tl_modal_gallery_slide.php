@@ -12,7 +12,7 @@
 
 
 /* Legends */
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_legend']        	= 'Image Details';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_legend']        	= 'Slide Details';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_legend']      	= 'Hotspot Details';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['publish_legend']      	= 'Publish';
 
@@ -21,9 +21,9 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['alias'] 			            = array('A
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['product_name'] 			     = array('Product Name', 'The name of the product');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['product_inventory'] 	 	= array('Product Inventory', 'The inventory total');
 
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'] 	      		= array('Select the Slide\'s Image', 'Select the image we will use for this particular slide');
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size'] 	   = array('Select the Slide\'s Image\'s Size', 'Set the slide images size settings');
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'] 	   = array('Select the Slide\'s Image\'s Meta', 'Set the meta details');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'] 	      		= array('Slide\'s Image', 'Select the image we will use for this particular slide');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size'] 	   = array('Slide\'s Image\'s Size', 'Set the slide images size settings');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'] 	   = array('Slide\'s Image\'s Meta', 'Set the meta details');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'] 	       		= array('Slide Name', 'Give this slide a name');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_icon'] 	      	= array('Hotspot Icon', 'Insert code for the hotspot links\'s icon');
 
