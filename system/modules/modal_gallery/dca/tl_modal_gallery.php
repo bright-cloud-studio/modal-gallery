@@ -152,7 +152,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'hotspot_icon' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['hotspot_icon'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_hotspot_icon'],
 		'inputType'               => 'text',
 		'default'		 => '',
 		'search'                  => true,
