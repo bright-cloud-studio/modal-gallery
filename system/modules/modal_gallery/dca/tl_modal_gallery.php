@@ -21,22 +21,23 @@ use Bcs\ModalGallerySlide;
 /* Table tl_modal_gallery */
 $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 (
-    // Config
-    'config' => array
-    (
-        'dataContainer'			=> 'Table',
-        'enableVersioning'		=> true,
-	'ctable'			=> array('tl_modal_gallery_slide'),
-	'switchToEdit'			=> true,
-        'sql' => array
-        (
-            'keys' => array
-            (
-                'id' 		=> 	'primary',
-                'alias' 	=>	'index'
-            )
-        )
-    ),
+	// Config
+	'config' => array
+	(
+		'dataContainer'			=> 'Table',
+		'enableVersioning'		=> true,
+		'ctable'			=> array('tl_modal_gallery_slide'),
+		'switchToEdit'			=> true,
+		'markAsCopy'			=> 'title',
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id' 		=> 	'primary',
+				'alias' 	=>	'index'
+			)
+		)
+	),
  
 	// List
 	'list' => array
