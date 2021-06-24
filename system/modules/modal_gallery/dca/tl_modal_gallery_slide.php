@@ -17,22 +17,23 @@
 /* Table tl_modal_gallery_slide */
 $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 (
-    // Config
+	// Config
 	'config' => array
-    (
-        'dataContainer'               => 'Table',
-        'enableVersioning'            => true,
-	'ptable'			=> 'tl_modal_gallery',
-        'sql' => array
-        (
-            'keys' => array
-            (
-                'id'					=> 'primary',
-                'alias'					=> 'index',
-		'pid,published'				=> 'index'
-            )
-        )
-    ),
+	(
+		'dataContainer'               => 'Table',
+		'enableVersioning'            => true,
+		'ptable'			=> 'tl_modal_gallery',
+		'markAsCopy'			=> 'slide_name',
+		'sql' => array
+		(
+			'keys' => array
+			(
+				'id'					=> 'primary',
+				'alias'					=> 'index',
+				'pid,published'				=> 'index'
+			)
+		)
+	),
  
 	// List
 	'list' => array
