@@ -167,7 +167,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'inputType'		=> 'text',
 		'default'		=> '',
 		'search'		=> true,
-		'eval'			=> array('mandatory'=>true, 'tl_class'=>'clr long', 'style'=>'display:none;'),
+		'eval'			=> array('mandatory'=>false, 'tl_class'=>'clr long', 'style'=>'display:none;'),
 		'sql'			=> "varchar(255) NOT NULL default ''"
 	),
 	'slide_image_meta' => array
