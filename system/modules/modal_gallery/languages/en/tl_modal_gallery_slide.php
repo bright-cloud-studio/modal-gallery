@@ -23,7 +23,7 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['product_inventory'] 	 	= array('P
 
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'] 	       		= array('Slide Name', 'Give this slide a name');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'] 	      		= array('Slide Image', 'Select the image we will use for this particular slide');
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'] 	    = array('Full URL', 'This field will hold the full sized url for the selected image, helps with tool');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'] 	    = array(' ', ' ');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'] 	   = array('Slide Image Meta', 'Set the meta details');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_icon'] 	      	= array('Hotspot Icon', 'Insert code for the hotspot links\'s icon');
 
