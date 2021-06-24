@@ -160,22 +160,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		],
 		'sql'                    => ['type' => 'binary', 'length' => 16, 'notnull' => false, 'fixed' => true]
 	),
-	'slide_image_size' => array
-	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size'],
-		'exclude'               => true,
-		'inputType'             => 'imageSize',
-		'options'               => \Contao\System::getImageSizes(),
-		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
-		'eval'                  => [
-			'rgxp'=>'natural',
-			'includeBlankOption'=>true,
-			'nospace'=>true,
-			'helpwizard'=>true,
-			'tl_class'=>'long'
-		],
-		'sql'                   => ['type' => 'string', 'length' => 64, 'default' => '']
-	),
 	'slide_image_meta' => array
 	(
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'],
