@@ -15,7 +15,7 @@ namespace Bcs\Backend;
 use Contao\DataContainer;
 use Bcs\Model\ModalGallerySlide;
 
-class ModalGalleryBackend extends \Backend
+class ModalGallerySlideBackend extends \Backend
 {
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
