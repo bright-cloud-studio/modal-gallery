@@ -20,7 +20,7 @@ var intervalId = window.setInterval(function(){
     
     // if we have hiddenField use that, if not do our original process
     
-    if(hiddenField.value != '')
+    if(hiddenField.value != '' || hiddenField.value != lastSrc)
     {
         if(lastSrc != hiddenField.value )
         {
