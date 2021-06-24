@@ -102,6 +102,6 @@ function GetCoordinates(e)
   PosX = PosX - ImgPos[0];
   PosY = PosY - ImgPos[1];
     
-  document.getElementById("x").innerHTML = Math.trunc((PosX / myImg.width) * 100);
-  document.getElementById("y").innerHTML = Math.trunc((PosY / myImg.height) * 100);
+  document.getElementById("x").innerHTML = " " + Math.trunc((PosX / myImg.width) * 100);
+  document.getElementById("y").innerHTML = " " + Math.trunc((PosY / myImg.height) * 100);
 }
