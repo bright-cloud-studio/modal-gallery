@@ -11,31 +11,56 @@ var intervalId = window.setInterval(function(){
     
     var picture = document.getElementsByClassName("gimage");
     var toAppend = document.getElementById("pal_slide_legend");
+    
+    var hiddenField = document.getElementById("ctrl_slide_image_url");
+    
     var title = picture[0].title;
     var src = title.substr(0,title.indexOf(' ')); 
     
-    if(src != '') {
-  
-        if(lastSrc != src )
+    
+    // if we have hiddenField use that, if not do our original process
+    
+    if(hiddenField.value != '')
+    {
+        if(lastSrc != hiddenField.value )
         {
-            lastSrc = src;
+            lastSrc = hiddenField.value;
             var deleteOld = document.getElementById("modal_helper");
             if(deleteOld != null)
-                deleteOld.remove();
-            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><br><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
+            deleteOld.remove();
+            toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + hiddenField.value + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><br><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
 
             var myImg = document.getElementById("hotspot_image");
             myImg.onmousedown = GetCoordinates;
-            
-            // add the image full address to the hidden field so we can access it every time
-            var hiddenField = document.getElementById("ctrl_slide_image_url");
-            hiddenField.value = src;
-            
-
-            //stop running once we have found our image
-            //clearInterval(intervalId) 
         }
+        
     }
+    else
+    {
+    
+        if(src != '') {
+            if(lastSrc != src )
+            {
+                lastSrc = src;
+                var deleteOld = document.getElementById("modal_helper");
+                if(deleteOld != null)
+                    deleteOld.remove();
+                toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><br><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
+
+                var myImg = document.getElementById("hotspot_image");
+                myImg.onmousedown = GetCoordinates;
+
+                // add the image full address to the hidden field so we can access it every time
+                hiddenField.value = src;
+
+
+                //stop running once we have found our image
+                //clearInterval(intervalId) 
+            }
+        }
+        
+    }
+    
 }, 1000);
 
 
