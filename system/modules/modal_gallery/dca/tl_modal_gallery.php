@@ -159,6 +159,38 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'eval'                    => array('mandatory'=>true, 'useRawRequestData'=>true, 'tl_class'=>'w50'),
 		'sql'                     => "varchar(255) NOT NULL default ''"
 	),
+	'slide_image_size' => array
+	(
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size'],
+		'exclude'               => true,
+		'inputType'             => 'imageSize',
+		'options'               => \Contao\System::getImageSizes(),
+		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
+		'eval'                  => [
+			'rgxp'=>'natural',
+			'includeBlankOption'=>true,
+			'nospace'=>true,
+			'helpwizard'=>true,
+			'tl_class'=>'clr long'
+		],
+		'sql'                   => ['type' => 'string', 'length' => 64, 'default' => '']
+	),
+	'slide_thumb_image_size' => array
+	(
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_thumb_image_size'],
+		'exclude'               => true,
+		'inputType'             => 'imageSize',
+		'options'               => \Contao\System::getImageSizes(),
+		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
+		'eval'                  => [
+			'rgxp'=>'natural',
+			'includeBlankOption'=>true,
+			'nospace'=>true,
+			'helpwizard'=>true,
+			'tl_class'=>'long'
+		],
+		'sql'                   => ['type' => 'string', 'length' => 64, 'default' => '']
+	),
 	'published' => array
 	(
 		'exclude'                 => true,
