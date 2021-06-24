@@ -14,6 +14,7 @@ namespace Bcs\Backend;
 
 use Contao\DataContainer;
 use Bcs\Model\ModalGallery;
+use Bcs\Model\ModalGallerySlide;
 
 class ModalGalleryBackend extends \Backend
 {
