@@ -22,11 +22,12 @@ $GLOBALS['BE_MOD']['content']['modal_gallery'] = array(
 $GLOBALS['FE_MOD']['modal_gallery']['modal_gallery_module'] 	= 'Bcs\Module\ModalGalleryModule';
 
 /* Models */
-$GLOBALS['TL_MODELS']['tl_modal_gallery']						= 'Bcs\Model\ModalGallery';
-$GLOBALS['TL_MODELS']['tl_modal_gallery_slide']						= 'Bcs\Model\ModalGallerySlide';
+$GLOBALS['TL_MODELS']['tl_modal_gallery']			= 'Bcs\Model\ModalGallery';
+$GLOBALS['TL_MODELS']['tl_modal_gallery_slide']			= 'Bcs\Model\ModalGallerySlide';
 
 /* Add Backend JS */
 if (TL_MODE == 'BE')
 {
-	$GLOBALS['TL_JAVASCRIPT']['smg']							= 'system/modules/modal_gallery/assets/js/modal_gallery_backend.js';
+	$GLOBALS['TL_JAVASCRIPT']['smg']			= 'system/modules/modal_gallery/assets/js/modal_gallery_backend.js';
+	$GLOBALS['TL_CSS'][]					= 'system/modules/modal_gallery/assets/css/modal_gallery_backend.css';
 }
