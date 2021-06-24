@@ -85,7 +85,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['toggle'],
 				'icon'                => 'visible.gif',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('Bcs\Backend\ModalGalleryBackend', 'toggleIcon')
+				'button_callback'     => array('Bcs\Backend\ModalGallerySlideBackend', 'toggleIcon')
 			),
 			'show' => array
 			(
