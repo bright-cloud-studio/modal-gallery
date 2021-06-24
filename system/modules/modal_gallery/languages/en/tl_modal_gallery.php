@@ -20,6 +20,8 @@ $GLOBALS['TL_LANG']['tl_modal_gallery']['publish_legend']      	= 'Publish';
 $GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_title']                = array('Gallery Name', 'Give this gallery a name');
 $GLOBALS['TL_LANG']['tl_modal_gallery']['modal_gallery_hotspot_icon'] 	      	= array('Hotspot Icon', 'Insert an HTML i tag which will be the icon for hotspots');
 
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size']             = array('Slide Image Size', 'Set the slide images size settings');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_thumb_image_size']       = array('Slide Thumb Image Size', 'Set the slide\'s thumbnail images size settings');
 
 $GLOBALS['TL_LANG']['tl_modal_gallery']['published'] 		         = array('Published', 'Save this product\'s record.');
  
