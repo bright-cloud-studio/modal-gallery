@@ -59,7 +59,7 @@ class ModalGalleryBackend extends \Backend
 		$this->Database->prepare("UPDATE tl_modal_gallery_slide SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->log('A new version of record "tl_modal_gallery_slide.id='.$intId.'" has been created'.$this->getParentEntries('tl_modal_gallery', $intId), __METHOD__, TL_GENERAL);
+		$this->log('A new version of record "tl_modal_gallery_slide.id='.$intId.'" has been created'.$this->getParentEntries('tl_modal_gallery_slide', $intId), __METHOD__, TL_GENERAL);
 	}
 	
 	public function generateAlias($varValue, DataContainer $dc)
