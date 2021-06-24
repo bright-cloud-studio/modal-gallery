@@ -161,7 +161,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_image_size' => array
 	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_size'],
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
 		'options'               => \Contao\System::getImageSizes(),
@@ -177,7 +177,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 	'slide_thumb_image_size' => array
 	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_thumb_image_size'],
+		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_thumb_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
 		'options'               => \Contao\System::getImageSizes(),
