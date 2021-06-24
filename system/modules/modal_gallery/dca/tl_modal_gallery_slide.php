@@ -163,12 +163,13 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	),
 	'slide_image_url' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'],
-		'inputType'               => 'text',
-		'default'		 => '',
-		'search'                  => true,
-		'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr long'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
+		'label'			=> &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'],
+		'inputType'		=> 'text',
+		'default'		=> '',
+		'search'		=> true,
+		'eval'			=> array('mandatory'=>true, 'tl_class'=>'clr long'),
+		'sql'			=> "varchar(255) NOT NULL default ''",
+		'hideInput'		=> true
 	),
 	'slide_image_meta' => array
 	(
