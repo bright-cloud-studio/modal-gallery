@@ -26,6 +26,11 @@ var intervalId = window.setInterval(function(){
 
             var myImg = document.getElementById("hotspot_image");
             myImg.onmousedown = GetCoordinates;
+            
+            // add the image full address to the hidden field so we can access it every time
+            var hiddenField = document.getElementById("ctrl_slide_image_url");
+            hiddenField.value = src;
+            
 
             //stop running once we have found our image
             //clearInterval(intervalId) 
