@@ -40,8 +40,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	(
 		'sorting' => array
 		(
-			'mode'				=> 0,
-			'fields'			=> array('slide_name'),
+			'mode' 					=> 4,
+            		'fields' 				=> array('sorting'),
+            		'flag' 					=> 11,
 			'panelLayout'			=> 'filter;search,limit'
         	),
 		'label' => array
@@ -115,19 +116,19 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
-	'pid' => array
-	    (
-		    'foreignKey'		=> 'tl_modal_gallery.title',
-		    'sql'			=> "int(10) unsigned NOT NULL default 0",
-		    'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
-	    ),
+		'pid' => array
+	    	(
+			'foreignKey'		=> 'tl_modal_gallery.title',
+			'sql'			=> "int(10) unsigned NOT NULL default 0",
+			'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
+	),
         'tstamp' => array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
         ),
 	'sorting' => array
 	(
-		'sql'                    	=> "int(10) unsigned NOT NULL default '0'"
+		'sql'                     => "int(10) unsigned NOT NULL default '0'"
 	),
 	'alias' => array
 	(
