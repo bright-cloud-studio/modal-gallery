@@ -42,8 +42,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		(
 			'mode'				=> 0,
 			'fields'			=> array('slide_name'),
-			'panelLayout'			=> 'filter;search,limit',
-			'paste_button_callback'   	=> array('Bcs\Backend\ModalGallerySlideBackend', 'pastePage')
+			'panelLayout'			=> 'filter;search,limit'
         	),
 		'label' => array
 		(
@@ -74,12 +73,11 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 				'href'                => 'act=copy',
 				'icon'                => 'copy.gif'
 			),
-			'cut' => array
+			 'cut' => array
 			(
+				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['cut'],
 				'href'                => 'act=paste&amp;mode=cut',
-				'icon'                => 'cut.svg',
-				'attributes'          => 'onclick="Backend.getScrollOffset()"',
-				'button_callback'     => array('Bcs\Backend\ModalGallerySlideBackend', 'cutPage')
+				'icon'                => 'cut.svg'
 			),
 			'delete' => array
 			(
