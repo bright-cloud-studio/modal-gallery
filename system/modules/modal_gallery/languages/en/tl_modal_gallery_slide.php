@@ -40,5 +40,6 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['new']   		 			         = array('N
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['show']  		 		         	= array('Slide Details', 'Show the details of slide ID %s');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit']  		          			= array('Edit Slide', 'Edit slide ID %s');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['copy']  		 	         		= array('Copy Slide', 'Copy slide ID %s');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['cut']  		 	         		= array('Move Slide', 'Move slide ID %s');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['delete'] 		         			= array('Delete Slide', 'Delete slide ID %s');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['toggle'] 			         		= array('Toggle Slide Published', 'Toggle slide ID %s');
