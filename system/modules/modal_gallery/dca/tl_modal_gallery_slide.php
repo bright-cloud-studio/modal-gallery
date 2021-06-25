@@ -44,7 +44,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 			'fields'                  => array('slide_name'),
 			'panelLayout'             => 'filter;search,limit',
 			'headerFields'            => array('slide_name'),
-			'child_record_callback'   => array('Bcs\Backend\ModalGalleryBackend', 'listSlides')
+			'child_record_callback'   => array('Bcs\Backend\ModalGallerySlideBackend', 'listSlides')
         	),
 		'label' => array
 		(
@@ -140,7 +140,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 		'save_callback' => array
 		(
-			array('Bcs\Backend\ModalGalleryBackend', 'generateAlias')
+			array('Bcs\Backend\ModalGallerySlideBackend', 'generateAlias')
 		),
 		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
