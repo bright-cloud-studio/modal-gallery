@@ -17,6 +17,15 @@ use Bcs\Model\ModalGallerySlide;
 
 class ModalGallerySlideBackend extends \Backend
 {
+	
+	
+	
+	
+	public function listSlides($row)
+	{
+		return '<div class="tl_content_left">' . $row['slide_name'] . "</div>\n";
+	}
+	
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
 		if (strlen(\Input::get('tid')))
