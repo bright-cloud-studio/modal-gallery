@@ -41,7 +41,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'sorting' => array
 		(
 			'mode'                    => 5,
-			'paste_button_callback'   => array('Bcs\Backend\ModalGallerySlideBackend', 'pastePage')
+			'paste_button_callback'   => array('Bcs\Backend\ModalGallerySlideBackend', 'pastePage'),
 			'panelLayout'             => 'filter;search'
         	),
 		'label' => array
