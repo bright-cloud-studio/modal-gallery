@@ -40,7 +40,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	(
 		'sorting' => array
 		(
-			'mode'			=> 2,
+			'mode'			=> 4,
 			'fields'		=> array('slide_name'),
 			'panelLayout'		=> 'filter;search,limit'
         	),
