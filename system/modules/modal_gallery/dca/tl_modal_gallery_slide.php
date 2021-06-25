@@ -40,11 +40,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	(
 		'sorting' => array
 		(
-			'mode'                    => 4,
-			'fields'                  => array('slide_name'),
-			'panelLayout'             => 'filter;search,limit',
-			'headerFields'            => array('slide_name'),
-			'child_record_callback'   => array('Bcs\Backend\ModalGallerySlideBackend', 'listSlides')
+			'mode'			=> 0,
+			'fields'		=> array('slide_name'),
+			'panelLayout'		=> 'filter;search,limit'
         	),
 		'label' => array
 		(
@@ -74,12 +72,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['copy'],
 				'href'                => 'act=copy',
 				'icon'                => 'copy.gif'
-			),
-			 'cut' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['cut'],
-				'href'                => 'act=paste&amp;mode=cut',
-				'icon'                => 'cut.svg'
 			),
 			'delete' => array
 			(
@@ -117,19 +109,19 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
-		'pid' => array
-	    	(
-			'foreignKey'		=> 'tl_modal_gallery.title',
-			'sql'			=> "int(10) unsigned NOT NULL default 0",
-			'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
-	),
+	'pid' => array
+	    (
+		    'foreignKey'		=> 'tl_modal_gallery.title',
+		    'sql'			=> "int(10) unsigned NOT NULL default 0",
+		    'relation'			=> array('type'=>'belongsTo', 'load'=>'lazy')
+	    ),
         'tstamp' => array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
         ),
 	'sorting' => array
 	(
-		'sql'                     => "int(10) unsigned NOT NULL default '0'"
+		'sql'                    	=> "int(10) unsigned NOT NULL default '0'"
 	),
 	'alias' => array
 	(
@@ -140,7 +132,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 		'save_callback' => array
 		(
-			array('Bcs\Backend\ModalGallerySlideBackend', 'generateAlias')
+			array('Bcs\Backend\ModalGalleryBackend', 'generateAlias')
 		),
 		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
