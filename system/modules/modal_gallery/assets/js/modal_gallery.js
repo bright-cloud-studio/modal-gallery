@@ -24,7 +24,6 @@ function showSlides(n) {
 		var i;
 		var slides = document.getElementsByClassName("mySlides");
 		var dots = document.getElementsByClassName("demo");
-		var captionText = document.getElementById("caption");
 		if (n > slides.length) {slideIndex = 1}
 		if (n < 1) {slideIndex = slides.length}
 		for (i = 0; i < slides.length; i++) {
@@ -37,7 +36,6 @@ function showSlides(n) {
 		slides[slideIndex-1].style.display = "block";
 		dots[slideIndex-1].className += " active";
 		dots[slideIndex-1].parentElement.className += " active";
-		captionText.innerHTML = dots[slideIndex-1].alt;
 	}
 }
 
@@ -58,31 +56,32 @@ function triggerModal(id) {
 	for (var i=0; i<hoverInv.length; i++){
 		hoverInv[i].style.display = "none";
 	}
-	
-	// if the modal is outside the parent push it back inside
-	
-	// get the divs position
-	var ourModal = document.getElementById("modal_"+id);
-	var modalPos = ourModal.getBoundingClientRect();
-	console.log("Modal Position X: " + ourModal.offsetLeft);
-	console.log("Modal Position X + width: " + (ourModal.offsetLeft.x + modalPos.width));
-	
-	// get the parents position
-	var modalParent = document.getElementsByClassName("modals_container");
-	for (i = 0; i < modalParent.length; i++) {
-		var parentPos = modalParent[i].getBoundingClientRect();
-		console.log("Parent Position: " + parentPos.width);
-	}
-	
-	
-	// get the parent position
-	
-	// if outside move it back inside
-	
 
 	var modal = document.getElementById("modal_"+id);
 	modal.style.display = "block";
+	
+	
+	// ADJUSTING OVERFLOW POSITIONING
+	// our compiled width and height
+	var modalWidth = (modal.offsetLeft + modal.scrollWidth);
+	var modalHeight = (modal.offsetTop + modal.scrollHeight);
 
+	// tell if outside width
+	if(modalWidth > modal.parentElement.clientWidth )
+	{
+		var offsetWidth = (modalWidth - modal.parentElement.clientWidth);
+		var overX = Math.trunc(((modal.offsetLeft - offsetWidth) / modal.parentElement.clientWidth) * 100);
+		modal.style.left = (overX-1) + "%";
+	}
+		
+	// tell if outside height
+	if(modalHeight > modal.parentElement.clientHeight )
+	{
+		var offsetHeight = (modalHeight - modal.parentElement.clientHeight);
+		var overY = Math.trunc(((modal.offsetTop - offsetHeight) / modal.parentElement.clientHeight) * 100);
+		modal.style.top = (overY-1) + "%";
+	}
+		
 	return;
 }
 
