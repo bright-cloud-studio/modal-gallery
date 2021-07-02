@@ -8,6 +8,10 @@
 			<?php
 				$this->import('Database');
 				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
+				
+				$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery)->execute();
+				$sizes = deserialize($resultGallery->slide_thumb_image_size);
+				
 				$slideCounter = 1;
 				while($result->next())
 				{
@@ -15,8 +19,8 @@
 					$strPath = $objFile->path;
 					?>
 
-					<div class="column column_<?= $slideCounter ?>" id="column_<?= $slideCounter ?>">
-						<img class="demo cursor" src="<?= $strPath; ?>" style="width:100%" onclick="currentSlide(<?= $slideCounter ?>)" alt="<?php echo $result->slide_name; ?>">
+					<div onclick="currentSlide(<?= $slideCounter ?>);" class="column column_<?= $slideCounter ?>" id="column_<?= $slideCounter ?>">
+						{{picture::<?= $objFile->path ?>?size=<?= $sizes[2] ?>&template='picture_default_modal_thumb'}}
 					</div>
 
 					<?php
@@ -31,6 +35,11 @@
 		<?php
 			$this->import('Database');
 			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
+			
+			$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery)->execute();
+			$sizes = deserialize($resultGallery->slide_image_size);
+			
+			
 			$thumbCounter = 1;
 			$triggerCounter = 1;
 			$triggerLinkCounter = 1;
@@ -42,15 +51,13 @@
 				
 				<div class="mySlides">
 					<div class="numbertext"><?= $thumbCounter ?> / 6</div>
-					<img src="<?= $strPath; ?>" style="width:100%" id="id_<?= $thumbCounter ?>">
-					
-					
+						{{picture::<?= $objFile->path ?>?size=<?= $sizes[2] ?>&template='picture_default'}}
 					<div class="modals">
 					<?php
 						$links = unserialize($result->hotspot_links);
 					?>
 
-						<div class="modals_container">
+						<div class="modals_container" onclick="closeAllModals()">
 							<?php
 							foreach($links as $link)
 							{
@@ -59,7 +66,7 @@
 								$percentHeight = $link['hotspot_y'];
 							?>
 								
-								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><i class="fas fa-bullseye"></i></a>
+								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $resultGallery->hotspot_icon; ?></a>
 							<?php
 								$triggerLinkCounter++;
 							}
@@ -71,7 +78,7 @@
 							?>
 								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>" style="left: <?= $percentWidth+2 ?>%; top: <?= $percentHeight ?>%;">
 									<div class="modal_close">
-										<p onclick="closeModal('<?= $triggerLinkCounter; ?>')">X</a>
+										<a onclick="closeModal('<?= $triggerLinkCounter; ?>')"><i class="far fa-times-circle"></i></a>
 									</div>
 									<div class="modal_title">
 										<?php echo $link['hotspot_title']; ?>
