@@ -44,8 +44,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	(
 		'sorting' => array
 		(
-			'mode'			=> 0,
+			'mode'			=> 1,
 			'fields'		=> array('title'),
+			'flag'			=> 1,
 			'panelLayout'		=> 'filter;search,limit'
         	),
 		'label' => array
@@ -74,9 +75,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 			'editheader' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery']['editheader'],
-				'href'                => 'act=edit',
-				'icon'                => 'header.svg',
-				'button_callback'	=> array('tl_modaL_gallery', 'editHeader')
+				'href'                => 'table=tl_modal_gallery&amp;act=edit',
+				'icon'                => 'header.svg'
 			),
 		    'copy' => array
 		    (
