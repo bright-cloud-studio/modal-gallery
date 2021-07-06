@@ -44,7 +44,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 			'fields'		=> array('sorting'),
 			'headerFields'		=> array('title'),
 			'flag'			=> 1,
-			'panelLayout'		=> 'sort;filter;search,limit'
+			'panelLayout'		=> 'sort;filter;search,limit',
+			'child_record_callback' => array('Bcs\Backend\ModalGallerySlideBackend', 'listSlides')
         	),
 		'label' => array
 		(
