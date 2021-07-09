@@ -7,9 +7,9 @@
 		<div class="thumb_container" id="thumb_container">
 			<?php
 				$this->import('Database');
-				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
+				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery." ORDER BY sorting")->execute();
 				
-				$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery)->execute();
+				$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery." ORDER BY sorting")->execute();
 				$sizes = deserialize($resultGallery->slide_thumb_image_size);
 				
 				$slideCounter = 1;
@@ -34,9 +34,9 @@
 	<div class="main_container">
 		<?php
 			$this->import('Database');
-			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery)->execute();
+			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery." ORDER BY sorting")->execute();
 			
-			$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery)->execute();
+			$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery." ORDER BY sorting")->execute();
 			$sizes = deserialize($resultGallery->slide_image_size);
 			
 			
@@ -57,7 +57,7 @@
 						$links = unserialize($result->hotspot_links);
 					?>
 
-						<div class="modals_container" onclick="closeAllModals()">
+						<div class="modals_container">
 							<?php
 							foreach($links as $link)
 							{
