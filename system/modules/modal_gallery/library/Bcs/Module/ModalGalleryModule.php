@@ -72,9 +72,7 @@ class ModalGalleryModule extends \Contao\Module
 			$GLOBALS['TL_CSS'][] = 'system/modules/modal_gallery/assets/css/modal_gallery.css';
 		}
 	    // add our js
-	     if (!in_array('<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>', $GLOBALS['TL_BODY'])) { 
-			$GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
-		}
+	    $GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
 	    
 	    /*
 		$objLocation = Location::findBy('published', '1');
