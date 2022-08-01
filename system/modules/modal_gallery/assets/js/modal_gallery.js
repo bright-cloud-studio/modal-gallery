@@ -82,21 +82,13 @@ function triggerModal(id) {
 		modal.style.top = (overY-1) + "%";
 	}
 	
-	// add onclick function to modals_container
-	var modals_container = document.getElementsByClassName("modals_container");
-	modals_container.onclick = closeModal(999);
+
 	
 	return;
 }
 
 // close the modal when the X is clicked
 function closeModal(id) {
-	
-	if(id==999)
-	{
-		var modals_container = document.getElementsByClassName("modals_container");
-		modals_container.onclick = "";
-	}
 	
 	// remove all opacity
 	var i, j;
