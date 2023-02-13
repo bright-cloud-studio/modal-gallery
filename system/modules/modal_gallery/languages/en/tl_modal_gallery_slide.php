@@ -14,6 +14,7 @@
 /* Legends */
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_legend']        	= 'Slide Details';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_legend']      	= 'Hotspot Details';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_legend']      = 'Category Details';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['publish_legend']      	= 'Publish';
 
 /* Fields */
