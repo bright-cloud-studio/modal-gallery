@@ -17,6 +17,11 @@ $GLOBALS['BE_MOD']['content']['modal_gallery'] = array(
 	'icon'   => 'system/modules/modal_gallery/assets/icons/modal_gallery.png',
 	'exportLocations' => array('Bcs\Backend\ModalGalleryBackend', 'exportModalGallery')
 );
+$GLOBALS['BE_MOD']['content']['slide_category'] = array(
+	'tables' => array('tl_slide_category'),
+	'icon'   => 'system/modules/modal_gallery/assets/icons/slide_category.png',
+	'exportLocations' => array('Bcs\Backend\SlideCategory', 'exportSlideCategories')
+);
 
 /* Front end modules */
 $GLOBALS['FE_MOD']['modal_gallery']['modal_gallery_module'] 	= 'Bcs\Module\ModalGalleryModule';
@@ -24,6 +29,7 @@ $GLOBALS['FE_MOD']['modal_gallery']['modal_gallery_module'] 	= 'Bcs\Module\Modal
 /* Models */
 $GLOBALS['TL_MODELS']['tl_modal_gallery']			= 'Bcs\Model\ModalGallery';
 $GLOBALS['TL_MODELS']['tl_modal_gallery_slide']			= 'Bcs\Model\ModalGallerySlide';
+$GLOBALS['TL_MODELS']['tl_slide_category']			= 'Bcs\Model\SlideCategory';
 
 /* Add Backend JS */
 if (TL_MODE == 'BE')
