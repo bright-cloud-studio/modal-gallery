@@ -85,14 +85,14 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
             ),
             'toggle' => array
             (
-              'label'               => &$GLOBALS['TL_LANG']['tl_category']['toggle'],
+              'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['toggle'],
               'icon'                => 'visible.gif',
               'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-              'button_callback'     => array('Asc\Backend\Categories', 'toggleIcon')
+              'button_callback'     => array('Bcs\Backend\SlideCategory', 'toggleIcon')
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_location']['show'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.gif'
             )
@@ -117,41 +117,40 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
         (
             'sql'                     => "int(10) unsigned NOT NULL default '0'"
         ),
-		'sorting' => array
+	'sorting' => array
+	(
+		'sql'                     => "int(10) unsigned NOT NULL default '0'"
+	),
+	'alias' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['alias'],
+		'exclude'                 => true,
+		'inputType'               => 'text',
+		'search'                  => true,
+		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
+		'save_callback' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			array('Bcs\Backend\SlideCategory', 'generateAlias')
 		),
-		'alias' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_category']['alias'],
-			'exclude'                 => true,
-			'inputType'               => 'text',
-			'search'                  => true,
-			'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
-			'save_callback' => array
-			(
-				array('Asc\Backend\Locations', 'generateAlias')
-			),
-			'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
+		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
-		),
-		'name' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_category']['name'],
-			'inputType'               => 'text',
-			'default'				  => '',
-			'search'                  => true,
-			'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr w50'),
-			'sql'                     => "varchar(255) NOT NULL default ''"
-		),
-		'published' => array
-		(
-			'exclude'                 => true,
-			'label'                   => &$GLOBALS['TL_LANG']['tl_category']['published'],
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
-			'sql'                     => "char(1) NOT NULL default ''"
-		)		
+	),
+	'name' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['name'],
+		'inputType'               => 'text',
+		'default'				  => '',
+		'search'                  => true,
+		'eval'                    => array('mandatory'=>true, 'tl_class'=>'clr w50'),
+		'sql'                     => "varchar(255) NOT NULL default ''"
+	),
+	'published' => array
+	(
+		'exclude'                 => true,
+		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['published'],
+		'inputType'               => 'checkbox',
+		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
+		'sql'                     => "char(1) NOT NULL default ''"
+	)		
     )
 );
-
