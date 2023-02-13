@@ -1,105 +1,41 @@
-<!–– pull categories from database ––>
+<!-- Category Filter -->
+<div class="categories">
+	<div class="category" onclick="resetFilter();">All</div>
+	<?php
+			$this->import('Database');
+			$result = $this->Database->prepare("SELECT * FROM tl_slide_category WHERE published=1 ORDER BY name")->execute();
+
+			while($result->next())
+			{
+				?>
+					<div class="category" onclick="filterByCategory('<?= $result->alias ?>');"><?= $result->name ?></div>
+				<?php
+			}
+		?>
+</div>
 
 <div class="slide_container">
-	
 	<!-- This is the thumbnails -->
 	<div class="row">
 		<div class="thumb_container" id="thumb_container">
-			<?php
-				$this->import('Database');
-				$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery." ORDER BY sorting")->execute();
-				
-				$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery." ORDER BY sorting")->execute();
-				$sizes = deserialize($resultGallery->slide_thumb_image_size);
-				
-				$slideCounter = 1;
-				while($result->next())
-				{
-					$objFile = \FilesModel::findByUuid($result->slide_image);
-					$strPath = $objFile->path;
-					?>
-
-					<div onclick="currentSlide(<?= $slideCounter ?>);" class="column column_<?= $slideCounter ?>" id="column_<?= $slideCounter ?>">
-						{{picture::<?= $objFile->path ?>?size=<?= $sizes[2] ?>&template='picture_default_modal_thumb'}}
-					</div>
-
-					<?php
-					$slideCounter++;
-				}
-			?>
+			
+			<?php if (empty($this->thumbs)): ?>
+				<p class="empty">There are no thumbnails</p>
+			<?php else: ?>
+				<?= implode('', $this->thumbs) ?>
+			<?php endif; ?>
+			
 		</div>
 	</div>
 
 	<!-- This is the main image, which will contain the modal links -->
 	<div class="main_container">
-		<?php
-			$this->import('Database');
-			$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery_slide WHERE published=1 AND pid=".$this->selectedGallery." ORDER BY sorting")->execute();
-			
-			$resultGallery = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1 AND id=".$this->selectedGallery." ORDER BY sorting")->execute();
-			$sizes = deserialize($resultGallery->slide_image_size);
-			
-			
-			$thumbCounter = 1;
-			$triggerCounter = 1;
-			$triggerLinkCounter = 1;
-			while($result->next())
-			{
-				$objFile = \FilesModel::findByUuid($result->slide_image);
-				$strPath = $objFile->path;
-				?>
-				
-				<div class="mySlides">
-					<div class="numbertext"><?= $thumbCounter ?> / 6</div>
-						{{picture::<?= $objFile->path ?>?size=<?= $sizes[2] ?>&template='picture_default'}}
-					<div class="modals">
-					<?php
-						$links = unserialize($result->hotspot_links);
-					?>
-
-						<div class="modals_container">
-							<?php
-							foreach($links as $link)
-							{
-								list($width, $height) = getimagesize($strPath);
-								$percentWidth = $link['hotspot_x'];
-								$percentHeight = $link['hotspot_y'];
-							?>
-								
-								<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $triggerLinkCounter; ?>')"><?= $resultGallery->hotspot_icon; ?></a>
-							<?php
-								$triggerLinkCounter++;
-							}
-							
-							foreach($links as $link)
-							{
-								$percentWidth = $link['hotspot_x'];
-								$percentHeight = $link['hotspot_y'];
-							?>
-								<div class="modal_wrapper" id="modal_<?php echo $triggerCounter; ?>" style="left: <?= $percentWidth+2 ?>%; top: <?= $percentHeight ?>%;">
-									<div class="modal_close">
-										<a onclick="closeModal('<?= $triggerLinkCounter; ?>')"><i class="far fa-times-circle"></i></a>
-									</div>
-									<div class="modal_title">
-										<?php echo $link['hotspot_title']; ?>
-									</div>
-									<div class="modal_text">
-										<?php echo $link['hotspot_text']; ?>
-									</div>
-								</div>
-							<?php
-								$triggerCounter++;
-							}
-							?>
-						</div>
-					</div>
-				</div>
-
-				<?php
-				$thumbCounter++;
-			}
-		?>
-	
+		
+		<?php if (empty($this->slides)): ?>
+			<p class="empty">There are no slides</p>
+		<?php else: ?>
+			<?= implode('', $this->slides) ?>
+		<?php endif; ?>
 
 		<a class="prev" onclick="plusSlides(-1)">❮</a>
 		<a class="next" onclick="plusSlides(1)">❯</a>
