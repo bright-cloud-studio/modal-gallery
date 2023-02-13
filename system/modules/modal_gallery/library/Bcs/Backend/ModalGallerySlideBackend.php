@@ -179,4 +179,17 @@ class ModalGallerySlideBackend extends \Backend
 
 		return $varValue;
 	}
+	
+	public function getSlideCategories(DataContainer $dc) { 
+		$cats = array();
+		
+		$this->import('Database');
+		$result = $this->Database->prepare("SELECT * FROM tl_slide_category WHERE published=1")->execute();
+		while($result->next())
+		{
+			$cats = $cats + array($result->id => $result->name);
+		}
+
+		return $cats;
+	}
 }
