@@ -236,7 +236,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category'],
 		'inputType'               => 'checkbox',
 		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
-		'options_callback'	  => array('Bcs\Backend\SlideCategory', 'getSlideCategories'),
+		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getSlideCategories'),
 		'sql'                     => "varchar(255) NOT NULL default ''"
 	),
 	'published' => array
