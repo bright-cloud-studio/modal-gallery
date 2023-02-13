@@ -69,18 +69,18 @@ class SlideCategory extends \Backend
 		$this->log('A new version of record "tl_slide_category.id='.$intId.'" has been created'.$this->getParentEntries('tl_category', $intId), __METHOD__, TL_GENERAL);
 	}
 	
-	public function exportSlideCategories()
+	public function exportSlideCategory()
 	{
-		$objLocation = Location::findAll();
+		$objSlideCategory = SlideCategory::findAll();
 		$strDelimiter = ',';
 	
-		if ($objLocation) {
-			$strFilename = "categories_" .(date('Y-m-d_Hi')) ."csv";
+		if ($objSlideCategory) {
+			$strFilename = "slide_categories_" .(date('Y-m-d_Hi')) ."csv";
 			$tmpFile = fopen('php://memory', 'w');
 			
 			$count = 0;
-			while($objLocation->next()) {
-				$row = $objLocation->row();
+			while($objSlideCategory->next()) {
+				$row = $objSlideCategory->row();
 				if ($count == 0) {
 					$arrColumns = array();
 					foreach ($row as $key => $value) {
