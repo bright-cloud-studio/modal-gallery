@@ -16,6 +16,7 @@ ClassLoader::addClasses(array
 	'Bcs\Module\ModalGalleryModule' 	=> 'system/modules/modal_gallery/library/Bcs/Module/ModalGalleryModule.php',
 	'Bcs\Model\ModalGallery' 		=> 'system/modules/modal_gallery/library/Bcs/Model/ModalGallery.php',
 	'Bcs\Model\ModalGallerySlide' 		=> 'system/modules/modal_gallery/library/Bcs/Model/ModalGallerySlide.php',
+	'Bcs\Model\SlideCategory' 		=> 'system/modules/modal_gallery/library/Bcs/Model/SlideCategory.php',
 	'Bcs\Backend\HotspotHelper' 		=> 'system/modules/modal_gallery/library/Bcs/Backend/HotspotHelper.php'
 ));
 
