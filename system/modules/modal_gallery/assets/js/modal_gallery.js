@@ -16,7 +16,7 @@ function showSlides(n) {
 	
 	var hoverInv = document.getElementsByClassName("modal_wrapper");
 		for (var i=0; i<hoverInv.length; i++){
-			console.log("id_" + i + ": " + hoverInv[i].style.display);
+			//console.log("id_" + i + ": " + hoverInv[i].style.display);
 			if(hoverInv[i].style.display == "block")
 				noOpenModals = false;
 		}
@@ -39,7 +39,7 @@ function showSlides(n) {
 	}
 }
 
-function triggerModal(id) {
+function triggerModal(slide, id) {
 
 	//make all images opaque by half
 	var i, j;
@@ -51,13 +51,13 @@ function triggerModal(id) {
 		}
 	}
 
-	console.log("trigger_id: " + id);
-	var hoverInv = document.getElementsByClassName("modal_wrapper");
+	//console.log("trigger_id: " + id);
+	var hoverInv = document.getElementsByClassName("slide_" +slide+ " modal_wrapper");
 	for (var i=0; i<hoverInv.length; i++){
 		hoverInv[i].style.display = "none";
 	}
 
-	var modal = document.getElementById("modal_"+id);
+	var modal = document.getElementById("slide_" +slide+ " modal_"+id);
 	modal.style.display = "block";
 	
 	
@@ -101,10 +101,48 @@ function closeModal(id) {
 	}
 
 
-	console.log("close_id: " + id);
+	//console.log("close_id: " + id);
 	var hoverInv = document.getElementsByClassName("modal_wrapper");
 	for (var i=0; i<hoverInv.length; i++){
 		hoverInv[i].style.display = "none";
 	}
 	return;
+}
+
+
+// CATEGORY FILTER
+function resetFilter() {
+    // for each entry in the thumb container
+    var doOnce = 0;
+    $( ".thumb_container .column" ).each(function() {
+        // toggle it as visible
+        $(this).show();
+        if(doOnce == 0) {
+            $(this).click();
+            doOnce = 1;
+        }
+    });
+    // reset the thumbnail scrollbar to the top
+    $('.slide_container .row').scrollTop(0);
+}
+
+function filterByCategory(category) {
+    // for each entry in the thumb container
+    var doOnce = 0;
+    $( ".thumb_container .column" ).each(function() {
+        if( $(this).hasClass(category) ) {
+            // if this has the class of the category, show it
+            $(this).show();
+            if(doOnce == 0) {
+                $(this).click();
+                doOnce = 1;
+            }
+        } else {
+            // if it doesn't have the class, hide it
+            $(this).hide();
+        }
+    });
+    // reset the thumbnail scrollbar to the top
+    $('.slide_container .row').scrollTop(0);
+    
 }
