@@ -49,9 +49,9 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
         (
             'export' => array
             (
-                'label'               => 'Export Slide Categories CSV',
-                'href'                => 'key=exportSlideCategories',
-                'icon'                => 'system/modules/locations/assets/icons/file-export-icon-16.png'
+                'label'               => 'Export Slide Category CSV',
+                'href'                => 'key=exportSlideCategory',
+                'icon'                => 'system/modules/modal_gallery/assets/icons/file-export-icon-16.png'
             ),
             'all' => array
             (
