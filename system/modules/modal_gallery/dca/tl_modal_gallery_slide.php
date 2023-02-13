@@ -196,41 +196,49 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		'sql'                   => "blob NULL"
 	),
 	'hotspot_links' => array
+	(
+		'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links'],
+		'inputType'				=> 'multiColumnWizard',
+		'eval' => array
 		(
-			'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links'],
-			'inputType'				=> 'multiColumnWizard',
-			'eval' => array
+			'columnFields'			=> array
 			(
-				'columnFields'			=> array
+				'hotspot_x' => array
 				(
-					'hotspot_x' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
-					),
-					'hotspot_y' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
-					),
-					'hotspot_title' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title'],
-						'inputType'				=> 'text',
-						'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
-					),
-					'hotspot_text' => array
-					(
-						'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
-						'inputType'				=> 'textarea',
-						'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
-					),
+					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x'],
+					'inputType'				=> 'text',
+					'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
+				),
+				'hotspot_y' => array
+				(
+					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'],
+					'inputType'				=> 'text',
+					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
+				),
+				'hotspot_title' => array
+				(
+					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title'],
+					'inputType'				=> 'text',
+					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
+				),
+				'hotspot_text' => array
+				(
+					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
+					'inputType'				=> 'textarea',
+					'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
 				),
 			),
-			'sql'					=> "blob NULL",
 		),
+		'sql'					=> "blob NULL",
+	),
+	'category' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category'],
+		'inputType'               => 'checkbox',
+		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+		'options_callback'	  => array('Bcs\Backend\SlideCategory', 'getSlideCategories'),
+		'sql'                     => "varchar(255) NOT NULL default ''"
+	),
 	'published' => array
 	(
 		'exclude'                 => true,
