@@ -12,12 +12,13 @@
 
 
 /* Back end modules */
-$GLOBALS['BE_MOD']['content']['modal_gallery'] = array(
+$GLOBALS['TL_LANG']['MOD']['modal_gallery'][0] = "Modal Gallery";
+$GLOBALS['BE_MOD']['modal_gallery']['modal_gallery'] = array(
 	'tables' => array('tl_modal_gallery', 'tl_modal_gallery_slide'),
 	'icon'   => 'system/modules/modal_gallery/assets/icons/modal_gallery.png',
 	'exportLocations' => array('Bcs\Backend\ModalGalleryBackend', 'exportModalGallery')
 );
-$GLOBALS['BE_MOD']['content']['slide_category'] = array(
+$GLOBALS['BE_MOD']['modal_gallery']['slide_category'] = array(
 	'tables' => array('tl_slide_category'),
 	'icon'   => 'system/modules/modal_gallery/assets/icons/slide_category.png',
 	'exportLocations' => array('Bcs\Backend\SlideCategory', 'exportSlideCategories')
