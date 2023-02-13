@@ -73,14 +73,7 @@ class ModalGalleryModule extends \Contao\Module
 		}
 	    // add our js
 	    $GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
+
 	    // Sort our Listings based on the 'last_name' field
         $options = [
             'order' => 'id ASC'
@@ -124,74 +117,25 @@ class ModalGalleryModule extends \Contao\Module
     			$arrSlide['size_slide'] = unserialize($result->slide_image_size);
     			$arrSlide['hotspot_icon'] = $result->hotspot_icon;
     		}
-            
-            
-            
-            
-            
-
 
             // Generate as "List"
             $strListTemplate = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_slide_thumb');
             $objListTemplate = new \FrontendTemplate($strListTemplate);
             $objListTemplate->setData($arrSlide);
             $arrThumbs[$entry_id] = $objListTemplate->parse();
-            
-            
-            
+
             // Generate as "List"
             $strListTemplate = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_slide');
             $objListTemplate = new \FrontendTemplate($strListTemplate);
             $objListTemplate->setData($arrSlide);
             $arrSlides[$entry_id] = $objListTemplate->parse();
-            
-            
+
             
             $entry_id++;
 		}
         
         $this->Template->thumbs = $arrThumbs;
         $this->Template->slides = $arrSlides;
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
 	}
-
 
 } 
