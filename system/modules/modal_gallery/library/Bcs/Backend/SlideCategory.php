@@ -14,7 +14,6 @@
 namespace Bcs\Backend;
 
 use Contao\DataContainer;
-use Bcs\Model\SlideCategory;
 
 class SlideCategory extends \Backend
 {
