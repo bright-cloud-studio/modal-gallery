@@ -1,32 +1,48 @@
-<!–– This is for each listing, list off each one
-<div class="location_full">
-	<div class='name'><?php echo $this->name; ?></div>
-	<div class='address'>
-		<?php if($this->contact_name != ""){echo $this->contact_name . "<br>";} ?>
-		<?php if($this->contact_name_2 != ""){echo $this->contact_name_2 . "<br>";} ?>
-		<?php if($this->contact_name_3 != ""){echo $this->contact_name_3 . "<br>";} ?>
-		<?php echo $this->address; ?><br>
-		<?php if($this->address_2 != ""){echo $this->address_2 . "<br>";} ?>
-		<?php echo $this->city; ?>, <?php echo $this->state; ?><br>
-		<?php echo $this->listing_zip; ?><br>
-		<a href="tel:<?php echo $this->phone; ?>"><?php echo $this->phone; ?></a>
-	</div>
-	<!–– Searchable cat ids ––>
-	<div class="hidden_cat_id">
-		<?php 
-			for ($x = 0; $x < count($this->pid); $x++) {
-    			echo $this->pid[$x] . ",";
-			} 
-		?>
-	</div>
-	<!–– Searchable zips ––>
-	<div class="hidden_zip">
-		<?php echo $this->zip; ?>
+<?php
+    $objFile = \FilesModel::findByUuid($this->slide_image);
+?>
+
+<div class="mySlides slide_<?= $this->id ?>">
+	
+	{{picture::<?= $objFile->path ?>?size=<?= $this->size_slide[2] ?>&template='picture_default'}}
+		
+	<div class="modals">
+		<div class="modals_container">
+			<?php
+			$counter = 1;
+			foreach($this->hotspot_links as $link)
+			{
+				list($width, $height) = getimagesize($objFile->path);
+				$percentWidth = $link['hotspot_x'];
+				$percentHeight = $link['hotspot_y'];
+			?>
+				
+				<a style="left: <?= $percentWidth ?>%; top: <?= $percentHeight ?>%;" class="modal_trigger" href="javascript:;" onclick="triggerModal('<?= $this->id; ?>', '<?= $counter; ?>')"><?= $this->hotspot_icon; ?></a>
+			<?php
+				$counter++;
+			}
+			$counter = 1;
+			foreach($this->hotspot_links as $link)
+			{
+				$percentWidth = $link['hotspot_x'];
+				$percentHeight = $link['hotspot_y'];
+			?>
+				<div class="modal_wrapper" id="slide_<?= $this->id ?> modal_<?php echo $counter; ?>" style="left: <?= $percentWidth+2 ?>%; top: <?= $percentHeight ?>%;">
+					<div class="modal_close">
+						<a onclick="closeModal('<?= $this->id; ?>', '<?= $counter; ?>')"><i class="far fa-times-circle"></i></a>
+					</div>
+					<div class="modal_title">
+						<?php echo $link['hotspot_title']; ?>
+					</div>
+					<div class="modal_text">
+						<?php echo $link['hotspot_text']; ?>
+					</div>
+				</div>
+			<?php
+				$counter++;
+			}
+			?>
+		</div>
 	</div>
 	
-	<?php if ($this->url): ?>
-	<div class='link'><a href="<?php echo $this->url; ?>"><?php echo $this->url; ?></a></div>
-	<?php endif; ?>
-</div> ––>
-
-<h2>This is an individual slide<h2>
+</div>
