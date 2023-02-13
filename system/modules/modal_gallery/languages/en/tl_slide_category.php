@@ -17,13 +17,13 @@ $GLOBALS['TL_LANG']['tl_slide_category']['publish_legend'] 	  = 'Publish';
 
 /* Fields */
 $GLOBALS['TL_LANG']['tl_slide_category']['alias'] 			= array('Alias', 'Auto-generated alias.');
-$GLOBALS['TL_LANG']['tl_slide_category']['name'] 				= array('Slide Category Name', 'This categories label');
-$GLOBALS['TL_LANG']['tl_slide_category']['published'] 	= array('Published', 'Show this record on the front end.');
+$GLOBALS['TL_LANG']['tl_slide_category']['name'] 				= array('Slide Category Name', 'Display name for this slide category');
+$GLOBALS['TL_LANG']['tl_slide_category']['published'] 	= array('Published', 'Show this slide category on the front end.');
  
  /* Buttons */
-$GLOBALS['TL_LANG']['tl_slide_category']['new']   			= array('New record', 'Add a new record');
-$GLOBALS['TL_LANG']['tl_slide_category']['show']  		 	= array('Record details', 'Show the details of record ID %s');
-$GLOBALS['TL_LANG']['tl_slide_category']['edit']  		 	= array('Edit record', 'Edit record ID %s');
-$GLOBALS['TL_LANG']['tl_slide_category']['copy']  		 	= array('Copy record', 'Copy record ID %s');
-$GLOBALS['TL_LANG']['tl_slide_category']['delete'] 			= array('Delete record', 'Delete record ID %s');
-$GLOBALS['TL_LANG']['tl_slide_category']['toggle'] 			= array('Toggle record', 'Toggle record ID %s');
+$GLOBALS['TL_LANG']['tl_slide_category']['new']   			= array('New Slide Category', 'Add a new slide category');
+$GLOBALS['TL_LANG']['tl_slide_category']['show']  		 	= array('Slide Category details', 'Show the details of slide category ID %s');
+$GLOBALS['TL_LANG']['tl_slide_category']['edit']  		 	= array('Edit Slide Category', 'Edit slide category ID %s');
+$GLOBALS['TL_LANG']['tl_slide_category']['copy']  		 	= array('Copy Slide Category', 'Copy slide category ID %s');
+$GLOBALS['TL_LANG']['tl_slide_category']['delete'] 			= array('Delete Slide Category', 'Delete slide category ID %s');
+$GLOBALS['TL_LANG']['tl_slide_category']['toggle'] 			= array('Toggle Slide Category', 'Toggle slide category ID %s');
