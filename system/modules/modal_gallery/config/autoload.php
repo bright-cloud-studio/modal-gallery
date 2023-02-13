@@ -24,5 +24,5 @@ TemplateLoader::addFiles(array
 (
 	'modal_gallery_module' 			=> 'system/modules/modal_gallery/templates/modules',
 	'item_slide' 				=> 'system/modules/modal_gallery/templates/items',
-	'picture_default_modal_thumb' 		=> 'system/modules/modal_gallery/templates/items',
+	'picture_default_modal_thumb' 		=> 'system/modules/modal_gallery/templates/items'
 ));
