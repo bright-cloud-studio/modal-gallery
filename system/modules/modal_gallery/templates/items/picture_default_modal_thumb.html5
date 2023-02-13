@@ -1,4 +1,3 @@
-
 <?php if ($this->sources): ?>
   <picture>
     <?php foreach ($this->sources as $source): ?>
