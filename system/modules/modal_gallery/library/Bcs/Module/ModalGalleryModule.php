@@ -136,6 +136,16 @@ class ModalGalleryModule extends \Contao\Module
         
         $this->Template->thumbs = $arrThumbs;
         $this->Template->slides = $arrSlides;
+	    
+	    
+	    
+	    
+	    
+    // add the categories to the template using a nav template to assemble it
+	    
+	    
+	    
+	    
 	}
 
 } 
