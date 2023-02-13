@@ -187,7 +187,7 @@ class ModalGallerySlideBackend extends \Backend
 		$result = $this->Database->prepare("SELECT * FROM tl_slide_category WHERE published=1")->execute();
 		while($result->next())
 		{
-			$cats = $cats + array($result->id => $result->name);
+			$cats = $cats + array($result->name => $result->name);
 		}
 
 		return $cats;
