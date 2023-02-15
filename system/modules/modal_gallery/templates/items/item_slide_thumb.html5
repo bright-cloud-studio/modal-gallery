@@ -1,7 +1,10 @@
 <?php
     $objFile = \FilesModel::findByUuid($this->slide_image);
     $catString = "";
-    foreach($this->categories as $cat) {
+    foreach($this->categories_room as $cat) {
+        $catString .= " " . $cat;
+    }
+    foreach($this->categories_product as $cat) {
         $catString .= " " . $cat;
     }
 ?>
