@@ -3,6 +3,105 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 
+
+
+
+
+// when the page is loaded
+$( document ).ready(function() {
+    
+    // when room filter changed
+    $( "#category_room" ).change(function() {
+        filterThumbs();
+    });
+    
+    // when product filter changed
+    $( "#category_product" ).change(function() {
+        filterThumbs();
+    });
+    
+    
+});
+
+
+
+function filterThumbs() {
+    
+    // get room filter value
+    var filterRoom = $('#category_room').find(":selected").val();
+    
+    // get product filter value
+    var filterProduct = $('#category_product').find(":selected").val();
+    
+    console.log("Room: " + filterRoom + " - " + "Product: " + filterProduct);
+    
+    
+    
+    
+    // loop through every thumbnail
+    var doOnce = 0;
+    $( ".thumb_container .column" ).each(function() {
+        
+        // if both are set to all then show every thumbnail
+        if(filterRoom == "all" && filterProduct == "all") {
+            $(this).show();
+        } else {
+            
+            // if filterRoom yes and filterProduct is all
+            if(filterRoom != "all" && filterProduct == "all") {
+                
+                if( $(this).hasClass(filterRoom) ) {
+                    $(this).show();
+                    if(doOnce == 0) {
+                        $(this).click();
+                        doOnce = 1;
+                    }
+                } else {
+                    $(this).hide();
+                }
+            // if filterRoom is all and filterProduct isnt
+            }else if(filterRoom == "all" && filterProduct != "all") {
+                
+                if( $(this).hasClass(filterProduct) ) {
+                    $(this).show();
+                    if(doOnce == 0) {
+                        $(this).click();
+                        doOnce = 1;
+                    }
+                } else {
+                    $(this).hide();
+                }
+                
+            } else {
+                
+                if( $(this).hasClass(filterRoom) && $(this).hasClass(filterProduct) ) {
+                    $(this).show();
+                    if(doOnce == 0) {
+                        $(this).click();
+                        doOnce = 1;
+                    }
+                } else {
+                    $(this).hide();
+                }
+                
+            }
+        }
+        
+    });
+    
+    
+    
+    // reset the thumbnail scroll to the top
+    $('.slide_container .row').scrollTop(0);
+}
+
+
+
+
+
+
+
+
 function plusSlides(n) {
 	showSlides(slideIndex += n);
 }
@@ -107,42 +206,4 @@ function closeModal(id) {
 		hoverInv[i].style.display = "none";
 	}
 	return;
-}
-
-
-// CATEGORY FILTER
-function resetFilter() {
-    // for each entry in the thumb container
-    var doOnce = 0;
-    $( ".thumb_container .column" ).each(function() {
-        // toggle it as visible
-        $(this).show();
-        if(doOnce == 0) {
-            $(this).click();
-            doOnce = 1;
-        }
-    });
-    // reset the thumbnail scrollbar to the top
-    $('.slide_container .row').scrollTop(0);
-}
-
-function filterByCategory(category) {
-    // for each entry in the thumb container
-    var doOnce = 0;
-    $( ".thumb_container .column" ).each(function() {
-        if( $(this).hasClass(category) ) {
-            // if this has the class of the category, show it
-            $(this).show();
-            if(doOnce == 0) {
-                $(this).click();
-                doOnce = 1;
-            }
-        } else {
-            // if it doesn't have the class, hide it
-            $(this).hide();
-        }
-    });
-    // reset the thumbnail scrollbar to the top
-    $('.slide_container .row').scrollTop(0);
-    
 }
