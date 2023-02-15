@@ -34,7 +34,8 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'] 	        	 = array('H
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title']      		= array('Hotspot Title', 'The text that will be the title for the modal box');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text']      	 	= array('Hotspot Text', 'The text that will show in the modal box');
 
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category'] 	       		  = array('Category', 'Select the galleries this slide belongs to');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'] 	       		  = array('Room Category', 'Select the room categories this slide belongs to');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'] 	       		  = array('Product Category', 'Select the product categories this slide belongs to');
 
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'] 		         = array('Published', 'Save this product\'s record.');
  
