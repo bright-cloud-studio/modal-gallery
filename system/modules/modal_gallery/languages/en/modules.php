@@ -12,7 +12,8 @@
 
 /* Back end modules */
 $GLOBALS['TL_LANG']['MOD']['modal_gallery'] = array('Modal Gallery', 'Add slides to the modal gallery');
-$GLOBALS['TL_LANG']['MOD']['slide_category'] = array('Slide Categories', 'Create and manage the categories for the modal gallery slides');
+$GLOBALS['TL_LANG']['MOD']['category_room'] = array('Room Categories', 'Create and manage room categories');
+$GLOBALS['TL_LANG']['MOD']['category_product'] = array('Product Categories', 'Create and manage product categories');
 
 /* Front end modules */
 $GLOBALS['TL_LANG']['FMD']['modal_gallery_module'] 	= array('Modal Gallery', 'The front end module that displays the gallery.');
