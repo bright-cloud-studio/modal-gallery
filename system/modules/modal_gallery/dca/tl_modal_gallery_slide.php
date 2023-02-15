@@ -231,12 +231,20 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		),
 		'sql'					=> "blob NULL",
 	),
-	'category' => array
+	'category_room' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'],
 		'inputType'               => 'checkbox',
 		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
-		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getSlideCategories'),
+		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getRoomCategories'),
+		'sql'                     => "varchar(255) NOT NULL default ''"
+	),
+	'category_product' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'],
+		'inputType'               => 'checkbox',
+		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getProductCategories'),
 		'sql'                     => "varchar(255) NOT NULL default ''"
 	),
 	'published' => array
