@@ -12,7 +12,7 @@
 
  
 /* Table tl_slide_category */
-$GLOBALS['TL_DCA']['tl_slide_category'] = array
+$GLOBALS['TL_DCA']['tl_category_room'] = array
 (
  
     // Config
@@ -49,8 +49,8 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
         (
             'export' => array
             (
-                'label'               => 'Export Slide Category CSV',
-                'href'                => 'key=exportSlideCategory',
+                'label'               => 'Export Room Categories CSV',
+                'href'                => 'key=exportCategoryRoom',
                 'icon'                => 'system/modules/modal_gallery/assets/icons/export.svg'
             ),
             'all' => array
@@ -66,33 +66,33 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
         (
             'edit' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['edit'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_category_room']['edit'],
                 'href'                => 'act=edit',
                 'icon'                => 'edit.gif'
             ),
             'copy' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['copy'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_category_room']['copy'],
                 'href'                => 'act=copy',
                 'icon'                => 'copy.gif'
             ),
             'delete' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['delete'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_category_room']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.gif',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'toggle' => array
             (
-              'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['toggle'],
+              'label'               => &$GLOBALS['TL_LANG']['tl_category_room']['toggle'],
               'icon'                => 'visible.gif',
               'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-              'button_callback'     => array('Bcs\Backend\SlideCategory', 'toggleIcon')
+              'button_callback'     => array('Bcs\Backend\CategoryRoom', 'toggleIcon')
             ),
             'show' => array
             (
-                'label'               => &$GLOBALS['TL_LANG']['tl_slide_category']['show'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_category_room']['show'],
                 'href'                => 'act=show',
                 'icon'                => 'show.gif'
             )
@@ -123,21 +123,21 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
 	),
 	'alias' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['alias'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_category_room']['alias'],
 		'exclude'                 => true,
 		'inputType'               => 'text',
 		'search'                  => true,
 		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
 		'save_callback' => array
 		(
-			array('Bcs\Backend\SlideCategory', 'generateAlias')
+			array('Bcs\Backend\CategoryRoom', 'generateAlias')
 		),
 		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
 
 	),
 	'name' => array
 	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['name'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_category_room']['name'],
 		'inputType'               => 'text',
 		'default'				  => '',
 		'search'                  => true,
@@ -147,7 +147,7 @@ $GLOBALS['TL_DCA']['tl_slide_category'] = array
 	'published' => array
 	(
 		'exclude'                 => true,
-		'label'                   => &$GLOBALS['TL_LANG']['tl_slide_category']['published'],
+		'label'                   => &$GLOBALS['TL_LANG']['tl_category_room']['published'],
 		'inputType'               => 'checkbox',
 		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
 		'sql'                     => "char(1) NOT NULL default ''"
