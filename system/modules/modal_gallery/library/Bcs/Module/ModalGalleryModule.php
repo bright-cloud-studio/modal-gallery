@@ -91,7 +91,8 @@ class ModalGalleryModule extends \Contao\Module
         
         $arrThumbs = array();
         $arrSlides = array();
-        $arrCategories = array();
+        $arrCategoriesRoom = array();
+        $arrCategoriesProduct = array();
         
 		$entry_id = 0;
 		$gal = 0;
@@ -106,7 +107,9 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['slide_image_url']        = $slide->slide_image_url;
             
             $arrSlide['hotspot_links'] = unserialize($slide->hotspot_links);
-            $arrSlide['categories'] = unserialize($slide->category);
+            
+            $arrSlide['categories_room'] = unserialize($slide->category_room);
+            $arrSlide['categories_product'] = unserialize($slide->category_product);
 
             $this->import('Database');
     		$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE id='".$this->selectedGallery."'")->execute();
@@ -139,7 +142,7 @@ class ModalGalleryModule extends \Contao\Module
 		
 		
 		$this->import('Database');
-		$result = $this->Database->prepare("SELECT * FROM tl_slide_category")->execute();
+		$result = $this->Database->prepare("SELECT * FROM tl_category_room")->execute();
 		$entry_id = 1;
 		while($result->next())
 		{
@@ -148,21 +151,41 @@ class ModalGalleryModule extends \Contao\Module
 			$arrCategory['alias'] = $result->alias;
 			$arrCategory['name'] = $result->name;
 			$arrCategory['published'] = $result->published;
-			$arrCategories[$entry_id] = $arrCategory;
+			$arrCategoriesRoom[$entry_id] = $arrCategory;
 			
 			// Generate as "List"
             $strListTemplate = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_modal_category');
             $objListTemplate = new \FrontendTemplate($strListTemplate);
             $objListTemplate->setData($arrCategory);
-            $arrCategories[$entry_id] = $objListTemplate->parse();
+            $arrCategoriesRoom[$entry_id] = $objListTemplate->parse();
+            $entry_id++;
+			
+		}
+		
+		$result = $this->Database->prepare("SELECT * FROM tl_category_product")->execute();
+		$entry_id = 1;
+		while($result->next())
+		{
+		    $arrCategory = array();
+			$arrCategory['id'] = $result->id;
+			$arrCategory['alias'] = $result->alias;
+			$arrCategory['name'] = $result->name;
+			$arrCategory['published'] = $result->published;
+			$arrCategoriesProduct[$entry_id] = $arrCategory;
+			
+			// Generate as "List"
+            $strListTemplate = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_modal_category');
+            $objListTemplate = new \FrontendTemplate($strListTemplate);
+            $objListTemplate->setData($arrCategory);
+            $arrCategoriesProduct[$entry_id] = $objListTemplate->parse();
             $entry_id++;
 			
 		}
 
-
         $this->Template->thumbs = $arrThumbs;
         $this->Template->slides = $arrSlides;
-        $this->Template->categories = $arrCategories;
+        $this->Template->categories_room = $arrCategoriesRoom;
+        $this->Template->categories_product = $arrCategoriesProduct;
 	}
 
 } 
