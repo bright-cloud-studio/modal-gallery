@@ -1,19 +1,25 @@
 <!-- Category Filter -->
-<div class="categories">
+<div class="categories flex_wrapper size100 no-pad">
 
-	<nav class="mod_navigation cat-nav-1 block sf-js-enabled sf-arrows" id="cat-nav-1" style="touch-action: pan-y;">
-		<ul class="sf-menu level_1 sf-js-enabled sf-arrows" role="menu" style="touch-action: pan-y;">
-			
-			<li class="sibling cat_0" role="menuitem"><a title="Interior Design Ideas" class="sibling" itemprop="url" onclick="resetFilter();"><span itemprop="name">All</span></a></li>
-	
-			<?php if (empty($this->categories)): ?>
-				<p class="empty">There are no categories</p>
-			<?php else: ?>
-				<?= implode('', $this->categories) ?>
+	<div class="select_wrapper">
+		<label for="category_room">Filter by Room:</label>
+		<select name="category_room" id="category_room">
+			<option value="all" selected>All</option>
+			<?php if (!empty($this->categories_room)): ?>
+				<?= implode('', $this->categories_room) ?>
 			<?php endif; ?>
-			
-		</ul>
-	</nav>
+		</select>
+	</div>
+	
+	<div class="select_wrapper">
+		<label for="category_product">Filter by Product:</label>
+		<select name="category_product" id="category_product">
+			<option value="all" selected>All</option>
+			<?php if (!empty($this->categories_product)): ?>
+				<?= implode('', $this->categories_product) ?>
+			<?php endif; ?>
+		</select>
+	</div>
 
 </div>
 
