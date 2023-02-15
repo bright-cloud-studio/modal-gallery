@@ -54,7 +54,7 @@
 	
 </div>
 
-<div class="empty_message" style="display: none;">
-	There are no slides meeting these criteria
+<div class="empty_message center_element" style="display: none;">
+	<?= $this->empty_message; ?>
 </div>
 
