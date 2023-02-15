@@ -3,7 +3,7 @@
 /**
  * Bright Cloud Studio's Modal Gallery
  *
- * Copyright (C) 2023 Bright Cloud Studio
+ * Copyright (C) 2021 Bright Cloud Studio
  *
  * @package    bright-cloud-studio/modal-gallery
  * @link       https://www.brightcloudstudio.com/
@@ -91,6 +91,7 @@ class ModalGalleryModule extends \Contao\Module
         
         $arrThumbs = array();
         $arrSlides = array();
+        $arrCategories = array();
         
 		$entry_id = 0;
 		$gal = 0;
@@ -107,8 +108,6 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['hotspot_links'] = unserialize($slide->hotspot_links);
             $arrSlide['categories'] = unserialize($slide->category);
 
-            
-            
             $this->import('Database');
     		$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE id='".$this->selectedGallery."'")->execute();
     		while($result->next())
@@ -133,19 +132,37 @@ class ModalGalleryModule extends \Contao\Module
             
             $entry_id++;
 		}
-        
+		
+		
+		
+		
+		
+		
+		$this->import('Database');
+		$result = $this->Database->prepare("SELECT * FROM tl_slide_category")->execute();
+		$entry_id = 1;
+		while($result->next())
+		{
+		    $arrCategory = array();
+			$arrCategory['id'] = $result->id;
+			$arrCategory['alias'] = $result->alias;
+			$arrCategory['name'] = $result->name;
+			$arrCategory['published'] = $result->published;
+			$arrCategories[$entry_id] = $arrCategory;
+			
+			// Generate as "List"
+            $strListTemplate = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_modal_category');
+            $objListTemplate = new \FrontendTemplate($strListTemplate);
+            $objListTemplate->setData($arrCategory);
+            $arrCategories[$entry_id] = $objListTemplate->parse();
+            $entry_id++;
+			
+		}
+
+
         $this->Template->thumbs = $arrThumbs;
         $this->Template->slides = $arrSlides;
-	    
-	    
-	    
-	    
-	    
-    // add the categories to the template using a nav template to assemble it
-	    
-	    
-	    
-	    
+        $this->Template->categories = $arrCategories;
 	}
 
 } 
