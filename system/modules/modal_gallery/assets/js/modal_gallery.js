@@ -39,12 +39,14 @@ function filterThumbs() {
     
     
     // loop through every thumbnail
-    var doOnce = 0;
+    var clickOnce = true;
+    var foundOne = false;
     $( ".thumb_container .column" ).each(function() {
         
         // if both are set to all then show every thumbnail
         if(filterRoom == "all" && filterProduct == "all") {
             $(this).show();
+            foundOne = true;
         } else {
             
             // if filterRoom yes and filterProduct is all
@@ -52,9 +54,10 @@ function filterThumbs() {
                 
                 if( $(this).hasClass(filterRoom) ) {
                     $(this).show();
-                    if(doOnce == 0) {
+                    foundOne = true;
+                    if(clickOnce) {
                         $(this).click();
-                        doOnce = 1;
+                        clickOnce = false;
                     }
                 } else {
                     $(this).hide();
@@ -64,9 +67,10 @@ function filterThumbs() {
                 
                 if( $(this).hasClass(filterProduct) ) {
                     $(this).show();
-                    if(doOnce == 0) {
+                    foundOne = true;
+                    if(clickOnce) {
                         $(this).click();
-                        doOnce = 1;
+                        clickOnce = false;
                     }
                 } else {
                     $(this).hide();
@@ -76,9 +80,10 @@ function filterThumbs() {
                 
                 if( $(this).hasClass(filterRoom) && $(this).hasClass(filterProduct) ) {
                     $(this).show();
-                    if(doOnce == 0) {
+                    foundOne = true;
+                    if(clickOnce) {
                         $(this).click();
-                        doOnce = 1;
+                        clickOnce = false;
                     }
                 } else {
                     $(this).hide();
@@ -86,6 +91,15 @@ function filterThumbs() {
                 
             }
         }
+        
+        if(foundOne == false) {
+            $('.empty_message').show();
+            $('.slide_container').hide();
+        } else {
+            $('.empty_message').hide();
+            $('.slide_container').show();
+        }
+        
         
     });
     
