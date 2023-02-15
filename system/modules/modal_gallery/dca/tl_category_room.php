@@ -50,7 +50,7 @@ $GLOBALS['TL_DCA']['tl_category_room'] = array
             'export' => array
             (
                 'label'               => 'Export Room Categories CSV',
-                'href'                => 'key=exportCategoryRoom',
+                'href'                => 'key=exportRoomCategories',
                 'icon'                => 'system/modules/modal_gallery/assets/icons/export.svg'
             ),
             'all' => array
