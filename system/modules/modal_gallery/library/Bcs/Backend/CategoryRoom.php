@@ -15,7 +15,7 @@ namespace Bcs\Backend;
 
 use Contao\DataContainer;
 
-class SlideCategory extends \Backend
+class CategoryRoom extends \Backend
 {
 
 	public function getItemTemplates()
@@ -46,9 +46,9 @@ class SlideCategory extends \Backend
 	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
 	{
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_slide_category']['fields']['published']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_category_room']['fields']['published']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_slide_category']['fields']['published']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_category_room']['fields']['published']['save_callback'] as $callback)
 			{
 				if (is_array($callback))
 				{
@@ -63,19 +63,19 @@ class SlideCategory extends \Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_slide_category SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_category_room SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->log('A new version of record "tl_slide_category.id='.$intId.'" has been created'.$this->getParentEntries('tl_category', $intId), __METHOD__, TL_GENERAL);
+		$this->log('A new version of record "tl_category_room.id='.$intId.'" has been created'.$this->getParentEntries('tl_category', $intId), __METHOD__, TL_GENERAL);
 	}
 	
-	public function exportSlideCategory()
+	public function exportRoomCategories()
 	{
 		$objSlideCategory = SlideCategory::findAll();
 		$strDelimiter = ',';
 	
 		if ($objSlideCategory) {
-			$strFilename = "slide_categories_" .(date('Y-m-d_Hi')) ."csv";
+			$strFilename = "room_categories_" .(date('Y-m-d_Hi')) ."csv";
 			$tmpFile = fopen('php://memory', 'w');
 			
 			$count = 0;
@@ -114,7 +114,7 @@ class SlideCategory extends \Backend
 			$varValue = standardize(\StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
-		$objAlias = $this->Database->prepare("SELECT id FROM tl_slide_category WHERE id=? OR alias=?")->execute($dc->id, $varValue);
+		$objAlias = $this->Database->prepare("SELECT id FROM tl_category_room WHERE id=? OR alias=?")->execute($dc->id, $varValue);
 
 		// Check whether the page alias exists
 		if ($objAlias->numRows > 1)
