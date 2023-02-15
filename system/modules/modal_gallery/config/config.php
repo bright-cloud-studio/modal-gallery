@@ -18,10 +18,15 @@ $GLOBALS['BE_MOD']['modal_gallery']['modal_gallery'] = array(
 	'icon'   => 'system/modules/modal_gallery/assets/icons/modal_gallery.png',
 	'exportLocations' => array('Bcs\Backend\ModalGalleryBackend', 'exportModalGallery')
 );
-$GLOBALS['BE_MOD']['modal_gallery']['slide_category'] = array(
-	'tables' => array('tl_slide_category'),
+$GLOBALS['BE_MOD']['modal_gallery']['category_room'] = array(
+	'tables' => array('tl_category_room'),
 	'icon'   => 'system/modules/modal_gallery/assets/icons/slide_category.png',
-	'exportLocations' => array('Bcs\Backend\SlideCategory', 'exportSlideCategories')
+	'exportLocations' => array('Bcs\Backend\CategoryRoom', 'exportRoomCategories')
+);
+$GLOBALS['BE_MOD']['modal_gallery']['category_product'] = array(
+	'tables' => array('tl_category_product'),
+	'icon'   => 'system/modules/modal_gallery/assets/icons/slide_category.png',
+	'exportLocations' => array('Bcs\Backend\CategoryProduct', 'exportProductCategories')
 );
 
 /* Front end modules */
@@ -30,7 +35,8 @@ $GLOBALS['FE_MOD']['modal_gallery']['modal_gallery_module'] 	= 'Bcs\Module\Modal
 /* Models */
 $GLOBALS['TL_MODELS']['tl_modal_gallery']			= 'Bcs\Model\ModalGallery';
 $GLOBALS['TL_MODELS']['tl_modal_gallery_slide']			= 'Bcs\Model\ModalGallerySlide';
-$GLOBALS['TL_MODELS']['tl_slide_category']			= 'Bcs\Model\SlideCategory';
+$GLOBALS['TL_MODELS']['tl_category_room']			= 'Bcs\Model\CategoryRoom';
+$GLOBALS['TL_MODELS']['tl_category_product']			= 'Bcs\Model\CategoryProduct';
 
 /* Add Backend JS */
 if (TL_MODE == 'BE')
