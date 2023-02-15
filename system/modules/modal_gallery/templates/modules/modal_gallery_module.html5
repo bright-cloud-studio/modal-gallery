@@ -54,3 +54,7 @@
 	
 </div>
 
+<div class="empty_message" style="display: none;">
+	There are no slides meeting these criteria
+</div>
+
