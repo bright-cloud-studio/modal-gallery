@@ -180,11 +180,23 @@ class ModalGallerySlideBackend extends \Backend
 		return $varValue;
 	}
 	
-	public function getSlideCategories(DataContainer $dc) { 
+	public function getRoomCategories(DataContainer $dc) { 
 		$cats = array();
 		
 		$this->import('Database');
-		$result = $this->Database->prepare("SELECT * FROM tl_slide_category WHERE published=1")->execute();
+		$result = $this->Database->prepare("SELECT * FROM tl_category_room WHERE published=1")->execute();
+		while($result->next())
+		{
+			$cats = $cats + array($result->alias => $result->name);
+		}
+
+		return $cats;
+	}
+	public function getProductCategories(DataContainer $dc) { 
+		$cats = array();
+		
+		$this->import('Database');
+		$result = $this->Database->prepare("SELECT * FROM tl_category_product WHERE published=1")->execute();
 		while($result->next())
 		{
 			$cats = $cats + array($result->alias => $result->name);
