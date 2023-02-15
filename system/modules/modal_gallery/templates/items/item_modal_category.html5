@@ -1,0 +1,1 @@
+<li class="first cat_<?= $this->id ?>" role="menuitem"><a title="Cat" class="first" itemprop="url" onclick="filterByCategory('<?= $this->alias ?>');"><span itemprop="name"><?= $this->name ?></span></a></li>
