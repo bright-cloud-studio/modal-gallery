@@ -101,7 +101,7 @@ class ModalGalleryModule extends \Contao\Module
 		    $arrSlide = array();
             // Set values for template
             
-            $arrSlide['id']                     = $slide->id;
+            $arrSlide['id']                     = $entry_id;
             $arrSlide['slide_image']            = $slide->slide_image;
             $arrSlide['slide_name']             = $slide->slide_name;
             $arrSlide['slide_image_url']        = $slide->slide_image_url;
