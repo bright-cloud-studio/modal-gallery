@@ -47,6 +47,10 @@ function filterThumbs() {
         if(filterRoom == "all" && filterProduct == "all") {
             $(this).show();
             foundOne = true;
+            if(clickOnce) {
+                $(this).click();
+                clickOnce = false;
+            }
         } else {
             
             // if filterRoom yes and filterProduct is all
