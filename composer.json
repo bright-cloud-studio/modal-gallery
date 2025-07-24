@@ -11,8 +11,5 @@
     "require": {
         "php": ">=8.1",
         "contao/core-bundle": "^5.3"
-    },
-    "extra": {
-        "contao-manager-plugin": "Contao\\ManagerPlugin\\Bundle\\Plugin"
     }
 }
