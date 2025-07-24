@@ -1,4 +1,0 @@
-<div id="slide-<?php echo $this->id; ?>" class="modal-slide">
-  <img src="<?php echo $this->slide_image_url; ?>" alt="<?php echo $this->slide_name; ?>">
-  <div class="description"><?php echo $this->slide_name; ?></div>
-</div>

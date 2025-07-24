@@ -10,17 +10,17 @@
  * @license    http://opensource.org/licenses/lgpl-3.0.html
 **/
 
- 
-namespace Bcs\Model;
+namespace Bcs\Backend;
 
-class ModalGallerySlide extends \Model
+use Contao\DataContainer;
+use Contao\Image;
+
+class HotspotHelper
 {
-	
-	/**
-	 * Table name
-	 * @var string
-	 */
-	protected static $strTable = 'tl_modal_gallery_slide';
-
-	
+    public function onSelectHotspotImage(DataContainer $dc)
+    {
+        echo "Hotspot X: ";
+        echo "Hotspot Y: ";
+        return '<a href="#">something</a>';
+    }
 }

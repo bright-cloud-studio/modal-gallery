@@ -1,3 +1,0 @@
-<div id="thumb-<?php echo $this->id; ?>" class="modal-thumb">
-  <img src="<?php echo $this->slide_image_url; ?>" alt="<?php echo $this->slide_name; ?>">
-</div>

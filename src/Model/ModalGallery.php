@@ -13,14 +13,14 @@
  
 namespace Bcs\Model;
 
-class ModalGallerySlide extends \Model
+class ModalGallery extends \Model
 {
 	
 	/**
 	 * Table name
 	 * @var string
 	 */
-	protected static $strTable = 'tl_modal_gallery_slide';
+	protected static $strTable = 'tl_modal_gallery';
 
 	
 }

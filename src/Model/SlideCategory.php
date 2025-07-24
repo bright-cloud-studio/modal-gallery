@@ -3,7 +3,7 @@
 /**
  * Bright Cloud Studio's Modal Gallery
  *
- * Copyright (C) 2021 Bright Cloud Studio
+ * Copyright (C) 2023 Bright Cloud Studio
  *
  * @package    bright-cloud-studio/modal-gallery
  * @link       https://www.brightcloudstudio.com/
@@ -13,14 +13,14 @@
  
 namespace Bcs\Model;
 
-class ModalGallerySlide extends \Model
+class SlideCategory extends \Model
 {
 	
 	/**
 	 * Table name
 	 * @var string
 	 */
-	protected static $strTable = 'tl_modal_gallery_slide';
+	protected static $strTable = 'tl_slide_category';
 
 	
 }
