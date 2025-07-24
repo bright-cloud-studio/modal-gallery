@@ -14,7 +14,7 @@
 namespace Bcs\Model;
 
 class SlideCategory extends \Model
-{
+extends Model {
 	
 	/**
 	 * Table name

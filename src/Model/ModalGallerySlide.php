@@ -14,7 +14,7 @@
 namespace Bcs\Model;
 
 class ModalGallerySlide extends \Model
-{
+extends Model {
 	
 	/**
 	 * Table name
