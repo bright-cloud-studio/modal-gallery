@@ -1,0 +1,16 @@
+<div class="modal-gallery">
+  <?php if (!empty($this->thumbs)): ?>
+    <div class="thumbs"><?php echo implode('', $this->thumbs); ?></div>
+  <?php else: ?>
+    <?php echo $this->empty; ?>
+  <?php endif; ?>
+
+  <div class="slides"><?php echo implode('', $this->slides); ?></div>
+
+  <?php if (!empty($this->categories_room)): ?>
+    <div class="categories-room"><?php echo implode('', $this->categories_room); ?></div>
+  <?php endif; ?>
+  <?php if (!empty($this->categories_product)): ?>
+    <div class="categories-product"><?php echo implode('', $this->categories_product); ?></div>
+  <?php endif; ?>
+</div>

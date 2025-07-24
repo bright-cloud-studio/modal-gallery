@@ -1,0 +1,3 @@
+<div class="modal-category" data-id="<?php echo $this->id; ?>">
+  <?php echo $this->name; ?>
+</div>
