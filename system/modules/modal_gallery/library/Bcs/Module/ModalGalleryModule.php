@@ -14,7 +14,7 @@ namespace Bcs\Module;
 
 use Bcs\Model\ModalGallerySlide;
 
-class ModalGalleryModule extends \Contao\Module
+class ModalGalleryModule extends \Contao\FrontendModule
 {
     /**
      * Template
