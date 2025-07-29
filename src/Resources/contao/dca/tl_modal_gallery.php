@@ -1,6 +1,6 @@
 <?php
 
-
+use Contao\System;
 use Bcs\ModalGallerySlide;
 
 /**************************************************/
@@ -165,7 +165,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
-		'options'               => \Contao\System::getImageSizes(),
+		'options'               => System::getImageSizes(),
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
 		'eval'                  => [
 			'rgxp'=>'natural',
@@ -181,7 +181,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_thumb_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
-		'options'               => \Contao\System::getImageSizes(),
+		'options'               => System::getImageSizes(),
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
 		'eval'                  => [
 			'rgxp'=>'natural',
