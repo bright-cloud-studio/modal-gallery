@@ -26,10 +26,3 @@ $GLOBALS['TL_MODELS']['tl_modal_gallery']			= 'Bcs\Model\ModalGallery';
 $GLOBALS['TL_MODELS']['tl_modal_gallery_slide']			= 'Bcs\Model\ModalGallerySlide';
 $GLOBALS['TL_MODELS']['tl_category_room']			= 'Bcs\Model\CategoryRoom';
 $GLOBALS['TL_MODELS']['tl_category_product']			= 'Bcs\Model\CategoryProduct';
-
-/* Add Backend JS */
-if (TL_MODE == 'BE')
-{
-	$GLOBALS['TL_JAVASCRIPT']['smg']			= 'system/modules/modal_gallery/assets/js/modal_gallery_backend.js';
-	$GLOBALS['TL_CSS'][]					= 'system/modules/modal_gallery/assets/css/modal_gallery_backend.css';
-}
