@@ -165,7 +165,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
-		'options'               => System::getImageSizes(),
+		'options_callback' => static function () {
+            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+        },
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
 		'eval'                  => [
 			'rgxp'=>'natural',
@@ -181,7 +183,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slide_thumb_image_size'],
 		'exclude'               => true,
 		'inputType'             => 'imageSize',
-		'options'               => System::getImageSizes(),
+		'options_callback' => static function () {
+            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+        },
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
 		'eval'                  => [
 			'rgxp'=>'natural',
