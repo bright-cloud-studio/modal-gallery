@@ -1,18 +1,8 @@
 <?php
 
-/***************************************/
-/* UPDATE TO BE "MODAL GALLERY SLIDE" */
-/***************************************/
-
-/**
- * Bright Cloud Studio's Modal Gallery
- *
- * Copyright (C) 2021 Bright Cloud Studio
- *
- * @package    bright-cloud-studio/modal-gallery
- * @link       https://www.brightcloudstudio.com/
- * @license    http://opensource.org/licenses/lgpl-3.0.html
-**/
+use Contao\Backend;
+use Contao\BackendUser;
+use Contao\System;
 
 /* Table tl_modal_gallery_slide */
 $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
@@ -177,7 +167,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	(
 		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'],
 		'inputType'             => 'metaWizard',
-		'options'               => \Contao\System::getImageSizes(),
+		'options_callback' => static function () {
+            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
+        },
 		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
 		'eval'                  => [
 			'allowHtml'=>true,
