@@ -1,5 +1,7 @@
 <?php
 
+use Contao\Backend;
+use Contao\BackendUser;
 use Contao\System;
 use Bcs\ModalGallerySlide;
 
