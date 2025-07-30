@@ -1,21 +1,15 @@
 <?php
 
-/**
- * Bright Cloud Studio's Modal Gallery
- *
- * Copyright (C) 2023 Bright Cloud Studio
- *
- * @package    bright-cloud-studio/modal-gallery
- * @link       https://www.brightcloudstudio.com/
- * @license    http://opensource.org/licenses/lgpl-3.0.html
-**/
-
- 
 namespace Bcs\Backend;
 
+use Contao\Backend;
 use Contao\DataContainer;
+use Contao\Image;
+use Contao\Input;
+use Contao\StringUtil;
 
-class CategoryRoom extends \Backend
+
+class CategoryRoom extends Backend
 {
 
 	public function getItemTemplates()
@@ -28,7 +22,7 @@ class CategoryRoom extends \Backend
 	{
 		if (strlen(\Input::get('tid')))
 		{
-			$this->toggleVisibility(\Input::get('tid'), (\Input::get('state') == 1), (@func_get_arg(12) ?: null));
+			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
 			$this->redirect($this->getReferer());
 		}
 
@@ -39,7 +33,7 @@ class CategoryRoom extends \Backend
 			$icon = 'invisible.gif';
 		}
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
 	}	
 	
 
