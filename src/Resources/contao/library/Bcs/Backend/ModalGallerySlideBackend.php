@@ -12,10 +12,11 @@
  
 namespace Bcs\Backend;
 
+use Contao\Backend;
 use Contao\DataContainer;
 use Bcs\Model\ModalGallerySlide;
 
-class ModalGallerySlideBackend extends \Backend
+class ModalGallerySlideBackend extends Backend
 {
 	
 	public function cutPage($row, $href, $label, $title, $icon, $attributes)
@@ -97,11 +98,7 @@ class ModalGallerySlideBackend extends \Backend
 		return $return . ($disablePI ? Image::getHtml('pasteinto_.svg') . ' ' : '<a href="' . $this->addToUrl('act=' . $arrClipboard['mode'] . '&amp;mode=2&amp;pid=' . $row['id'] . (!is_array($arrClipboard['id']) ? '&amp;id=' . $arrClipboard['id'] : '')) . '" title="' . StringUtil::specialchars(sprintf($GLOBALS['TL_LANG'][$table]['pasteinto'][$row['id'] > 0 ? 1 : 0], $row['id'])) . '" onclick="Backend.getScrollOffset()">' . $imagePasteInto . '</a> ');
 	}
 
-	
-	
-	
-	
-	
+    
 	public function listSlides($row)
 	{
 		return '<div class="tl_content_left">' . $row['slide_name'] . "</div>\n";
