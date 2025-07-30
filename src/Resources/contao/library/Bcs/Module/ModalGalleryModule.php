@@ -15,6 +15,9 @@ namespace Bcs\Module;
 use Bcs\Model\ModalGallerySlide;
 
 use Contao\System;
+use Contao\BackendTemplate;
+use Contao\FrontendTemplate;
+use Contao\StringUtil;
 
 class ModalGalleryModule extends \Contao\Module
 {
@@ -46,9 +49,10 @@ class ModalGalleryModule extends \Contao\Module
 
         if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
         {
-            $objTemplate = new \BackendTemplate('be_wildcard');
+            $objTemplate = new \Contao\BackendTemplate('be_wildcard');
 
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['locations_list'][0]) . ' ###';
+
+            $objTemplate->wildcard = '### ' . mb_strtoupper($GLOBALS['TL_LANG']['FMD']['locations_list'][0]) . ' ###';
             $objTemplate->title    = $this->headline;
             $objTemplate->id       = $this->id;
             $objTemplate->link     = $this->name;
@@ -66,11 +70,11 @@ class ModalGalleryModule extends \Contao\Module
     protected function compile()
     {
         // add our CSS
-       $GLOBALS['TL_CSS']['modal_css'] = 'system/modules/modal_gallery/assets/css/modal_gallery.css';
+       $GLOBALS['TL_CSS']['modal_css'] = 'bundles/bcsmodalgallery/css/modal_gallery.css';
 
 
         // add our JS
-        $GLOBALS['TL_BODY']['modal_js'] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
+        $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery.js"></script>';
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
@@ -135,13 +139,13 @@ class ModalGalleryModule extends \Contao\Module
 
             // Generate thumb template
             $strThumbTpl = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_slide_thumb');
-            $objThumbTpl = new \FrontendTemplate($strThumbTpl);
+            $objThumbTpl = new \Contao\FrontendTemplate($strThumbTpl);
             $objThumbTpl->setData($arrSlide);
             $arrThumbs[$entry_id] = $objThumbTpl->parse();
 
             // Generate slide template
             $strSlideTpl = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_slide');
-            $objSlideTpl = new \FrontendTemplate($strSlideTpl);
+            $objSlideTpl = new \Contao\FrontendTemplate($strSlideTpl);
             $objSlideTpl->setData($arrSlide);
             $arrSlides[$entry_id] = $objSlideTpl->parse();
 
@@ -164,7 +168,7 @@ class ModalGalleryModule extends \Contao\Module
                 ];
 
                 $strCatTpl = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_modal_category');
-                $objCatTpl = new \FrontendTemplate($strCatTpl);
+                $objCatTpl = new \Contao\FrontendTemplate($strCatTpl);
                 $objCatTpl->setData($arrCategory);
                 $arrCategoriesRoom[$cat_id] = $objCatTpl->parse();
                 $cat_id++;
@@ -186,7 +190,7 @@ class ModalGalleryModule extends \Contao\Module
                 ];
 
                 $strCatTpl = ($this->entry_customItemTpl != '' ? $this->entry_customItemTpl : 'item_modal_category');
-                $objCatTpl = new \FrontendTemplate($strCatTpl);
+                $objCatTpl = new \Contao\FrontendTemplate($strCatTpl);
                 $objCatTpl->setData($arrCategory);
                 $arrCategoriesProduct[$cat_id] = $objCatTpl->parse();
                 $cat_id++;

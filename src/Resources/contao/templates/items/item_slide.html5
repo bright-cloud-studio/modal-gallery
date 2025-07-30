@@ -1,5 +1,5 @@
 <?php
-    $objFile = \FilesModel::findByUuid($this->slide_image);
+    $objFile = \Contao\FilesModel::findByUuid($this->slide_image);
 ?>
 
 <div class="mySlides slide_<?= $this->id ?>">

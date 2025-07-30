@@ -13,7 +13,9 @@
  
 namespace Bcs\Model;
 
-class ModalGallerySlide extends \Model
+use Contao\Model;
+
+class ModalGallerySlide extends \Contao\Model
 {
 	
 	/**

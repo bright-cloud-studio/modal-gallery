@@ -1,5 +1,5 @@
 <?php
-    $objFile = \FilesModel::findByUuid($this->slide_image);
+    $objFile = \Contao\FilesModel::findByUuid($this->slide_image);
     $catString = "";
     foreach($this->categories_room as $cat) {
         $catString .= " " . $cat;
