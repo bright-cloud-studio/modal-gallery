@@ -12,10 +12,11 @@
  
 namespace Bcs\Backend;
 
+use Contao\Backend;
 use Contao\DataContainer;
 use Bcs\Model\ModalGallery;
 
-class ModalGalleryBackend extends \Backend
+class ModalGalleryBackend extends Backend
 {
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
