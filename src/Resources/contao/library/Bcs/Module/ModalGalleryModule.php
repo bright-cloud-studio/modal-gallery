@@ -14,6 +14,8 @@ namespace Bcs\Module;
 
 use Bcs\Model\ModalGallerySlide;
 
+use Contao\System;
+
 class ModalGalleryModule extends \Contao\Module
 {
     /**
@@ -40,7 +42,9 @@ class ModalGalleryModule extends \Contao\Module
      */
     public function generate()
     {
-        if (TL_MODE == 'BE')
+        $request = System::getContainer()->get('request_stack')->getCurrentRequest();
+
+        if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
 
@@ -62,13 +66,11 @@ class ModalGalleryModule extends \Contao\Module
     protected function compile()
     {
         // add our CSS
-        if (!in_array('system/modules/modal_gallery/assets/css/modal_gallery.css', $GLOBALS['TL_CSS']))
-        {
-            $GLOBALS['TL_CSS'][] = 'system/modules/modal_gallery/assets/css/modal_gallery.css';
-        }
+       $GLOBALS['TL_CSS']['modal_css'] = 'system/modules/modal_gallery/assets/css/modal_gallery.css';
+
 
         // add our JS
-        $GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
+        $GLOBALS['TL_BODY']['modal_js'] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
