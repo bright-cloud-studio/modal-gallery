@@ -74,7 +74,7 @@ class ModalGalleryBackend extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = standardize(\StringUtil::restoreBasicEntities($dc->activeRecord->name));
+			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
 		$objAlias = $this->Database->prepare("SELECT id FROM tl_modal_gallery WHERE id=? OR alias=?")
