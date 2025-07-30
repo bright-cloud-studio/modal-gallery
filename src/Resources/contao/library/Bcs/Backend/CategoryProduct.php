@@ -114,7 +114,7 @@ class CategoryProduct extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = standardize(\StringUtil::restoreBasicEntities($dc->activeRecord->name));
+			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
 		$objAlias = $this->Database->prepare("SELECT id FROM tl_category_product WHERE id=? OR alias=?")->execute($dc->id, $varValue);
