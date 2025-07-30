@@ -20,7 +20,7 @@ class CategoryRoom extends Backend
 	
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
-		if (strlen(\Input::get('tid')))
+		if (strlen(Input::get('tid')))
 		{
 			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
 			$this->redirect($this->getReferer());
@@ -105,7 +105,7 @@ class CategoryRoom extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = standardize(\StringUtil::restoreBasicEntities($dc->activeRecord->name));
+			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
 		$objAlias = $this->Database->prepare("SELECT id FROM tl_category_room WHERE id=? OR alias=?")->execute($dc->id, $varValue);
