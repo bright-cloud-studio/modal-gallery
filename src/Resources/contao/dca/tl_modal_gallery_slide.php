@@ -2,6 +2,7 @@
 
 use Contao\Backend;
 use Contao\BackendUser;
+use Contao\DC_Table;
 use Contao\System;
 
 /* Table tl_modal_gallery_slide */
@@ -10,7 +11,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
 		'enableVersioning'            => true,
 		'ptable'			=> 'tl_modal_gallery',
 		'markAsCopy'			=> 'slide_name',
