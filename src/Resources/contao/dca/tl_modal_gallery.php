@@ -2,6 +2,7 @@
 
 use Contao\Backend;
 use Contao\BackendUser;
+use Contao\DC_Table;
 use Contao\System;
 use Bcs\ModalGallerySlide;
 
@@ -26,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'			=> 'Table',
+		'dataContainer'			=> DC_Table::class
 		'enableVersioning'		=> true,
 		'ctable'			=> array('tl_modal_gallery_slide'),
 		'switchToEdit'			=> true,
