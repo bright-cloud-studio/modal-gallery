@@ -27,7 +27,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'			=> DC_Table::class
+		'dataContainer'			=> DC_Table::class,
 		'enableVersioning'		=> true,
 		'ctable'			=> array('tl_modal_gallery_slide'),
 		'switchToEdit'			=> true,
