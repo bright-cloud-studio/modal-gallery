@@ -15,6 +15,7 @@ namespace Bcs\Backend;
 use Contao\Backend;
 use Contao\Input;
 use Contao\DataContainer;
+use Contao\StringUtil;
 use Bcs\Model\ModalGallery;
 
 class ModalGalleryBackend extends Backend
@@ -34,7 +35,7 @@ class ModalGalleryBackend extends Backend
 			$icon = 'invisible.gif';
 		}
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
 	}	
 	
 
