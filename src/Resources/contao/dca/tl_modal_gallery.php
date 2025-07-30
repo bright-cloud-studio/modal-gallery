@@ -3,6 +3,8 @@
 use Contao\Backend;
 use Contao\BackendUser;
 use Contao\DC_Table;
+use Contao\Image;
+use Contao\StringUtil;
 use Contao\System;
 use Bcs\ModalGallerySlide;
 
