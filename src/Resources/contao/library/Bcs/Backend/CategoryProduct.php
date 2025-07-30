@@ -13,9 +13,12 @@
  
 namespace Bcs\Backend;
 
+use Contao\Backend;
 use Contao\DataContainer;
+use Contao\Image;
+use Contao\Input;
 
-class CategoryProduct extends \Backend
+class CategoryProduct extends Backend
 {
 
 	public function getItemTemplates()
@@ -26,9 +29,9 @@ class CategoryProduct extends \Backend
 	
 	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
 	{
-		if (strlen(\Input::get('tid')))
+		if (strlen(Input::get('tid')))
 		{
-			$this->toggleVisibility(\Input::get('tid'), (\Input::get('state') == 1), (@func_get_arg(12) ?: null));
+			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
 			$this->redirect($this->getReferer());
 		}
 
@@ -39,7 +42,7 @@ class CategoryProduct extends \Backend
 			$icon = 'invisible.gif';
 		}
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.\Image::getHtml($icon, $label).'</a> ';
+		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
 	}	
 	
 
