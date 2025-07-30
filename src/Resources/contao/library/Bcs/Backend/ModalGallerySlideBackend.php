@@ -15,6 +15,8 @@ namespace Bcs\Backend;
 use Contao\Backend;
 use Contao\DataContainer;
 use Contao\Input;
+use Contao\StringUtil;
+
 use Bcs\Model\ModalGallerySlide;
 
 class ModalGallerySlideBackend extends Backend
