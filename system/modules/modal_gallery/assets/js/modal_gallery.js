@@ -138,8 +138,21 @@ function showSlides(n) {
 	if(noOpenModals == true) {
 	    
 	    // hide all slides
+        var hoverInv = document.getElementsByClassName("modal_wrapper");
+    	for (var i=0; i<hoverInv.length; i++){
+    		hoverInv[i].style.display = "none";
+    	}
 	    
 	    // remove blocker
+	    // remove all opacity
+    	var i, j;
+    	var slideImageContainer = document.getElementsByClassName("main_container");
+    	for (i = 0; i < slideImageContainer.length; i++) {
+    		var slideImages = slideImageContainer[i].getElementsByTagName("img");
+    		for (j = 0; j < slideImages.length; j++) {
+    			slideImages[j].style.opacity = 1;
+    		}
+    	}
 	    
 	    
 		var i;
