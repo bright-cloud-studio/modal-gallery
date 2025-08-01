@@ -3,10 +3,6 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 
-
-
-
-
 // when the page is loaded
 $( document ).ready(function() {
     
@@ -131,13 +127,21 @@ function currentSlide(n) {
 function showSlides(n) {
 	var noOpenModals = true;
 	
+	/*
 	var hoverInv = document.getElementsByClassName("modal_wrapper");
-		for (var i=0; i<hoverInv.length; i++){
-			//console.log("id_" + i + ": " + hoverInv[i].style.display);
-			if(hoverInv[i].style.display == "block")
-				noOpenModals = false;
-		}
+	for (var i=0; i<hoverInv.length; i++){
+		if(hoverInv[i].style.display == "block")
+			noOpenModals = false;
+	}
+	*/
+		
 	if(noOpenModals == true) {
+	    
+	    // hide all slides
+	    
+	    // remove blocker
+	    
+	    
 		var i;
 		var slides = document.getElementsByClassName("mySlides");
 		var dots = document.getElementsByClassName("demo");
@@ -156,7 +160,16 @@ function showSlides(n) {
 	}
 }
 
+
+
 function triggerModal(slide, id) {
+    
+    // Hide all open modals.
+    var hoverInv = document.getElementsByClassName("modal_wrapper");
+	for (var i=0; i<hoverInv.length; i++){
+		hoverInv[i].style.display = "none";
+	}
+    
 
 	//make all images opaque by half
 	var i, j;
@@ -199,10 +212,11 @@ function triggerModal(slide, id) {
 		modal.style.top = (overY-1) + "%";
 	}
 	
-
-	
 	return;
 }
+
+
+
 
 // close the modal when the X is clicked
 function closeModal(id) {
