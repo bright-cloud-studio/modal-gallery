@@ -43,9 +43,9 @@ img {
 .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 60%;
   width: auto;
-  padding: 16px;
+  padding: 15px 20px;
   margin-top: -50px;
   color: white;
   font-weight: bold;
@@ -53,18 +53,28 @@ img {
   border-radius: 0 3px 3px 0;
   user-select: none;
   -webkit-user-select: none;
+  
+    background-color: white;
+    color: black;
+    border-radius: 50%;
+	top: calc(50% - 25px);
+	width: 50px;
+	height: 50px;
+  
 }
-
-/* Position the "next button" to the right */
+.prev {
+    left: -20px;
+    top: 60%;
+}
 .next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
+    right: -20px;
+    top: 60%;
 }
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover,
 .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+
 }
 
 /* Number text (1/3 etc) */
@@ -144,4 +154,4 @@ img {
 	position: absolute;
 	border: 0;
 }
-.prev, .next { display: none; }
+//.prev, .next { display: none; }
