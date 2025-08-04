@@ -1,10 +1,7 @@
 // Modal Gallery JS
 var slideIndex = 1;
+var scrollIndex = 0;
 showSlides(slideIndex);
-
-
-
-
 
 
 // when the page is loaded
@@ -121,23 +118,66 @@ function filterThumbs() {
 
 
 function plusSlides(n) {
-	showSlides(slideIndex += n);
+    
+    var count = $('.thumb_container div').length - 1;
+    scrollIndex += n;
+    
+    if(scrollIndex < 0)
+        scrollIndex = 0;
+    else if(scrollIndex >= count)
+        scrollIndex = count;
+	
+	var scrollAmount = 250;
+    var scrollCalculated = scrollAmount * scrollIndex;
+    $('#thumb_container').scrollLeft(scrollCalculated);
+
 }
 
 function currentSlide(n) {
+    
+    // Offset the thumbnail container so we can see our active slide
+    var scrollIndex = n - 1;
+    var scrollAmount = 250;
+    var scrollCalculated = scrollAmount * scrollIndex;
+    $('#thumb_container').scrollLeft(scrollCalculated);
+    
+    console.log("Scroll Index: " + scrollIndex);
+    console.log("Scroll Calculated: " + scrollCalculated);
+    
 	showSlides(slideIndex = n);
 }
 
 function showSlides(n) {
 	var noOpenModals = true;
 	
+	/*
 	var hoverInv = document.getElementsByClassName("modal_wrapper");
-		for (var i=0; i<hoverInv.length; i++){
-			//console.log("id_" + i + ": " + hoverInv[i].style.display);
-			if(hoverInv[i].style.display == "block")
-				noOpenModals = false;
-		}
+	for (var i=0; i<hoverInv.length; i++){
+		if(hoverInv[i].style.display == "block")
+			noOpenModals = false;
+	}
+	*/
+		
 	if(noOpenModals == true) {
+	    
+	    // hide all slides
+        var hoverInv = document.getElementsByClassName("modal_wrapper");
+    	for (var i=0; i<hoverInv.length; i++){
+    		hoverInv[i].style.display = "none";
+    	}
+	    
+	    // remove blocker
+	    // remove all opacity
+    	var i, j;
+    	var slideImageContainer = document.getElementsByClassName("main_container");
+    	for (i = 0; i < slideImageContainer.length; i++) {
+    		var slideImages = slideImageContainer[i].getElementsByTagName("img");
+    		for (j = 0; j < slideImages.length; j++) {
+    			slideImages[j].style.opacity = 1;
+    		}
+    	}
+	    
+	    
 		var i;
 		var slides = document.getElementsByClassName("mySlides");
 		var dots = document.getElementsByClassName("demo");
@@ -156,7 +196,16 @@ function showSlides(n) {
 	}
 }
 
+
+
 function triggerModal(slide, id) {
+    
+    // Hide all open modals.
+    var hoverInv = document.getElementsByClassName("modal_wrapper");
+	for (var i=0; i<hoverInv.length; i++){
+		hoverInv[i].style.display = "none";
+	}
+    
 
 	//make all images opaque by half
 	var i, j;
@@ -199,10 +248,11 @@ function triggerModal(slide, id) {
 		modal.style.top = (overY-1) + "%";
 	}
 	
-
-	
 	return;
 }
+
+
+
 
 // close the modal when the X is clicked
 function closeModal(id) {
