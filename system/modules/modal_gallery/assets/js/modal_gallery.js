@@ -1,5 +1,6 @@
 // Modal Gallery JS
 var slideIndex = 1;
+var scrollIndex = 0;
 showSlides(slideIndex);
 
 
@@ -117,10 +118,32 @@ function filterThumbs() {
 
 
 function plusSlides(n) {
-	showSlides(slideIndex += n);
+    
+    var count = $('.thumb_container div').length - 1;
+    scrollIndex += n;
+    
+    if(scrollIndex < 0)
+        scrollIndex = 0;
+    else if(scrollIndex >= count)
+        scrollIndex = count;
+	
+	var scrollAmount = 250;
+    var scrollCalculated = scrollAmount * scrollIndex;
+    $('#thumb_container').scrollLeft(scrollCalculated);
+
 }
 
 function currentSlide(n) {
+    
+    // Offset the thumbnail container so we can see our active slide
+    var scrollIndex = n - 1;
+    var scrollAmount = 250;
+    var scrollCalculated = scrollAmount * scrollIndex;
+    $('#thumb_container').scrollLeft(scrollCalculated);
+    
+    console.log("Scroll Index: " + scrollIndex);
+    console.log("Scroll Calculated: " + scrollCalculated);
+    
 	showSlides(slideIndex = n);
 }
 
