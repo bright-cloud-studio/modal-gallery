@@ -68,7 +68,7 @@ class ModalGalleryModule extends \Contao\Module
         }
 
         // add our JS
-        $GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js"></script>';
+        $GLOBALS['TL_BODY'][] = '<script src="system/modules/modal_gallery/assets/js/modal_gallery.js?version='.rand(11111, 99999).'"></script>';
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
