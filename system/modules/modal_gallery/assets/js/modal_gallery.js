@@ -134,6 +134,25 @@ function plusSlides(n) {
     $('.slide_container .row').scrollTop(scrollCalculated);
 }
 
+function plusSlidesHorizontal(n) {
+    var count = $('.thumb_container div').length - 1;
+    scrollIndex += n;
+    
+    if(scrollIndex < 0)
+        scrollIndex = 0;
+    else if(scrollIndex >= count)
+        scrollIndex = count;
+	
+	
+	var thumb_width = $('#thumb_container').width();
+	var scrollAmount = thumb_width / (count+1);
+    var scrollCalculated = scrollAmount * scrollIndex;
+    
+    console.log(scrollCalculated);
+    
+    $('.slide_container #thumb_container').scrollLeft(scrollCalculated);
+}
+
 function currentSlide(n) {
     
     // Offset the thumbnail container so we can see our active slide
