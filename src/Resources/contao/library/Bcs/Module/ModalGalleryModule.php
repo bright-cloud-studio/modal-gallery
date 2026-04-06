@@ -14,6 +14,7 @@ namespace Bcs\Module;
 
 use Bcs\Model\ModalGallerySlide;
 
+use Contao\Database;
 use Contao\System;
 use Contao\BackendTemplate;
 use Contao\FrontendTemplate;
@@ -125,8 +126,7 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['categories_product'] = unserialize($slide->category_product);
 
             // Fetch gallery settings (thumb & slide sizes, hotspot icon)
-            $this->import('Database');
-            $result = $this->Database
+            $result = Database::getInstance()
                            ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
                            ->execute($this->selectedGallery);
 
@@ -153,8 +153,7 @@ class ModalGalleryModule extends \Contao\Module
         }
 
         // Build “Room” category filter
-        $this->import('Database');
-        $result = $this->Database->prepare("SELECT * FROM tl_category_room")->execute();
+        $result = Database::getInstance()->prepare("SELECT * FROM tl_category_room")->execute();
         $cat_id = 1;
 
         while ($result->next())
@@ -176,7 +175,7 @@ class ModalGalleryModule extends \Contao\Module
         }
 
         // Build “Product” category filter
-        $result = $this->Database->prepare("SELECT * FROM tl_category_product")->execute();
+        $result = Database::getInstance()->prepare("SELECT * FROM tl_category_product")->execute();
         $cat_id = 1;
 
         while ($result->next())

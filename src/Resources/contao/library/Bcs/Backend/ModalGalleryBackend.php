@@ -18,6 +18,7 @@ use Contao\Input;
 use Contao\DataContainer;
 use Contao\StringUtil;
 use Bcs\Model\ModalGallery;
+use Contao\Database;
 
 class ModalGalleryBackend extends Backend
 {
@@ -60,10 +61,10 @@ class ModalGalleryBackend extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_modal_gallery SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		Database::getInstance()->prepare("UPDATE tl_modal_gallery SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->log('A new version of record "tl_modal_gallery.id='.$intId.'" has been created'.$this->getParentEntries('tl_modal_gallery', $intId), __METHOD__, TL_GENERAL);
+		
 	}
 	
 	public function generateAlias($varValue, DataContainer $dc)
@@ -77,7 +78,7 @@ class ModalGalleryBackend extends Backend
 			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
-		$objAlias = $this->Database->prepare("SELECT id FROM tl_modal_gallery WHERE id=? OR alias=?")
+		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_modal_gallery WHERE id=? OR alias=?")
 								   ->execute($dc->id, $varValue);
 
 		// Check whether the page alias exists
@@ -96,8 +97,7 @@ class ModalGalleryBackend extends Backend
 	
 	public function getGalleries() { 
 		$galleries = array();
-		$this->import('Database');
-		$result = $this->Database->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
+		$result = Database::getInstance()->prepare("SELECT * FROM tl_modal_gallery WHERE published=1")->execute();
 		while($result->next())
 		{
 			$galleries = $galleries + array($result->id => $result->title);

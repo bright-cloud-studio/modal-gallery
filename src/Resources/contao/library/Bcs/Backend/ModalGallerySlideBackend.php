@@ -19,6 +19,7 @@ use Contao\Input;
 use Contao\StringUtil;
 
 use Bcs\Model\ModalGallerySlide;
+use Contao\Database;
 
 class ModalGallerySlideBackend extends Backend
 {
@@ -42,7 +43,7 @@ class ModalGallerySlideBackend extends Backend
 		// Prevent adding non-root pages on top-level
 		if (empty($row['pid']) && Input::get('mode') != 'create')
 		{
-			$objPage = $this->Database->prepare("SELECT * FROM " . $table . " WHERE id=?")
+			$objPage = Database::getInstance()->prepare("SELECT * FROM " . $table . " WHERE id=?")
 									  ->limit(1)
 									  ->execute(Input::get('id'));
 
@@ -147,10 +148,10 @@ class ModalGallerySlideBackend extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_modal_gallery_slide SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		Database::getInstance()->prepare("UPDATE tl_modal_gallery_slide SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->log('A new version of record "tl_modal_gallery_slide.id='.$intId.'" has been created'.$this->getParentEntries('tl_modal_gallery_slide', $intId), __METHOD__, TL_GENERAL);
+		
 	}
 	
 	public function generateAlias($varValue, DataContainer $dc)
@@ -164,7 +165,7 @@ class ModalGallerySlideBackend extends Backend
 			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
-		$objAlias = $this->Database->prepare("SELECT id FROM tl_modal_gallery_slide WHERE id=? OR alias=?")
+		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_modal_gallery_slide WHERE id=? OR alias=?")
 								   ->execute($dc->id, $varValue);
 
 		// Check whether the page alias exists
@@ -184,8 +185,7 @@ class ModalGallerySlideBackend extends Backend
 	public function getRoomCategories(DataContainer $dc) { 
 		$cats = array();
 		
-		$this->import('Database');
-		$result = $this->Database->prepare("SELECT * FROM tl_category_room WHERE published=1")->execute();
+		$result = Database::getInstance()->prepare("SELECT * FROM tl_category_room WHERE published=1")->execute();
 		while($result->next())
 		{
 			$cats = $cats + array($result->alias => $result->name);
@@ -196,8 +196,7 @@ class ModalGallerySlideBackend extends Backend
 	public function getProductCategories(DataContainer $dc) { 
 		$cats = array();
 		
-		$this->import('Database');
-		$result = $this->Database->prepare("SELECT * FROM tl_category_product WHERE published=1")->execute();
+		$result = Database::getInstance()->prepare("SELECT * FROM tl_category_product WHERE published=1")->execute();
 		while($result->next())
 		{
 			$cats = $cats + array($result->alias => $result->name);

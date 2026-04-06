@@ -17,6 +17,7 @@ use Contao\Backend;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Input;
+use Contao\Database;
 use Contao\StringUtil;
 
 class CategoryProduct extends Backend
@@ -67,10 +68,10 @@ class CategoryProduct extends Backend
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_category_product SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		Database::getInstance()->prepare("UPDATE tl_category_product SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 
-		$this->log('A new version of record "tl_category_product.id='.$intId.'" has been created'.$this->getParentEntries('tl_category', $intId), __METHOD__, TL_GENERAL);
+		
 	}
 	
 	public function exportProductCategories()
@@ -118,7 +119,7 @@ class CategoryProduct extends Backend
 			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
-		$objAlias = $this->Database->prepare("SELECT id FROM tl_category_product WHERE id=? OR alias=?")->execute($dc->id, $varValue);
+		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_category_product WHERE id=? OR alias=?")->execute($dc->id, $varValue);
 
 		// Check whether the page alias exists
 		if ($objAlias->numRows > 1)
