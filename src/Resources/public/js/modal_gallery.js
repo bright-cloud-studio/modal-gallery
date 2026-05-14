@@ -127,22 +127,43 @@ function plusSlides(n) {
     else if(scrollIndex >= count)
         scrollIndex = count;
 	
-	var scrollAmount = 250;
+	
+	var thumb_height = $('#thumb_container').height();
+	var scrollAmount = thumb_height / (count+1);
     var scrollCalculated = scrollAmount * scrollIndex;
-    $('#thumb_container').scrollLeft(scrollCalculated);
+    $('.slide_container .row').scrollTop(scrollCalculated);
+}
 
+function plusSlidesHorizontal(n) {
+    var count = $('.thumb_container div').length - 1;
+    scrollIndex += n;
+    
+    if(scrollIndex < 0)
+        scrollIndex = 0;
+    else if(scrollIndex >= count)
+        scrollIndex = count;
+	
+	
+	var thumb_width = $('#thumb_container').width();
+	var scrollAmount = thumb_width / (count+1);
+    var scrollCalculated = scrollAmount * scrollIndex;
+    
+    console.log(scrollCalculated);
+    
+    $('.slide_container #thumb_container').scrollLeft(scrollCalculated);
 }
 
 function currentSlide(n) {
     
     // Offset the thumbnail container so we can see our active slide
     var scrollIndex = n - 1;
-    var scrollAmount = 250;
-    var scrollCalculated = scrollAmount * scrollIndex;
-    $('#thumb_container').scrollLeft(scrollCalculated);
     
-    console.log("Scroll Index: " + scrollIndex);
-    console.log("Scroll Calculated: " + scrollCalculated);
+    var count = $('.thumb_container div').length;
+    var thumb_height = $('#thumb_container').height();
+	var scrollAmount = thumb_height / count;
+	
+    var scrollCalculated = scrollAmount * scrollIndex;
+    $('.slide_container .row').scrollTop(scrollCalculated);
     
 	showSlides(slideIndex = n);
 }
