@@ -5,6 +5,7 @@
     "keywords":["contao", "modal", "gallery", "bright", "cloud", "studio"],
     "type":"contao-module",
     "license":"LGPL-3.0-or-later",
+	"version": "0.0.1",
     "authors":[
         {
             "name":"Bright Cloud Studio",
@@ -13,7 +14,7 @@
     ],
     "require":{
         "php": "^8.0",
-        "contao/core-bundle": "^4.13",
+        "contao/core-bundle": "^4.13 || ^5.7",
 	"menatwork/contao-multicolumnwizard-bundle": "^3.5.5"
     },
     "require-dev": {
