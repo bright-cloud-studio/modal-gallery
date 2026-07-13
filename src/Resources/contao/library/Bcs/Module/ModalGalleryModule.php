@@ -105,6 +105,9 @@ class ModalGalleryModule extends \Contao\Module
 
         $arrThumbs            = [];
         $arrSlides            = [];
+        
+        $slides_comparison    = [];
+        
         $arrCategoriesRoom    = [];
         $arrCategoriesProduct = [];
 
@@ -113,10 +116,60 @@ class ModalGalleryModule extends \Contao\Module
         // Loop through slides
         foreach ($objSlides as $slide)
         {
+            
+            /*
+            $slide = [
+                'image' => 'https://picsum.photos/id/122/800/500?grayscale',
+                'alt'   => 'TEST 1',
+                'hotspots' => [
+                    [
+                        'top'   => '20%',
+                        'left'  => '80%',
+                        'title' => 'TEST 1: Modal 1',
+                        'body'  => 'Description for structural base blueprint node.'
+                    ],
+                    [
+                        'top'   => '75%',
+                        'left'  => '70%',
+                        'title' => 'TEST 1: Modal 2',
+                        'body'  => 'Description for background utility grid configuration.'
+                    ]
+                ]
+            ];
+            */
+            
+            $new_slide = [
+                'title' => 'Title Test',
+                'text'  => 'Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text.',
+                'image' => $slide->slide_image_url,
+                'alt'   => 'TEST 123'
+            ];
+            
+            
+            
+            $hotspot = [];
+            $new_slide['hotspots'] = []; // start with an empty array
+            foreach (unserialize($slide->hotspot_links) as $hotspot_data) {
+                $hotspot = [
+                    'top'   => $hotspot_data['hotspot_y'] . '%',
+                    'left'  => $hotspot_data['hotspot_x'] . '%',
+                    'title' => $hotspot_data['hotspot_title'],
+                    'body'  => $hotspot_data['hotspot_text'],
+                ];
+                $new_slide['hotspots'][] = $hotspot;
+            }
+            
+            $slides_comparison[] = $new_slide;
+            
+            //echo "<pre>";
+            //print_r($slides_comparison);
+            //die();
+            
             $arrSlide = [];
 
             // Set values for template
             $arrSlide['id']              = $entry_id;
+            
             $arrSlide['slide_image']     = $slide->slide_image;
             $arrSlide['slide_name']      = $slide->slide_name;
             $arrSlide['slide_image_url'] = $slide->slide_image_url;
@@ -199,6 +252,32 @@ class ModalGalleryModule extends \Contao\Module
         // Assign to main template
         $this->Template->thumbs            = $arrThumbs;
         $this->Template->slides            = $arrSlides;
+        
+        /*
+        $slide = [
+            'image' => 'https://picsum.photos/id/122/800/500?grayscale',
+            'alt'   => 'TEST 1',
+            'hotspots' => [
+                [
+                    'top'   => '20%',
+                    'left'  => '80%',
+                    'title' => 'TEST 1: Modal 1',
+                    'body'  => 'Description for structural base blueprint node.'
+                ],
+                [
+                    'top'   => '75%',
+                    'left'  => '70%',
+                    'title' => 'TEST 1: Modal 2',
+                    'body'  => 'Description for background utility grid configuration.'
+                ]
+            ]
+        ];
+        
+        $slides_comparison[] = $slide;
+        */
+        
+        $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
+        
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
     }
