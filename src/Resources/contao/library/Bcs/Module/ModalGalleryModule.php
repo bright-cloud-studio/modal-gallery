@@ -112,7 +112,12 @@ class ModalGalleryModule extends \Contao\Module
         $arrCategoriesProduct = [];
 
         $entry_id = 1;
-
+        
+        $modal_gallery = Database::getInstance()
+                           ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
+                           ->execute($this->selectedGallery);
+        
+        
         // Loop through slides
         foreach ($objSlides as $slide)
         {
@@ -179,15 +184,15 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['categories_product'] = unserialize($slide->category_product);
 
             // Fetch gallery settings (thumb & slide sizes, hotspot icon)
-            $result = Database::getInstance()
-                           ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
-                           ->execute($this->selectedGallery);
+            //$result = Database::getInstance()
+            //               ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
+            //               ->execute($this->selectedGallery);
 
-            if ($result->numRows)
+            if ($modal_gallery->numRows)
             {
-                $arrSlide['size_thumb']   = unserialize($result->slide_thumb_image_size);
-                $arrSlide['size_slide']   = unserialize($result->slide_image_size);
-                $arrSlide['hotspot_icon'] = $result->hotspot_icon;
+                $arrSlide['size_thumb']   = unserialize($modal_gallery->slide_thumb_image_size);
+                $arrSlide['size_slide']   = unserialize($modal_gallery->slide_image_size);
+                $arrSlide['hotspot_icon'] = $modal_gallery->hotspot_icon;
             }
 
             // Generate thumb template
@@ -277,6 +282,7 @@ class ModalGalleryModule extends \Contao\Module
         */
         
         $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
+        $this->Template->accordion_active_percentage = $modal_gallery->accordion_active_percentage;
         
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
