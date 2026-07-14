@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},slide_image,slide_image_url,slide_image_meta,slide_name,caption_title,caption_body;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
+        'default'                     => '{caption_legend}, caption_title, caption_body; {slide_legend},slide_name,slide_image,slide_image_url,slide_image_meta;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
     ),
  
     // Fields
