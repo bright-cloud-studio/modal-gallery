@@ -115,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{publish_legend},published;'
+        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},slider_style,accordion_active_percentage;{publish_legend},published;'
     ),
  
     // Fields
@@ -201,6 +201,29 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 		],
 		'sql'                   => ['type' => 'string', 'length' => 64, 'default' => '']
 	),
+
+
+    'slider_style' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slider_style'],
+        'inputType'               => 'select',
+        'options'   => array(
+            'vertical'    => 'Vertical',
+            'horizontal'  => 'Horizontal',
+            'accordion'   => 'Accordion'
+        ),
+        'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50', 'includeBlankOption'=>false),
+        'sql'                     => array('type'=>'string', 'length'=>255, 'default'=>'vertical')
+	),
+    'accordion_active_percentage' => array
+	(
+		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['accordion_active_percentage'],
+        'inputType'               => 'text',
+        'eval'                    => array('mandatory'=>true, 'maxlength'=>100, 'tl_class'=>'w50 clr'),
+        'sql'                     => array('type'=>'string', 'length'=>100, 'default'=>'80')
+	),
+        
+        
 	'published' => array
 	(
 		'exclude'                 => true,
