@@ -4,6 +4,7 @@ use Contao\Backend;
 use Contao\BackendUser;
 use Contao\DC_Table;
 use Contao\System;
+use Doctrine\DBAL\Platforms\AbstractMySQLPlatform;
 
 /* Table tl_modal_gallery_slide */
 $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
