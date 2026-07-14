@@ -134,15 +134,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     	),
 
         
-    	'slide_name' => array
-    	(
-    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'],
-    		'inputType'               => 'text',
-    		'default'		 => '',
-    		'search'                  => true,
-    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
-    		'sql'                     => "varchar(255) NOT NULL default ''"
-    	),
     	'slide_image' => array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'],
@@ -150,7 +141,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'default'		  => '',
     		'search'                  => true,
     		'eval' => [
-    			'tl_class' => 'w50 clr',
+    			'tl_class' => 'w100',
     			'mandatory' => true, 
     			'fieldType' => 'radio', 
     			'filesOnly' => true, 
@@ -190,6 +181,31 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 				)
 			),
 			'sql'                     => array('type'=>'blob', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_BLOB, 'notnull'=>false)
+    	),
+        'slide_name' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'],
+    		'inputType'               => 'text',
+    		'default'		 => '',
+    		'search'                  => true,
+    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+        'caption_title' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_title'],
+    		'inputType'               => 'text',
+    		'default'		 => '',
+    		'search'                  => true,
+    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+        'caption_body' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_body'],
+    		'inputType'               => 'textarea',
+			'eval'                    => array('allowHtml'=>true, 'class'=>'monospace w100', 'rte'=>'ace|html', 'helpwizard'=>true),
+			'sql'                     => array('type'=>'text', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_MEDIUMTEXT, 'notnull'=>false)
     	),
 
 
