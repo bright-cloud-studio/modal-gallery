@@ -26,7 +26,7 @@ var intervalId = window.setInterval(function(){
         var deleteOld = document.getElementById("modal_helper");
         if(deleteOld != null)
         deleteOld.remove();
-        toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + hiddenField.value + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><br><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
+        toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + hiddenField.value + "'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><div class='clicked_wrapper'><p><strong>Clicked Hotspot X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot Y:</strong><span id='y'></span></p></div></div>");
 
         var myImg = document.getElementById("hotspot_image");
         myImg.onmousedown = GetCoordinates;
@@ -42,7 +42,7 @@ var intervalId = window.setInterval(function(){
                 var deleteOld = document.getElementById("modal_helper");
                 if(deleteOld != null)
                     deleteOld.remove();
-                toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "' width='600px'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><br><p><strong>Clicked Hotspot_X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot_Y:</strong><span id='y'></span></p></div>");
+                toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><div class='clicked_wrapper'><p><strong>Clicked Hotspot X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot Y:</strong><span id='y'></span></p></div></div>");
 
                 var myImg = document.getElementById("hotspot_image");
                 myImg.onmousedown = GetCoordinates;
