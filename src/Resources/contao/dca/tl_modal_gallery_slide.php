@@ -132,6 +132,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
     
     	),
+
+        
     	'slide_name' => array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'],
@@ -148,7 +150,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'default'		  => '',
     		'search'                  => true,
     		'eval' => [
-    			'tl_class' => 'clr',
+    			'tl_class' => 'w50 clr',
     			'mandatory' => true, 
     			'fieldType' => 'radio', 
     			'filesOnly' => true, 
@@ -189,6 +191,9 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 			),
 			'sql'                     => array('type'=>'blob', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_BLOB, 'notnull'=>false)
     	),
+
+
+        
     	'hotspot_links' => array
     	(
     		'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links'],
@@ -225,6 +230,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		),
     		'sql'					=> "blob NULL",
     	),
+
+        
     	'category_room' => array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'],
@@ -241,6 +248,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getProductCategories'),
     		'sql'                     => "varchar(255) NOT NULL default ''"
     	),
+
+        
     	'published' => array
     	(
     		'exclude'                 => true,
