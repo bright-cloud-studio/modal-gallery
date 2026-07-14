@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{caption_legend}, caption_title, caption_body; {slide_legend},slide_name,slide_image,slide_image_url,slide_image_meta;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
+        'default'                     => '{slide_legend},slide_name,slide_image,slide_image_url,slide_image_meta;{caption_legend}, caption_title, caption_body;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
     ),
  
     // Fields
@@ -191,23 +191,6 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
     		'sql'                     => "varchar(255) NOT NULL default ''"
     	),
-        'caption_title' => array
-    	(
-    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_title'],
-    		'inputType'               => 'text',
-    		'default'		 => '',
-    		'search'                  => true,
-    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
-    		'sql'                     => "varchar(255) NOT NULL default ''"
-    	),
-        'caption_body' => array
-    	(
-    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_body'],
-    		'inputType'               => 'textarea',
-			'eval'                    => array('allowHtml'=>true, 'class'=>'monospace w100', 'rte'=>'ace|html', 'helpwizard'=>true),
-			'sql'                     => array('type'=>'text', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_MEDIUMTEXT, 'notnull'=>false)
-    	),
-
 
         
     	'hotspot_links' => array
@@ -245,6 +228,24 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     			),
     		),
     		'sql'					=> "blob NULL",
+    	),
+
+
+        'caption_title' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_title'],
+    		'inputType'               => 'text',
+    		'default'		 => '',
+    		'search'                  => true,
+    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'long'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+        'caption_body' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_body'],
+    		'inputType'               => 'textarea',
+			'eval'                    => array('allowHtml'=>true, 'class'=>'long', 'rte'=>'tinyMCE', 'helpwizard'=>true),
+			'sql'                     => array('type'=>'text', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_MEDIUMTEXT, 'notnull'=>false)
     	),
 
         
