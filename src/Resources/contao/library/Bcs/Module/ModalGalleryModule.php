@@ -117,40 +117,16 @@ class ModalGalleryModule extends \Contao\Module
                            ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
                            ->execute($this->selectedGallery);
         
-        
         // Loop through slides
         foreach ($objSlides as $slide)
         {
-            
-            /*
-            $slide = [
-                'image' => 'https://picsum.photos/id/122/800/500?grayscale',
-                'alt'   => 'TEST 1',
-                'hotspots' => [
-                    [
-                        'top'   => '20%',
-                        'left'  => '80%',
-                        'title' => 'TEST 1: Modal 1',
-                        'body'  => 'Description for structural base blueprint node.'
-                    ],
-                    [
-                        'top'   => '75%',
-                        'left'  => '70%',
-                        'title' => 'TEST 1: Modal 2',
-                        'body'  => 'Description for background utility grid configuration.'
-                    ]
-                ]
-            ];
-            */
-            
+
             $new_slide = [
-                'title' => 'Title Test',
-                'text'  => 'Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text. Test text.',
+                'title' => $slide->caption_title,
+                'text'  => $slide->caption_body,
                 'image' => $slide->slide_image_url,
                 'alt'   => 'TEST 123'
             ];
-            
-            
             
             $hotspot = [];
             $new_slide['hotspots'] = []; // start with an empty array
@@ -165,11 +141,7 @@ class ModalGalleryModule extends \Contao\Module
             }
             
             $slides_comparison[] = $new_slide;
-            
-            //echo "<pre>";
-            //print_r($slides_comparison);
-            //die();
-            
+
             $arrSlide = [];
 
             // Set values for template
@@ -182,11 +154,6 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['hotspot_links']      = unserialize($slide->hotspot_links);
             $arrSlide['categories_room']    = unserialize($slide->category_room);
             $arrSlide['categories_product'] = unserialize($slide->category_product);
-
-            // Fetch gallery settings (thumb & slide sizes, hotspot icon)
-            //$result = Database::getInstance()
-            //               ->prepare("SELECT * FROM tl_modal_gallery WHERE id=?")
-            //               ->execute($this->selectedGallery);
 
             if ($modal_gallery->numRows)
             {
