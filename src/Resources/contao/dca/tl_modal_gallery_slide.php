@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
         (
 		'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
-	'pid' => array
+	    'pid' => array
 	    (
 		    'foreignKey'		=> 'tl_modal_gallery.title',
 		    'sql'			=> "int(10) unsigned NOT NULL default 0",
@@ -111,142 +111,142 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 	    ),
         'tstamp' => array
         (
-		'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
+		    'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
         ),
-	'sorting' => array
-	(
-		'sql'                    	=> "int(10) unsigned NOT NULL default '0'"
-	),
-	'alias' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['alias'],
-		'exclude'                 => true,
-		'inputType'               => 'text',
-		'search'                  => true,
-		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
-		'save_callback' => array
-		(
-			array('Bcs\Backend\ModalGalleryBackend', 'generateAlias')
-		),
-		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
-
-	),
-	'slide_name' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'],
-		'inputType'               => 'text',
-		'default'		 => '',
-		'search'                  => true,
-		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
-	),
-	'slide_image' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'],
-		'inputType'               => 'fileTree',
-		'default'		  => '',
-		'search'                  => true,
-		'eval' => [
-			'tl_class' => 'clr',
-			'mandatory' => true, 
-			'fieldType' => 'radio', 
-			'filesOnly' => true, 
-			'mandatory' => true
-		],
-		'sql'                    => ['type' => 'binary', 'length' => 16, 'notnull' => false, 'fixed' => true]
-	),
-	'slide_image_url' => array
-	(
-		'label'			=> &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'],
-		'inputType'		=> 'text',
-		'default'		=> '',
-		'search'		=> true,
-		'eval'			=> array('mandatory'=>false, 'tl_class'=>'clr long', 'style'=>'display:none;'),
-		'sql'			=> "varchar(255) NOT NULL default ''"
-	),
-	'slide_image_meta' => array
-	(
-		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'],
-		'inputType'             => 'metaWizard',
-		'options_callback' => static function () {
-            return System::getContainer()->get('contao.image.sizes')->getOptionsForUser(BackendUser::getInstance());
-        },
-		'reference'             => &$GLOBALS['TL_LANG']['MSC'],
-		'eval'                  => [
-			'allowHtml'=>true,
-			'nospace'=>true,
-			'metaFields'    => array
+    	'sorting' => array
+    	(
+    		'sql'                    	=> "int(10) unsigned NOT NULL default '0'"
+    	),
+    	'alias' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['alias'],
+    		'exclude'                 => true,
+    		'inputType'               => 'text',
+    		'search'                  => true,
+    		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
+    		'save_callback' => array
+    		(
+    			array('Bcs\Backend\ModalGalleryBackend', 'generateAlias')
+    		),
+    		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
+    
+    	),
+    	'slide_name' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_name'],
+    		'inputType'               => 'text',
+    		'default'		 => '',
+    		'search'                  => true,
+    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+    	'slide_image' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image'],
+    		'inputType'               => 'fileTree',
+    		'default'		  => '',
+    		'search'                  => true,
+    		'eval' => [
+    			'tl_class' => 'clr',
+    			'mandatory' => true, 
+    			'fieldType' => 'radio', 
+    			'filesOnly' => true, 
+    			'mandatory' => true
+    		],
+    		'sql'                    => ['type' => 'binary', 'length' => 16, 'notnull' => false, 'fixed' => true]
+    	),
+    	'slide_image_url' => array
+    	(
+    		'label'			=> &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'],
+    		'inputType'		=> 'text',
+    		'default'		=> '',
+    		'search'		=> true,
+    		'eval'			=> array('mandatory'=>false, 'tl_class'=>'clr long', 'style'=>'display:none;'),
+    		'sql'			=> "varchar(255) NOT NULL default ''"
+    	),
+    	'slide_image_meta' => array
+    	(
+    		'label'                 => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'],
+    		'inputType'             => 'metaWizard',
+    		'eval'                    => array
 			(
-				'title'           => 'maxlength="255"',
-				'alt'             => 'maxlength="255"',
-				'link'            => array('attributes'=>'maxlength="255"', 'dcaPicker'=>true),
-				'caption'         => array('type'=>'textarea')
+				'allowHtml'           => true,
+				'multiple'            => true,
+				'metaFields'          => array
+				(
+					'title'           => 'maxlength="255"',
+					'alt'             => 'maxlength="255"',
+					'link'            => array('attributes'=>'maxlength="2048"', 'dcaPicker'=>true),
+					'caption'         => array('type'=>'textarea', 'basicEntities'=>true),
+					'license'         => array(
+						'attributes'  => 'maxlength="255"',
+						'dcaPicker'   => true,
+						'rgxp'        => '#(^$|^{{link_url::.+$|^https?://.+$)#',
+						'rgxpErrMsg'  => &$GLOBALS['TL_LANG']['tl_files']['licenseRgxpError']
+					)
+				)
 			),
-			'helpwizard'=>true,
-			'tl_class'=>'long',
-			'dcaPicker'=>true
-		],
-		'sql'                   => "blob NULL"
-	),
-	'hotspot_links' => array
-	(
-		'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links'],
-		'inputType'				=> 'multiColumnWizard',
-		'eval' => array
-		(
-			'columnFields'			=> array
-			(
-				'hotspot_x' => array
-				(
-					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x'],
-					'inputType'				=> 'text',
-					'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
-				),
-				'hotspot_y' => array
-				(
-					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'],
-					'inputType'				=> 'text',
-					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
-				),
-				'hotspot_title' => array
-				(
-					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title'],
-					'inputType'				=> 'text',
-					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
-				),
-				'hotspot_text' => array
-				(
-					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
-					'inputType'				=> 'textarea',
-					'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
-				),
-			),
-		),
-		'sql'					=> "blob NULL",
-	),
-	'category_room' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'],
-		'inputType'               => 'checkbox',
-		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
-		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getRoomCategories'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
-	),
-	'category_product' => array
-	(
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'],
-		'inputType'               => 'checkbox',
-		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
-		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getProductCategories'),
-		'sql'                     => "varchar(255) NOT NULL default ''"
-	),
-	'published' => array
-	(
-		'exclude'                 => true,
-		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'],
-		'inputType'               => 'checkbox',
-		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
-		'sql'                     => "char(1) NOT NULL default ''"
-	)		
+			'sql'                     => array('type'=>'blob', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_BLOB, 'notnull'=>false)
+    	),
+    	'hotspot_links' => array
+    	(
+    		'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links'],
+    		'inputType'				=> 'multiColumnWizard',
+    		'eval' => array
+    		(
+    			'columnFields'			=> array
+    			(
+    				'hotspot_x' => array
+    				(
+    					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x'],
+    					'inputType'				=> 'text',
+    					'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
+    				),
+    				'hotspot_y' => array
+    				(
+    					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'],
+    					'inputType'				=> 'text',
+    					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
+    				),
+    				'hotspot_title' => array
+    				(
+    					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title'],
+    					'inputType'				=> 'text',
+    					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
+    				),
+    				'hotspot_text' => array
+    				(
+    					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
+    					'inputType'				=> 'textarea',
+    					'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
+    				),
+    			),
+    		),
+    		'sql'					=> "blob NULL",
+    	),
+    	'category_room' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'],
+    		'inputType'               => 'checkbox',
+    		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+    		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getRoomCategories'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+    	'category_product' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'],
+    		'inputType'               => 'checkbox',
+    		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+    		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getProductCategories'),
+    		'sql'                     => "varchar(255) NOT NULL default ''"
+    	),
+    	'published' => array
+    	(
+    		'exclude'                 => true,
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'],
+    		'inputType'               => 'checkbox',
+    		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
+    		'sql'                     => "char(1) NOT NULL default ''"
+    	)		
     )
 );
