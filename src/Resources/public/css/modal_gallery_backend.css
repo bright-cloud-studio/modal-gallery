@@ -1,3 +1,22 @@
 td.long.mcwUpdateFields.tinymce {
     padding-bottom: 60px;
 }
+
+#modal_helper h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 1.0rem;
+}
+
+#modal_helper .clicked_wrapper {
+    margin-top: 15px;
+    display: flex;
+}
+#modal_helper .clicked_wrapper p {
+    margin-right: 15px;
+}
+
+#hotspot_image {
+    width: 100%;
+    max-width: 1500px;
+}
