@@ -210,7 +210,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         'options'   => array(
             'vertical'    => 'Vertical',
             'horizontal'  => 'Horizontal',
-            'accordion'   => 'Accordion'
+            'accordion'   => 'Accordion',
+            'comparison'  => 'Comparison'
         ),
         'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50', 'includeBlankOption'=>false),
         'sql'                     => array('type'=>'string', 'length'=>255, 'default'=>'vertical')
