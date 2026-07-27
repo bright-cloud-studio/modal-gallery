@@ -121,7 +121,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Subpalettes
     'subpalettes' => array
     (
-        'template_style_accordion'    => '{accordion_legend},accordion_active_percentage;'
+        'template_style_accordion'    => 'accordion_active_percentage;'
     ),
  
     // Fields
