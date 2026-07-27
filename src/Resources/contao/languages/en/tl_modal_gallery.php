@@ -29,4 +29,5 @@ $GLOBALS['TL_LANG']['tl_modal_gallery']['delete'] 		         			 = array('Delete
 $GLOBALS['TL_LANG']['tl_modal_gallery']['toggle'] 			         		 = array('Toggle Gallery Published', 'Toggle gallery ID: %s');
 
 /* Slider Style */
+$GLOBALS['TL_LANG']['tl_modal_gallery']['style_legend']                      = 'Publish';
 $GLOBALS['TL_LANG']['tl_modal_gallery']['template_style'] 			         = array('Gallery Style', 'Choose which style this gallery will use');
