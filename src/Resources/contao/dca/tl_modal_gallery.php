@@ -115,7 +115,13 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},template_style,accordion_active_percentage;{publish_legend},published;'
+        '__selector__'                => array('template_style'),
+        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},template_style;{publish_legend},published;'
+    ),
+    // Subpalettes
+    'subpalettes' => array
+    (
+        'template_style_accordion'    => '{accordion_legend},accordion_active_percentage;'
     ),
  
     // Fields
@@ -125,7 +131,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
         (
 		    'sql'                     	=> "int(10) unsigned NOT NULL auto_increment"
         ),
-        '    tstamp' => array
+        'tstamp' => array
         (
 		    'sql'                     	=> "int(10) unsigned NOT NULL default '0'"
         ),
@@ -212,7 +218,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
                 'accordion'  => 'Accordion',
                 'comparison' => 'Comparison'
             ),
-            'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50', 'includeBlankOption'=>false),
+            'eval'                    => array('mandatory'=>true, 'submitOnChange'=>true, 'tl_class'=>'w50', 'includeBlankOption'=>false),
             'sql'                     => array('type'=>'string', 'length'=>255, 'default'=>'vertical')
     	),
         'accordion_active_percentage' => array
