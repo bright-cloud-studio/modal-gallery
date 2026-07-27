@@ -37,7 +37,6 @@ class ModalGalleryModule extends \Contao\Module
     public function __construct($objModule, $strColumn='main')
     {
         parent::__construct($objModule, $strColumn);
-        //$this->arrStates = Locations::getStates();
     }
 
     /**
@@ -224,34 +223,15 @@ class ModalGalleryModule extends \Contao\Module
         // Assign to main template
         $this->Template->thumbs            = $arrThumbs;
         $this->Template->slides            = $arrSlides;
-        
-        /*
-        $slide = [
-            'image' => 'https://picsum.photos/id/122/800/500?grayscale',
-            'alt'   => 'TEST 1',
-            'hotspots' => [
-                [
-                    'top'   => '20%',
-                    'left'  => '80%',
-                    'title' => 'TEST 1: Modal 1',
-                    'body'  => 'Description for structural base blueprint node.'
-                ],
-                [
-                    'top'   => '75%',
-                    'left'  => '70%',
-                    'title' => 'TEST 1: Modal 2',
-                    'body'  => 'Description for background utility grid configuration.'
-                ]
-            ]
-        ];
-        
-        $slides_comparison[] = $slide;
-        */
-        
+
         $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
         $this->Template->accordion_active_percentage = $modal_gallery->accordion_active_percentage;
         
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
+        
+        $this->Template->gallery_style = "test123";
+        $this->Template->gallery_style = $modal_gallery->template_style;
+        
     }
 }
