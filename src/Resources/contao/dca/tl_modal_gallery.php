@@ -115,7 +115,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},slider_style,accordion_active_percentage;{publish_legend},published;'
+        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},template_style,accordion_active_percentage;{publish_legend},published;'
     ),
  
     // Fields
@@ -203,7 +203,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
 	),
 
 
-    'slider_style' => array
+    'template_style' => array
 	(
 		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['slider_style'],
         'inputType'               => 'select',
