@@ -29,5 +29,9 @@ $GLOBALS['TL_LANG']['tl_modal_gallery']['delete'] 		         			 = array('Delete
 $GLOBALS['TL_LANG']['tl_modal_gallery']['toggle'] 			         		 = array('Toggle Gallery Published', 'Toggle gallery ID: %s');
 
 /* Slider Style */
-$GLOBALS['TL_LANG']['tl_modal_gallery']['style_legend']                      = 'Publish';
+$GLOBALS['TL_LANG']['tl_modal_gallery']['style_legend']                      = 'Style Legend';
 $GLOBALS['TL_LANG']['tl_modal_gallery']['template_style'] 			         = array('Gallery Style', 'Choose which style this gallery will use');
+
+$GLOBALS['TL_LANG']['tl_modal_gallery']['template_style_accordion']          = 'Accordion Legend';
+$GLOBALS['TL_LANG']['tl_modal_gallery']['accordion_active_percentage'] 	     = array('Active Slide Percentage', 'Enter the percentage the active slide will take up of the entire slider. Remaining percentage will be divided up amonst the other slides.');
+
