@@ -63,9 +63,8 @@ class ModalGalleryModule extends \Contao\Module
             return $objTemplate->parse();
         }
         
-        // Pick the module template from the gallery's chosen style
+        // Change our templates based on the style
         $this->modal_gallery = ModalGallery::findByPk($this->selectedGallery);
-    
         if (!$this->customTpl && $this->modal_gallery !== null && $this->modal_gallery->template_style != 'vertical')
         {
             $this->strTemplate = 'modal_gallery_module_' . $this->modal_gallery->template_style;
@@ -83,7 +82,7 @@ class ModalGalleryModule extends \Contao\Module
        $GLOBALS['TL_CSS']['modal_css'] = 'bundles/bcsmodalgallery/css/modal_gallery.css';
 
 
-        // add our JS
+        // Change our script depending on the style
         if($this->modal_gallery->template_style == 'accordion')
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_accordion.js"></script>';
         if($this->modal_gallery->template_style == 'comparison')
@@ -167,7 +166,7 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['categories_room']    = unserialize($slide->category_room);
             $arrSlide['categories_product'] = unserialize($slide->category_product);
 
-            if ($this->modal_gallery->numRows)
+            if ($this->modal_gallery)
             {
                 $arrSlide['size_thumb']   = unserialize($this->modal_gallery->slide_thumb_image_size);
                 $arrSlide['size_slide']   = unserialize($this->modal_gallery->slide_image_size);
@@ -244,6 +243,9 @@ class ModalGalleryModule extends \Contao\Module
         $this->Template->categories_product= $arrCategoriesProduct;
         
         $this->Template->gallery_style = $this->strTemplate;
+        
+        //echo "Template: " . $this->strTemplate;
+        //die();
         
     }
 }
