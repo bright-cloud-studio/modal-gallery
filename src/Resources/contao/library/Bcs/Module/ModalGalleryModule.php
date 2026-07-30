@@ -28,7 +28,7 @@ class ModalGalleryModule extends \Contao\Module
      * @var string
      */
     protected $strTemplate = 'modal_gallery_module';
-    protected $objGallery;
+    protected $modal_gallery;
 
     /**
      * Initialize the object
@@ -64,11 +64,11 @@ class ModalGalleryModule extends \Contao\Module
         }
         
         // Pick the module template from the gallery's chosen style
-        $this->objGallery = ModalGallery::findByPk($this->selectedGallery);
+        $this->$modal_gallery = ModalGallery::findByPk($this->selectedGallery);
     
-        if (!$this->customTpl && $this->objGallery !== null && $this->objGallery->template_style != 'vertical')
+        if (!$this->customTpl && $this->$modal_gallery !== null && $this->$modal_gallery->template_style != 'vertical')
         {
-            $this->strTemplate = 'modal_gallery_module_' . $this->objGallery->template_style;
+            $this->strTemplate = 'modal_gallery_module_' . $this->$modal_gallery->template_style;
         }
     
         return parent::generate();
