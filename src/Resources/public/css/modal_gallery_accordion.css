@@ -1,0 +1,272 @@
+:root {
+    --slide-count: 5;                   /* Total number of slides */
+    --slider-aspect: 1320 / 580;        /* Shape of the slider; height follows width */
+    --transition: 650ms cubic-bezier(0.4, 0, 0.2, 1);
+    --badge-navy: #1e2153;
+    --accent: #3fb6c8;
+    --cap-height: clamp(56px, 9cqw, 104px); /* Height of the caption block on every slide */
+}
+
+
+/* Hide our serliazed slide data, no need to show it to the client */
+.slides_serialized,
+.accordion_active_percentage { display: none; }
+
+.modal_slider_wrapper {
+    width: 100%;
+    padding: 60px 30px;
+}
+
+.slider {
+    display: flex;
+    width: 100%;                        /* Fill the parent — the parent controls max width */
+    aspect-ratio: var(--slider-aspect); /* Height derives from width; no fixed px height */
+    container-type: inline-size;        /* Size children in cqw, relative to the slider's width */
+    overflow: hidden;
+    border-radius: clamp(2px, 0.4cqw, 6px);
+    background: #000;
+    /* remainder each inactive slide gets, expressed as its flex-grow */
+    --rest-grow: calc((100 - var(--main-percent)) / (var(--slide-count) - 1));
+}
+
+/* A single slide */
+.slide {
+    position: relative;
+    flex-grow: var(--rest-grow);
+    flex-basis: 0;
+    min-width: 0;                       /* Allow shrinking to a thin strip */
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: flex-grow var(--transition);
+}
+
+/* The active slide expands to the configured percentage */
+.slide.is-active {
+    flex-grow: var(--main-percent);
+    cursor: default;
+}
+
+/* Dim inactive slides slightly so the active one reads as primary.
+   Sits above the image but below the caption block so the caption
+   colour stays true. */
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 var(--cap-height) 0;
+    background: rgba(0, 0, 0, 0.28);
+    transition: opacity var(--transition);
+    pointer-events: none;
+}
+.slide.is-active::after { opacity: 0; }
+
+/* --- HOTSPOTS --- */
+.hotspot {
+    position: absolute;
+    width: clamp(26px, 4.2cqw, 52px);   /* Scales with the slider's width */
+    height: clamp(26px, 4.2cqw, 52px);
+    transform: translate(-50%, -50%);   /* Centre on its coordinate at any size */
+    border-radius: 50%;
+    background: var(--badge-navy);
+    border: max(2px, 0.25cqw) solid #fff;
+    color: #fff;
+    font-size: clamp(12px, 1.9cqw, 22px);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+    /* Hidden + click-through on collapsed slides; fade in when active */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), transform 0.2s ease;
+    padding: 0;
+}
+/* Only the active slide's hotspots show and accept clicks */
+.slide.is-active .hotspot {
+    opacity: 1;
+    pointer-events: auto;
+}
+.slide.is-active .hotspot:hover { transform: translate(-50%, -50%) scale(1.12); }
+
+/* Pulsing ring — draws the eye to live hotspots on the active slide */
+.hotspot::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    opacity: 0;
+}
+.slide.is-active .hotspot::before {
+    animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+    0%   { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 0;   transform: scale(1.8); }
+}
+
+/* --- CAPTION BLOCK ---
+   A solid colored bar along the bottom of every slide. Fixed height so
+   the band lines up across all slides; background comes from --cap-bg
+   (black on slide 0, lighter per slide). It holds both the text and the
+   chevron; which one shows depends on the active state. */
+.caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--cap-height);
+    background: var(--cap-bg, #000);
+    color: #fff;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Accent progress line — sits on top of the active slide's caption only */
+.caption::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: clamp(16px, 2cqw, 28px);
+    right: clamp(16px, 2cqw, 28px);
+    height: max(2px, 0.3cqw);
+    background: var(--accent);
+    border-radius: 3px;
+    opacity: 0;
+    transition: opacity var(--transition);
+}
+.slide.is-active .caption::before { opacity: 1; }
+
+/* Title + copy — only revealed on the active slide */
+.caption-text {
+    position: absolute;
+    inset: 0;
+    padding: clamp(12px, 1.8cqw, 22px) clamp(16px, 2cqw, 28px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--transition), transform var(--transition);
+    
+    p {
+        margin-bottom: 0;
+        color: $white;
+    }
+    h2 {
+        color: $white;
+    }
+}
+.slide.is-active .caption-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+.caption-text h2 { font-size: clamp(15px, 2.4cqw, 24px); margin-bottom: clamp(3px, 0.6cqw, 8px); }
+.caption-text p  { font-size: clamp(11px, 1.5cqw, 15px); line-height: 1.4; max-width: 60cqw; }
+
+/* Chevron — centred inside the caption block on collapsed slides,
+   fades out once the slide is active. */
+.chevron {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0.9;
+    transition: opacity var(--transition);
+}
+.slide.is-active .chevron { opacity: 0; }
+.chevron svg { width: clamp(16px, 2.6cqw, 24px); height: clamp(16px, 2.6cqw, 24px); }
+
+
+
+
+/* ------------- */
+/* --- MODAL --- */
+/* ------------- */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.is-open { opacity: 1; pointer-events: auto; }
+
+.modal {
+    position: relative;
+    width: 90%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px 30px 30px;
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+}
+.modal-overlay.is-open .modal { transform: translateY(0) scale(1); }
+
+.modal .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+.modal h2 { font-size: 22px; color: #1a1a1a; margin-bottom: 10px; }
+.modal p  { font-size: 15px; line-height: 1.55; color: #555; }
+
+.modal .close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: #f0f1f5;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    padding: 0;
+}
+.modal .close-btn:hover { background: #e2e4ec; }
+
+
+
+
+/* ------------ */
+/* Config panel */
+/* ------------ */
+
+.controls {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 16px;
+    border-radius: 999px;
+    color: #cbd0e0;
+    font-size: 13px;
+    z-index: 60;
+}
+.controls input { width: 130px; }
