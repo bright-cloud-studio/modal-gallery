@@ -155,10 +155,10 @@
     
     p {
         margin-bottom: 0;
-        color: $white;
+        color: #fff;
     }
     h2 {
-        color: $white;
+        color: #fff;
     }
 }
 .slide.is-active .caption-text {
