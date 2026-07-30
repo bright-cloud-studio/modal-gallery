@@ -62,7 +62,7 @@ class ModalGalleryModule extends \Contao\Module
 
             return $objTemplate->parse();
         }
-
+        
         // Pick the module template from the gallery's chosen style
         $this->objGallery = ModalGallery::findByPk($this->selectedGallery);
     
