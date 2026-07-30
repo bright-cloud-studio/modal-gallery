@@ -73,7 +73,7 @@
 .pointer_wrapper {
 	width:60px;
 	height:60px;
-	background-color:$orange;
+	background-color: #DE6D34;
 	border-radius:50%;
 	display:flex;
 	justify-content:center;
