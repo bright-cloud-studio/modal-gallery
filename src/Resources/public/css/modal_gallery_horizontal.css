@@ -253,7 +253,7 @@
 .thumb_container .column {width:140px;}
 
 
-#footer {border-top:10px solid $white;}
+#footer {border-top:10px solid #fff;}
 
 .thumb_container .active:before {
 	//content:" ";
@@ -262,7 +262,7 @@
 	height:50px;
 	position:absolute;
 	top:-25px;
-	background-color:$white;
+	background-color: #fff;
 	border-radius:50%;
 	right: calc(50% - 25px);
 }
