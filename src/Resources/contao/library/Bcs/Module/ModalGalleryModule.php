@@ -230,7 +230,6 @@ class ModalGalleryModule extends \Contao\Module
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
         
-        $this->Template->gallery_style = "test123";
         $this->Template->gallery_style = $modal_gallery->template_style;
         
     }
