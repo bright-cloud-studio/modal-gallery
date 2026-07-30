@@ -84,7 +84,10 @@ class ModalGalleryModule extends \Contao\Module
 
 
         // add our JS
-        $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery.js"></script>';
+        if($this->modal_gallery->template_style == 'accordion')
+            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_accordion.js"></script>';
+        else
+            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery.js"></script>';
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
