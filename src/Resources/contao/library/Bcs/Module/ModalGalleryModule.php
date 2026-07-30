@@ -64,11 +64,11 @@ class ModalGalleryModule extends \Contao\Module
         }
         
         // Pick the module template from the gallery's chosen style
-        $this->$modal_gallery = ModalGallery::findByPk($this->selectedGallery);
+        $this->modal_gallery = ModalGallery::findByPk($this->selectedGallery);
     
-        if (!$this->customTpl && $this->$modal_gallery !== null && $this->$modal_gallery->template_style != 'vertical')
+        if (!$this->customTpl && $this->modal_gallery !== null && $this->modal_gallery->template_style != 'vertical')
         {
-            $this->strTemplate = 'modal_gallery_module_' . $this->$modal_gallery->template_style;
+            $this->strTemplate = 'modal_gallery_module_' . $this->modal_gallery->template_style;
         }
     
         return parent::generate();
@@ -162,11 +162,11 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['categories_room']    = unserialize($slide->category_room);
             $arrSlide['categories_product'] = unserialize($slide->category_product);
 
-            if ($this->objGallery->numRows)
+            if ($this->modal_gallery->numRows)
             {
-                $arrSlide['size_thumb']   = unserialize($this->objGallery->slide_thumb_image_size);
-                $arrSlide['size_slide']   = unserialize($this->objGallery->slide_image_size);
-                $arrSlide['hotspot_icon'] = $this->objGallery->hotspot_icon;
+                $arrSlide['size_thumb']   = unserialize($this->modal_gallery->slide_thumb_image_size);
+                $arrSlide['size_slide']   = unserialize($this->modal_gallery->slide_image_size);
+                $arrSlide['hotspot_icon'] = $this->modal_gallery->hotspot_icon;
             }
 
             // Generate thumb template
@@ -233,7 +233,7 @@ class ModalGalleryModule extends \Contao\Module
         $this->Template->slides            = $arrSlides;
 
         $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
-        $this->Template->accordion_active_percentage = $this->objGallery->accordion_active_percentage;
+        $this->Template->accordion_active_percentage = $this->modal_gallery->accordion_active_percentage;
         
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
