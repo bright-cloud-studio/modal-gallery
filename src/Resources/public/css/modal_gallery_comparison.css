@@ -1,1 +1,283 @@
-modal_gallery_comparison.css
+/* ------------------------------------------------------------------
+   Bright Cloud Studio's Modal Gallery — Comparison style
+
+   A multi-layer comparison slider. The first slide is the base layer and
+   is always visible on the right; every later slide stacks on top of it
+   and is revealed from the left by dragging the handle between them.
+
+   Layer widths, handle positions and the slider's aspect ratio are all
+   assigned from JS — this file only describes how the pieces look.
+
+   Every rule is scoped to .comparison_gallery so the file can share a
+   page with the vertical, horizontal and accordion styles, which use the
+   same generic class names.
+------------------------------------------------------------------ */
+
+.comparison_gallery {
+    --cg-radius: 12px;
+    --cg-handle-width: 4px;
+    --cg-handle-color: #fff;
+    --cg-accent: #3fb6c8;
+
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Slide data is emitted into the page for the script; never show it */
+.comparison_gallery .comparison_data {
+    display: none;
+}
+
+
+/* -------------- */
+/* --- SLIDER --- */
+/* -------------- */
+
+/* Fills the parent column; the height comes from the aspect ratio, which
+   JS sets from the gallery's canvas dimensions. container-type lets the
+   hotspots, handles and labels size themselves in cqw so they scale with
+   the slider instead of with the viewport. */
+.comparison_slider {
+    --cg-label-inset: clamp(10px, 1.4cqw, 20px);
+
+    position: relative;
+    width: 100%;
+    aspect-ratio: 800 / 500;                 /* replaced inline from the canvas size */
+    container-type: inline-size;
+    overflow: hidden;
+    border-radius: var(--cg-radius);
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ------------------------ */
+/* --- LAYERS (SLIDES) --- */
+/* ------------------------ */
+
+/* Each layer is strictly a clipping window. Its width is the divider
+   position; z-index stacks later slides on top of earlier ones. */
+.comparison_slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* The content lock holds the image and hotspots at the slider's full
+   pixel width, so they never squish or drift when the clipping window
+   above narrows. JS pins its width to the slider's live width. */
+.comparison_lock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.comparison_lock img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Slide title, pinned to the right edge of the layer's visible strip so
+   each phase is labelled just left of its divider. The script narrows
+   max-width to the strip that is actually on show (the rest of the layer
+   sits underneath the layers above it) and hides the label outright once
+   that strip gets too thin. Remove this rule set (and the label in the
+   script) if the captions are not wanted. */
+.comparison_label {
+    position: absolute;
+    right: var(--cg-label-inset);
+    bottom: var(--cg-label-inset);
+    z-index: 5;
+    max-width: calc(100% - 2 * var(--cg-label-inset));
+    padding: clamp(4px, 0.7cqw, 8px) clamp(10px, 1.4cqw, 16px);
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: clamp(11px, 1.4cqw, 15px);
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+}
+
+
+/* ---------------- */
+/* --- HOTSPOTS --- */
+/* ---------------- */
+
+/* Anchored to the content lock, so they travel with the image. The
+   background colour is set per layer in the script. */
+.comparison_hotspot {
+    position: absolute;
+    z-index: 10;
+    width: clamp(26px, 4.2cqw, 44px);
+    height: clamp(26px, 4.2cqw, 44px);
+    padding: 0;
+    transform: translate(-50%, -50%);        /* centre on its coordinate at any size */
+    border: max(2px, 0.25cqw) solid #fff;
+    border-radius: 50%;
+    color: #fff;
+    font-size: clamp(11px, 1.6cqw, 17px);
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.comparison_hotspot:hover,
+.comparison_hotspot:focus-visible {
+    transform: translate(-50%, -50%) scale(1.15);
+}
+
+.comparison_hotspot:focus-visible {
+    outline: 2px solid var(--cg-accent);
+    outline-offset: 3px;
+}
+
+
+/* --------------------------- */
+/* --- DRAGGABLE  HANDLES --- */
+/* --------------------------- */
+
+/* Centred on its divider (hence the negative margin) and above every
+   layer. touch-action keeps a drag from scrolling the page on touch. */
+.comparison_handle {
+    position: absolute;
+    top: 0;
+    width: var(--cg-handle-width);
+    height: 100%;
+    margin-left: calc(var(--cg-handle-width) / -2);
+    background: var(--cg-handle-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: ew-resize;
+    touch-action: none;
+}
+
+.comparison_handle:focus-visible {
+    outline: 2px solid var(--cg-accent);
+    outline-offset: 2px;
+}
+
+.comparison_handle.is-dragging {
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
+}
+
+/* The round grip, labelled with the two phases the handle sits between */
+.comparison_handle_button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(28px, 4.8cqw, 46px);
+    height: clamp(28px, 4.8cqw, 46px);
+    border-radius: 50%;
+    background: #fff;
+    color: #333;
+    font-size: clamp(10px, 1.4cqw, 14px);
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+
+/* ------------- */
+/* --- MODAL --- */
+/* ------------- */
+
+.comparison_modal_overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.comparison_modal_overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.comparison_modal {
+    position: relative;
+    width: 90%;
+    max-width: 440px;
+    padding: 32px 30px 30px;
+    background: #fff;
+    border-radius: 10px;
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+}
+
+.comparison_modal_overlay.is-open .comparison_modal {
+    transform: translateY(0) scale(1);
+}
+
+.comparison_modal_eyebrow {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--cg-accent);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.comparison_modal_eyebrow:empty {
+    display: none;
+}
+
+.comparison_modal_title {
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    font-size: 22px;
+}
+
+.comparison_modal_body {
+    margin-bottom: 0;
+    color: #555;
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.comparison_modal_close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: #f0f1f5;
+    color: #666;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.comparison_modal_close:hover {
+    background: #e2e4ec;
+}
