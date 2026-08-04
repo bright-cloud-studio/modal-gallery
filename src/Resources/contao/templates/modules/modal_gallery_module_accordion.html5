@@ -13,10 +13,6 @@
     </div>
 </div>
 
-
-
-<p>Gallery Style: <?= $this->gallery_style ?></p>
-
 <?php /* Hidden Values */ ?>
 <div class="slides_serialized"> <?= $this->slides_serialized ?> </div>
 <div class="accordion_active_percentage"> <?= $this->accordion_active_percentage ?> </div>
