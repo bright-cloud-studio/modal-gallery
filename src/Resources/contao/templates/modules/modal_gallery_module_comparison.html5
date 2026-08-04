@@ -14,7 +14,7 @@
             <button type="button" class="comparison_modal_close" aria-label="Close">&times;</button>
             <span class="comparison_modal_eyebrow"></span>
             <h2 class="comparison_modal_title"></h2>
-            <p class="comparison_modal_body"></p>
+            <div class="comparison_modal_body"></div>
         </div>
     </div>
 
