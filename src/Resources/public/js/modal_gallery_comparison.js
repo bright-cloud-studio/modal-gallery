@@ -17,8 +17,11 @@
     var KEY_STEP = 1;            // % a handle moves per arrow key (× 10 with Shift)
     var LABEL_MIN_WIDTH = 110;   // px of visible strip needed before a title shows
 
-    // Per-layer hotspot colours; cycles if there are more slides than colours
-    var COLORS = ['#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6', '#e67e22'];
+    // Grip glyph: left + right carets, so the handle reads as draggable
+    var HANDLE_ARROWS = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+        ' stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+        '<polyline points="10 6 4 12 10 18"></polyline>' +
+        '<polyline points="14 6 20 12 14 18"></polyline></svg>';
 
     var initGallery = function (root) {
         var slider = root.querySelector('.comparison_slider');
@@ -242,7 +245,6 @@
                 btn.className = 'comparison_hotspot';
                 btn.style.top = spot.top;
                 btn.style.left = spot.left;
-                btn.style.backgroundColor = COLORS[j % COLORS.length];
                 btn.textContent = HOTSPOT_PREFIX + (j + 1);
                 btn.setAttribute('aria-label', spot.title || '');
 
@@ -278,13 +280,14 @@
             handle.setAttribute('aria-valuemin', '0');
             handle.setAttribute('aria-valuemax', '100');
 
-            // Label the two phases this handle sits between
+            // The two phases this handle sits between — kept for the
+            // accessible label; the grip itself shows drag carets instead.
             var leftPhase = N - i;          // phase revealed to the left
             var rightPhase = N - i - 1;     // phase revealed to the right
 
             var button = document.createElement('span');
             button.className = 'comparison_handle_button';
-            button.textContent = leftPhase + '–' + rightPhase;
+            button.innerHTML = HANDLE_ARROWS;
             handle.appendChild(button);
 
             handle.setAttribute('aria-label', 'Comparison divider ' + leftPhase + '/' + rightPhase);
