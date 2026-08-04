@@ -9,10 +9,12 @@
         <button class="close-btn" id="modalClose" aria-label="Close">&times;</button>
         <span class="eyebrow" id="modalEyebrow"></span>
         <h2 id="modalTitle"></h2>
-        <p id="modalBody"></p>
+        <div id="modalBody" class="modal-body"></div>
     </div>
 </div>
 
-<?php /* Hidden Values */ ?>
-<div class="slides_serialized"> <?= $this->slides_serialized ?> </div>
+<?php /* Hidden Values — the slide data must sit in a script tag: in a normal
+         element the browser would parse the markup inside the rich text and
+         textContent would hand back mangled JSON. */ ?>
+<script type="application/json" class="slides_serialized"><?= $this->slides_serialized ?></script>
 <div class="accordion_active_percentage"> <?= $this->accordion_active_percentage ?> </div>
