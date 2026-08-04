@@ -81,17 +81,13 @@ class ModalGalleryModule extends \Contao\Module
         // add our CSS
        $GLOBALS['TL_CSS']['modal_css'] = 'bundles/bcsmodalgallery/css/modal_gallery.css';
 
-        $template_style = ($this->modal_gallery !== null) ? $this->modal_gallery->template_style : '';
 
-        // Change our script (and stylesheet) depending on the style
-        if($template_style == 'accordion')
+        // Change our script depending on the style
+        if($this->modal_gallery->template_style == 'accordion')
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_accordion.js"></script>';
-        else if($template_style == 'comparison')
-        {
-            $GLOBALS['TL_CSS']['modal_css_comparison'] = 'bundles/bcsmodalgallery/css/modal_gallery_comparison.css';
+        if($this->modal_gallery->template_style == 'comparison')
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_comparison.js"></script>';
-        }
-        else if($template_style == 'vertical' || $template_style == 'horizontal')
+        else if($this->modal_gallery->template_style == 'vertical' || $this->modal_gallery->template_style == 'horizontal')
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_horizontal_vertical.js"></script>';
 
         // 1) Ensure a gallery is selected
@@ -240,21 +236,7 @@ class ModalGalleryModule extends \Contao\Module
         $this->Template->thumbs            = $arrThumbs;
         $this->Template->slides            = $arrSlides;
 
-        // The hex flags keep the JSON safe to print inside an HTML element
-        $this->Template->slides_serialized = json_encode(
-            $slides_comparison,
-            JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
-        );
-
-        // Native canvas size for the comparison style: the slider keeps this
-        // shape at any width and the hotspot coordinates are locked to it.
-        $arrCanvas = ($this->modal_gallery !== null)
-            ? StringUtil::deserialize($this->modal_gallery->slide_image_size, true)
-            : [];
-
-        $this->Template->canvas_width  = (isset($arrCanvas[0]) && (int) $arrCanvas[0] > 0) ? (int) $arrCanvas[0] : 800;
-        $this->Template->canvas_height = (isset($arrCanvas[1]) && (int) $arrCanvas[1] > 0) ? (int) $arrCanvas[1] : 500;
-
+        $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
         $this->Template->accordion_active_percentage = $this->modal_gallery->accordion_active_percentage;
         
         $this->Template->categories_room   = $arrCategoriesRoom;
