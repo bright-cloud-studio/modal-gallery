@@ -250,7 +250,14 @@ class ModalGalleryModule extends \Contao\Module
 
         $this->Template->slides_serialized = $jsonResult = json_encode($slides_comparison);
         $this->Template->accordion_active_percentage = $this->modal_gallery->accordion_active_percentage;
-        
+
+        // Comparison canvas — drives the slider's aspect ratio, and so its
+        // height. Falls back to 800 x 500 for galleries saved before these
+        // fields existed, which is what the script assumed anyway.
+        $this->Template->canvas_width  = (int) $this->modal_gallery->comparison_canvas_width  ?: 800;
+        $this->Template->canvas_height = (int) $this->modal_gallery->comparison_canvas_height ?: 500;
+
+
         $this->Template->categories_room   = $arrCategoriesRoom;
         $this->Template->categories_product= $arrCategoriesProduct;
         
