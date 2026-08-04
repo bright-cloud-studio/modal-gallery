@@ -121,7 +121,8 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     // Subpalettes
     'subpalettes' => array
     (
-        'template_style_accordion'    => 'accordion_active_percentage;'
+        'template_style_accordion'    => 'accordion_active_percentage;',
+        'template_style_comparison'   => 'comparison_canvas_width,comparison_canvas_height;'
     ),
  
     // Fields
@@ -229,7 +230,27 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
             'sql'                     => array('type'=>'string', 'length'=>100, 'default'=>'80')
     	),
 
-        
+        /* Comparison canvas — these two numbers are the slider's aspect ratio,
+           not a pixel size. The slider always fills its column's width; the
+           height follows from this ratio. Lower the height to get a shorter
+           slider, raise it to get a taller one. Kept as a ratio rather than a
+           fixed height so the hotspot percentages stay locked to the image. */
+        'comparison_canvas_width' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_canvas_width'],
+            'inputType'               => 'text',
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>6, 'tl_class'=>'w50 clr'),
+            'sql'                     => array('type'=>'string', 'length'=>6, 'default'=>'800')
+    	),
+        'comparison_canvas_height' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_canvas_height'],
+            'inputType'               => 'text',
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>6, 'tl_class'=>'w50'),
+            'sql'                     => array('type'=>'string', 'length'=>6, 'default'=>'500')
+    	),
+
+
     	'published' => array
     	(
     		'exclude'                 => true,
