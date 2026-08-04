@@ -89,7 +89,9 @@
 
             if (eyebrowEl) { eyebrowEl.textContent = slides[slideIndex].title || ''; }
             if (titleEl)   { titleEl.textContent = spot.title || ''; }
-            if (bodyEl)    { bodyEl.textContent = spot.body || ''; }
+            // The hotspot text is rich text from the back end, so it has to
+            // be injected as markup rather than as a plain string.
+            if (bodyEl)    { bodyEl.innerHTML = spot.body || ''; }
 
             overlay.classList.add('is-open');
 
