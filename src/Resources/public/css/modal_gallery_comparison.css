@@ -18,6 +18,7 @@
     --cg-handle-width: 4px;
     --cg-handle-color: #fff;
     --cg-accent: #3fb6c8;
+    --cg-badge-navy: #1e2153;
 
     width: 100%;
     user-select: none;
@@ -113,8 +114,8 @@
 /* --- HOTSPOTS --- */
 /* ---------------- */
 
-/* Anchored to the content lock, so they travel with the image. The
-   background colour is set per layer in the script. */
+/* Anchored to the content lock, so they travel with the image. One flat
+   navy badge for every layer, matching the accordion style. */
 .comparison_hotspot {
     position: absolute;
     z-index: 10;
@@ -124,6 +125,7 @@
     transform: translate(-50%, -50%);        /* centre on its coordinate at any size */
     border: max(2px, 0.25cqw) solid #fff;
     border-radius: 50%;
+    background: var(--cg-badge-navy);
     color: #fff;
     font-size: clamp(11px, 1.6cqw, 17px);
     font-weight: 700;
@@ -132,18 +134,49 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
     transition: transform 0.2s ease;
 }
 
 .comparison_hotspot:hover,
 .comparison_hotspot:focus-visible {
-    transform: translate(-50%, -50%) scale(1.15);
+    transform: translate(-50%, -50%) scale(1.12);
 }
 
 .comparison_hotspot:focus-visible {
     outline: 2px solid var(--cg-accent);
     outline-offset: 3px;
+}
+
+/* Pulsing ring — draws the eye to the hotspots. Unlike the accordion,
+   every layer's hotspots are live here, so they all pulse. */
+.comparison_hotspot::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border: 2px solid var(--cg-accent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: cg-pulse 2s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes cg-pulse {
+    0% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+}
+
+/* Respect a reduced-motion preference; the badge still reads fine static */
+@media (prefers-reduced-motion: reduce) {
+    .comparison_hotspot::before {
+        animation: none;
+    }
 }
 
 
@@ -174,7 +207,12 @@
     box-shadow: 0 0 14px rgba(0, 0, 0, 0.7);
 }
 
-/* The round grip, labelled with the two phases the handle sits between */
+/* The round grip. Shows left/right carets so it reads as draggable; the
+   phase numbers live on the handle's aria-label instead.
+
+   This is the real drag target — the bar behind it is only a few px wide,
+   so the grip takes the pointer events and lets them bubble up to the
+   handle, which owns the pointerdown/move listeners. */
 .comparison_handle_button {
     position: absolute;
     top: 50%;
@@ -185,14 +223,21 @@
     border-radius: 50%;
     background: #fff;
     color: #333;
-    font-size: clamp(10px, 1.4cqw, 14px);
-    font-weight: 700;
     line-height: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: clamp(1px, 0.2cqw, 3px);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    white-space: nowrap;
+    cursor: ew-resize;
+    touch-action: none;                      /* not inherited from the handle */
+}
+
+/* The glyph must not swallow the press — let it fall through to the grip */
+.comparison_handle_button svg {
+    display: block;
+    width: clamp(16px, 2.8cqw, 26px);
+    height: clamp(16px, 2.8cqw, 26px);
     pointer-events: none;
 }
 
