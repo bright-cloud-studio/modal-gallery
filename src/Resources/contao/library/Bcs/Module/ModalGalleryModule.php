@@ -78,27 +78,29 @@ class ModalGalleryModule extends \Contao\Module
      */
     protected function compile()
     {
+        
+        $rand = rand(1, 9999);
         // add our CSS
-       $GLOBALS['TL_CSS']['modal_css'] = 'bundles/bcsmodalgallery/css/modal_gallery.css';
+       $GLOBALS['TL_CSS']['modal_css'] = 'bundles/bcsmodalgallery/css/modal_gallery.css?v='.$rand;
 
 
         // Change our script depending on the style
         if($this->modal_gallery->template_style == 'accordion')
-            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_accordion.js"></script>';
+            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_accordion.js?v='.$rand.'"></script>';
         if($this->modal_gallery->template_style == 'comparison')
-            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_comparison.js"></script>';
+            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_comparison.js?v='.$rand.'"></script>';
         else if($this->modal_gallery->template_style == 'vertical' || $this->modal_gallery->template_style == 'horizontal')
-            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_horizontal_vertical.js"></script>';
+            $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_horizontal_vertical.js?v='.$rand.'"></script>';
             
             
         if($this->modal_gallery->template_style == 'accordion')
-            $GLOBALS['TL_CSS']['modal_css_accordion'] = 'bundles/bcsmodalgallery/css/modal_gallery_accordion.css';
+            $GLOBALS['TL_CSS']['modal_css_accordion'] = 'bundles/bcsmodalgallery/css/modal_gallery_accordion.css?v='.$rand;
         else if($this->modal_gallery->template_style == 'comparison')
-            $GLOBALS['TL_CSS']['modal_css_comparison'] = 'bundles/bcsmodalgallery/css/modal_gallery_comparison.css';
+            $GLOBALS['TL_CSS']['modal_css_comparison'] = 'bundles/bcsmodalgallery/css/modal_gallery_comparison.css?v='.$rand;
         else if($this->modal_gallery->template_style == 'horizontal')
-            $GLOBALS['TL_CSS']['modal_css_horizontal'] = 'bundles/bcsmodalgallery/css/modal_gallery_horizontal.css';
+            $GLOBALS['TL_CSS']['modal_css_horizontal'] = 'bundles/bcsmodalgallery/css/modal_gallery_horizontal.css?v='.$rand;
         else if($this->modal_gallery->template_style == 'vertical')
-            $GLOBALS['TL_CSS']['modal_css_vertical'] = 'bundles/bcsmodalgallery/css/modal_gallery_vertical.css';
+            $GLOBALS['TL_CSS']['modal_css_vertical'] = 'bundles/bcsmodalgallery/css/modal_gallery_vertical.css?v='.$rand;
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
