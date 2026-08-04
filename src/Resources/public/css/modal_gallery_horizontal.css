@@ -145,7 +145,7 @@
 	font-size: 0.822em;
 }
 
-.landm {
+
 	.main_container {
 		margin-left: 0;
 		margin-bottom: 185px;
@@ -162,9 +162,8 @@
 	#container {
 		padding-top: 90px;
 	}
-}
 
-.landm-gallery {
+
 	.main_container {
 		margin-left: 0;
 		margin-bottom: 185px;
@@ -218,7 +217,7 @@
 	.thumb_container .column {
 		width: 250px;
 	}
-}
+
 
 .prev {
 	left: -20px;
@@ -307,11 +306,11 @@
 		border-top: 10px solid #fff;
 	}
 
-	.landm-gallery .thumb_container .column {
+	.thumb_container .column {
 		width: 140px;
 	}
 
-	.landm-gallery .main_container {
+	.main_container {
 		margin-bottom: 104px;
 	}
 
