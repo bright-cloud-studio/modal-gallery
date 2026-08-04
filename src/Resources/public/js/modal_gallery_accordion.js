@@ -1,3 +1,5 @@
+const activeEl = document.querySelector('.accordion_active_percentage');
+  if (!activeEl) return;
 const percentage = parseFloat(document.querySelector('.accordion_active_percentage').textContent);
 
 document.documentElement.style.setProperty('--main-percent', percentage);
