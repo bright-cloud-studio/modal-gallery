@@ -1,3 +1,19 @@
+.prev {
+    z-index: 10;
+    left: 8.3%;
+    top: 4%
+}
+.next {
+    z-index: 10;
+    right: initial;
+    top: initial;
+    left: 8.5%;
+    bottom: -4%;
+    padding-top: 0;
+    font-size: 0.7em;
+}
+
+
 #container {
 	padding-top: 160px;
 }
