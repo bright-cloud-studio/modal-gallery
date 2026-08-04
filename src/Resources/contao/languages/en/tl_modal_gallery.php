@@ -35,3 +35,7 @@ $GLOBALS['TL_LANG']['tl_modal_gallery']['template_style'] 			         = array('G
 $GLOBALS['TL_LANG']['tl_modal_gallery']['template_style_accordion']          = 'Accordion Legend';
 $GLOBALS['TL_LANG']['tl_modal_gallery']['accordion_active_percentage'] 	     = array('Active Slide Percentage', 'Enter the percentage the active slide will take up of the entire slider. Remaining percentage will be divided up amonst the other slides.');
 
+$GLOBALS['TL_LANG']['tl_modal_gallery']['template_style_comparison']         = 'Comparison Legend';
+$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_canvas_width'] 	         = array('Canvas Width', 'The width half of the slider\'s shape. The slider always fills the column it sits in, so this is a ratio rather than a pixel size — use it together with the canvas height. Default is 800.');
+$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_canvas_height'] 	     = array('Canvas Height', 'The height half of the slider\'s shape. Lower this for a shorter slider, raise it for a taller one — e.g. 800 x 400 is short and wide, 800 x 700 is tall. Default is 500.');
+
