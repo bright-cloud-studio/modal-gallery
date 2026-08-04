@@ -30,7 +30,7 @@ function build() {
             <div class="caption" style="--cap-bg:${captionColor(i)}">
                 <div class="caption-text">
                     <h2>${s.title}</h2>
-                    <p>${s.text}</p>
+                    <div class="caption-body">${s.text || ''}</div>
                 </div>
                 <div class="chevron">${CHEVRON}</div>
             </div>
@@ -73,7 +73,9 @@ function openModal(slideIndex, spotIndex) {
     const spot = slides[slideIndex].hotspots[spotIndex];
     modalEyebrow.textContent = slides[slideIndex].title;
     modalTitle.textContent = spot.title;
-    modalBody.textContent = spot.body;
+    // The hotspot text is rich text from the back end, so it has to be
+    // injected as markup rather than as a plain string.
+    modalBody.innerHTML = spot.body || '';
     overlay.classList.add('is-open');
 }
 
