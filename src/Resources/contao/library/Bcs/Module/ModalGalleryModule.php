@@ -65,7 +65,7 @@ class ModalGalleryModule extends \Contao\Module
         
         // Change our templates based on the style
         $this->modal_gallery = ModalGallery::findByPk($this->selectedGallery);
-        if (!$this->customTpl && $this->modal_gallery !== null && $this->modal_gallery->template_style != 'vertical')
+        if (!$this->customTpl && $this->modal_gallery !== null)
         {
             $this->strTemplate = 'modal_gallery_module_' . $this->modal_gallery->template_style;
         }
@@ -89,6 +89,16 @@ class ModalGalleryModule extends \Contao\Module
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_comparison.js"></script>';
         else if($this->modal_gallery->template_style == 'vertical' || $this->modal_gallery->template_style == 'horizontal')
             $GLOBALS['TL_BODY']['modal_js'] = '<script src="bundles/bcsmodalgallery/js/modal_gallery_horizontal_vertical.js"></script>';
+            
+            
+        if($this->modal_gallery->template_style == 'accordion')
+            $GLOBALS['TL_CSS']['modal_css_accordion'] = 'bundles/bcsmodalgallery/css/modal_gallery_accordion.css';
+        else if($this->modal_gallery->template_style == 'comparison')
+            $GLOBALS['TL_CSS']['modal_css_comparison'] = 'bundles/bcsmodalgallery/css/modal_gallery_comparison.css';
+        else if($this->modal_gallery->template_style == 'horizontal')
+            $GLOBALS['TL_CSS']['modal_css_horizontal'] = 'bundles/bcsmodalgallery/css/modal_gallery_horizontal.css';
+        else if($this->modal_gallery->template_style == 'vertical')
+            $GLOBALS['TL_CSS']['modal_css_vertical'] = 'bundles/bcsmodalgallery/css/modal_gallery_vertical.css';
 
         // 1) Ensure a gallery is selected
         if (!$this->selectedGallery)
