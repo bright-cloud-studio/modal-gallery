@@ -122,7 +122,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     'subpalettes' => array
     (
         'template_style_accordion'    => 'accordion_active_percentage;',
-        'template_style_comparison'   => 'comparison_canvas_width,comparison_canvas_height,comparison_first_percentage;'
+        'template_style_comparison'   => 'comparison_canvas_width,comparison_canvas_height,comparison_featured_side,comparison_featured_percentage;'
     ),
  
     // Fields
@@ -250,13 +250,26 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
             'sql'                     => array('type'=>'string', 'length'=>6, 'default'=>'500')
     	),
 
-        /* Starting width of the first slide's strip, as a percentage of the
-           canvas. The remaining slides split what's left evenly. */
-        'comparison_first_percentage' => array
+        /* Featured slide — which end of the slider starts out enlarged, and
+           how much of the canvas it takes. The remaining slides split what's
+           left evenly. Note the leftmost strip is the LAST slide in sorting
+           order: the first slide is the base layer and sits on the right. */
+        'comparison_featured_side' => array
     	(
-    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_first_percentage'],
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_featured_side'],
+            'inputType'               => 'select',
+            'options'   => array(
+                'left'       => 'Leftmost Slide',
+                'right'      => 'Rightmost Slide'
+            ),
+            'eval'                    => array('mandatory'=>true, 'tl_class'=>'w50 clr', 'includeBlankOption'=>false),
+            'sql'                     => array('type'=>'string', 'length'=>16, 'default'=>'left')
+    	),
+        'comparison_featured_percentage' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_featured_percentage'],
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>3, 'tl_class'=>'w50 clr'),
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>3, 'tl_class'=>'w50'),
             'sql'                     => array('type'=>'string', 'length'=>3, 'default'=>'50')
     	),
 
