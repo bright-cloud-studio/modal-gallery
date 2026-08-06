@@ -56,13 +56,26 @@
         var slideEls = [];
         var handleEls = [];
 
+        // Starting share of the first slide. It is the base layer, so its
+        // strip is the rightmost one; an unset (or out of range) value falls
+        // back to the even split galleries used before this was configurable.
+        var firstPct = parseFloat(root.getAttribute('data-first-percentage'));
+
+        if (!(firstPct > 0)) {
+            firstPct = 100 / N;
+        }
+
+        firstPct = Math.min(Math.max(firstPct, HANDLE_GAP), 100 - (N - 1) * HANDLE_GAP);
+
         // Divider positions as percentages, one per gap between slides
-        // (N-1 total), spread evenly across the canvas to start.
+        // (N-1 total). Whatever the first slide doesn't take is split evenly
+        // between the rest, so each divider sits one share further left.
+        var restPct = (100 - firstPct) / (N - 1);
         var pcts = [];
         var i;
 
-        for (i = 1; i < N; i++) {
-            pcts.push((i * 100) / N);
+        for (i = 0; i < N - 1; i++) {
+            pcts.push((i + 1) * restPct);
         }
 
         /* ----------------------------------------------------------
