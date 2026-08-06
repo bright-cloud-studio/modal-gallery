@@ -5,7 +5,8 @@
 <div class="comparison_gallery"
      data-canvas-width="<?= $this->canvas_width ?>"
      data-canvas-height="<?= $this->canvas_height ?>"
-     data-first-percentage="<?= $this->first_percentage ?>">
+     data-featured-side="<?= $this->featured_side ?>"
+     data-featured-percentage="<?= $this->featured_percentage ?>">
 
     <div class="comparison_slider"></div>
 
