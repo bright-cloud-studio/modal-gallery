@@ -257,9 +257,11 @@ class ModalGalleryModule extends \Contao\Module
         $this->Template->canvas_width  = (int) $this->modal_gallery->comparison_canvas_width  ?: 800;
         $this->Template->canvas_height = (int) $this->modal_gallery->comparison_canvas_height ?: 500;
 
-        // Starting share of the first slide. Zero means "no preference", which
-        // the script reads as an even split across every slide.
-        $this->Template->first_percentage = (int) $this->modal_gallery->comparison_first_percentage;
+        // Featured slide — which end starts enlarged and by how much. A zero
+        // percentage means "no preference", which the script reads as an even
+        // split across every slide.
+        $this->Template->featured_side       = $this->modal_gallery->comparison_featured_side ?: 'left';
+        $this->Template->featured_percentage = (int) $this->modal_gallery->comparison_featured_percentage;
 
 
         $this->Template->categories_room   = $arrCategoriesRoom;
