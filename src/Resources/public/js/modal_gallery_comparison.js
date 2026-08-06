@@ -56,26 +56,29 @@
         var slideEls = [];
         var handleEls = [];
 
-        // Starting share of the first slide. It is the base layer, so its
-        // strip is the rightmost one; an unset (or out of range) value falls
-        // back to the even split galleries used before this was configurable.
-        var firstPct = parseFloat(root.getAttribute('data-first-percentage'));
+        // Starting share of the featured slide, and which end of the slider it
+        // sits at. An unset (or out of range) percentage falls back to the even
+        // split galleries used before this was configurable.
+        var featuredLeft = root.getAttribute('data-featured-side') !== 'right';
+        var featuredPct = parseFloat(root.getAttribute('data-featured-percentage'));
 
-        if (!(firstPct > 0)) {
-            firstPct = 100 / N;
+        if (!(featuredPct > 0)) {
+            featuredPct = 100 / N;
         }
 
-        firstPct = Math.min(Math.max(firstPct, HANDLE_GAP), 100 - (N - 1) * HANDLE_GAP);
+        featuredPct = Math.min(Math.max(featuredPct, HANDLE_GAP), 100 - (N - 1) * HANDLE_GAP);
 
-        // Divider positions as percentages, one per gap between slides
-        // (N-1 total). Whatever the first slide doesn't take is split evenly
-        // between the rest, so each divider sits one share further left.
-        var restPct = (100 - firstPct) / (N - 1);
+        // Divider positions as percentages, one per gap between slides (N-1
+        // total). Whatever the featured slide doesn't take is split evenly
+        // between the rest, so each divider sits one share further along.
+        // Featuring the left end pushes the first divider out to the featured
+        // width; featuring the right end leaves it at one plain share instead.
+        var restPct = (100 - featuredPct) / (N - 1);
         var pcts = [];
         var i;
 
         for (i = 0; i < N - 1; i++) {
-            pcts.push((i + 1) * restPct);
+            pcts.push(featuredLeft ? featuredPct + (i * restPct) : (i + 1) * restPct);
         }
 
         /* ----------------------------------------------------------
