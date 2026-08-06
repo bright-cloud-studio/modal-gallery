@@ -122,7 +122,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     'subpalettes' => array
     (
         'template_style_accordion'    => 'accordion_active_percentage;',
-        'template_style_comparison'   => 'comparison_canvas_width,comparison_canvas_height;'
+        'template_style_comparison'   => 'comparison_canvas_width,comparison_canvas_height,comparison_first_percentage;'
     ),
  
     // Fields
@@ -248,6 +248,16 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
             'inputType'               => 'text',
             'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>6, 'tl_class'=>'w50'),
             'sql'                     => array('type'=>'string', 'length'=>6, 'default'=>'500')
+    	),
+
+        /* Starting width of the first slide's strip, as a percentage of the
+           canvas. The remaining slides split what's left evenly. */
+        'comparison_first_percentage' => array
+    	(
+    		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery']['comparison_first_percentage'],
+            'inputType'               => 'text',
+            'eval'                    => array('mandatory'=>true, 'rgxp'=>'natural', 'maxlength'=>3, 'tl_class'=>'w50 clr'),
+            'sql'                     => array('type'=>'string', 'length'=>3, 'default'=>'50')
     	),
 
 
