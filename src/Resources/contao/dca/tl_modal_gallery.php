@@ -116,7 +116,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery'] = array
     'palettes' => array
     (
         '__selector__'                => array('template_style'),
-        'default'                     => '{slide_legend},title,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},template_style;{publish_legend},published;'
+        'default'                     => '{slide_legend},title,alias,hotspot_icon,slide_image_size,slide_thumb_image_size;{style_legend},template_style;{publish_legend},published;'
     ),
     // Subpalettes
     'subpalettes' => array
