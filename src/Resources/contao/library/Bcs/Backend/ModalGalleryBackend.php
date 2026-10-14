@@ -75,7 +75,7 @@ class ModalGalleryBackend extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
+			$varValue = StringUtil::standardize(StringUtil::restoreBasicEntities($dc->activeRecord->title));
 		}
 
 		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_modal_gallery WHERE id=? OR alias=?")
@@ -86,7 +86,7 @@ class ModalGalleryBackend extends Backend
 		{
 			if (!$autoAlias)
 			{
-				throw new Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
+				throw new \Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
 			}
 
 			$varValue .= '-' . $dc->id;
