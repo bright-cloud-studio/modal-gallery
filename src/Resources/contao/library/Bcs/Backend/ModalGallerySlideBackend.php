@@ -162,7 +162,7 @@ class ModalGallerySlideBackend extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
+			$varValue = StringUtil::standardize(StringUtil::restoreBasicEntities($dc->activeRecord->slide_name));
 		}
 
 		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_modal_gallery_slide WHERE id=? OR alias=?")
@@ -173,7 +173,7 @@ class ModalGallerySlideBackend extends Backend
 		{
 			if (!$autoAlias)
 			{
-				throw new Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
+				throw new \Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
 			}
 
 			$varValue .= '-' . $dc->id;
