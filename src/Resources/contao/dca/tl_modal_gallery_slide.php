@@ -43,58 +43,14 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
 		(
 			'fields'                  => array('slide_name'),
 			'format'                  => '%s'
-		),
-		'global_operations' => array
-		(
-			'all' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
-				'href'                => 'act=select',
-				'class'               => 'header_edit_all',
-				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
-			)
-		),
-		'operations' => array
-		(
-			'edit' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['edit'],
-				'href'                => 'act=edit',
-				'icon'                => 'edit.gif'
-			),
-			'copy' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['copy'],
-				'href'                => 'act=copy',
-				'icon'                => 'copy.gif'
-			),
-			'delete' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['delete'],
-				'href'                => 'act=delete',
-				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-			),
-			'toggle' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['toggle'],
-				'icon'                => 'visible.gif',
-				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('Bcs\Backend\ModalGallerySlideBackend', 'toggleIcon')
-			),
-			'show' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['show'],
-				'href'                => 'act=show',
-				'icon'                => 'show.gif'
-			)
 		)
+		// Operations are left to Contao 5.7's defaults so the native toggle, copy, cut and versions buttons all show
 	),
- 
+
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},slide_name,slide_image,slide_image_meta;{caption_legend}, caption_title, caption_body;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
+        'default'                     => '{slide_legend},slide_name,slide_image;{hotspot_legend},hotspot_links;{caption_legend},caption_title,caption_body;{category_legend},category_room,category_product;{meta_legend:hide},slide_image_meta;{publish_legend},published'
     ),
  
     // Fields
@@ -141,11 +97,10 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'default'		  => '',
     		'search'                  => true,
     		'eval' => [
-    			'tl_class' => 'w100',
-    			'mandatory' => true, 
-    			'fieldType' => 'radio', 
-    			'filesOnly' => true, 
-    			'mandatory' => true
+    			'tl_class' => 'w50',
+    			'mandatory' => true,
+    			'fieldType' => 'radio',
+    			'filesOnly' => true
     		],
     		'sql'                    => ['type' => 'binary', 'length' => 16, 'notnull' => false, 'fixed' => true]
     	),
@@ -201,29 +156,30 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		(
     			'columnFields'			=> array
     			(
+    				// Not mandatory so drafts can be saved; checkPublish() requires complete rows before publishing
     				'hotspot_x' => array
     				(
     					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x'],
     					'inputType'				=> 'text',
-    					'eval'                   		=> array('mandatory'=>true,'tl_class'=>'w50','columnPos'=>'group1'),
+    					'eval'                   		=> array('rgxp'=>'natural', 'maxval'=>100, 'maxlength'=>3, 'style'=>'width:60px'),
     				),
     				'hotspot_y' => array
     				(
     					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'],
     					'inputType'				=> 'text',
-    					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'w50','columnPos'=>'group1'),
+    					'eval'                   		=> array('rgxp'=>'natural', 'maxval'=>100, 'maxlength'=>3, 'style'=>'width:60px'),
     				),
     				'hotspot_title' => array
     				(
     					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_title'],
     					'inputType'				=> 'text',
-    					'eval'                   		=> array('mandatory'=>true, 'tl_class'=>'long','columnPos'=>'group2'),
+    					'eval'                   		=> array('tl_class'=>'long', 'columnPos'=>'content'),
     				),
     				'hotspot_text' => array
     				(
     					'label'					=> $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text'],
     					'inputType'				=> 'textarea',
-    					'eval'					=> array('mandatory'=>true, 'rte'=>'tinyMCE','tl_class'=>'long','columnPos'=>'group2'),
+    					'eval'					=> array('rte'=>'tinyHotspot', 'tl_class'=>'long', 'columnPos'=>'content'),
     				),
     			),
     		),
@@ -237,14 +193,14 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'inputType'               => 'text',
     		'default'		 => '',
     		'search'                  => true,
-    		'eval'                    => array('mandatory'=>true, 'tl_class'=>'long'),
+    		'eval'                    => array('tl_class'=>'long'),
     		'sql'                     => "varchar(255) NOT NULL default ''"
     	),
         'caption_body' => array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_body'],
     		'inputType'               => 'textarea',
-			'eval'                    => array('allowHtml'=>true, 'class'=>'long', 'rte'=>'tinyMCE', 'helpwizard'=>true),
+			'eval'                    => array('allowHtml'=>true, 'rte'=>'tinyMCE', 'tl_class'=>'clr'),
 			'sql'                     => array('type'=>'text', 'length'=>AbstractMySQLPlatform::LENGTH_LIMIT_MEDIUMTEXT, 'notnull'=>false)
     	),
 
@@ -253,7 +209,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'],
     		'inputType'               => 'checkbox',
-    		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+    		'eval'                    => array('multiple'=>true, 'tl_class'=>'w50 clr mg_categories'),
     		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getRoomCategories'),
     		'sql'                     => "varchar(255) NOT NULL default ''"
     	),
@@ -261,7 +217,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     	(
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'],
     		'inputType'               => 'checkbox',
-    		'eval'                    => array('multiple'=>true, 'mandatory'=>true,'tl_class'=>'clr'),
+    		'eval'                    => array('multiple'=>true, 'tl_class'=>'w50 mg_categories'),
     		'options_callback'	  => array('Bcs\Backend\ModalGallerySlideBackend', 'getProductCategories'),
     		'sql'                     => "varchar(255) NOT NULL default ''"
     	),
@@ -270,9 +226,16 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     	'published' => array
     	(
     		'exclude'                 => true,
+    		'toggle'                  => true,
+    		'filter'                  => true,
     		'label'                   => &$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'],
     		'inputType'               => 'checkbox',
-    		'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
+    		'eval'                    => array('doNotCopy'=>true),
+    		'save_callback' => array
+    		(
+    			array('Bcs\Backend\ModalGallerySlideBackend', 'checkPublish')
+    		),
+    		// Kept as char(1) rather than core's boolean so the existing '1'/'' values need no migration
     		'sql'                     => "char(1) NOT NULL default ''"
     	)		
     )
