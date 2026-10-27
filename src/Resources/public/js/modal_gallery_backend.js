@@ -1,107 +1,48 @@
 document.addEventListener("DOMContentLoaded", function() {
-    //document.getElementById("ctrl_hotspot_links").innerHTML += 
-             // "<h3 id='update_helper'>Helper Image Goes Here</h3>";
 
+    // Only run on the slide edit form
+    var legend = document.getElementById("pal_slide_legend");
+    if (legend == null)
+        return;
 
-});
+    var lastSrc = null;
 
-var lastSrc ="";
-
-var intervalId = window.setInterval(function(){
-    
-    var picture = document.getElementsByClassName("gimage");
-    var toAppend = document.getElementById("pal_slide_legend");
-    
-    var hiddenField = document.getElementById("ctrl_slide_image_url");
-    
-    var title = picture[0].title;
-    var src = title.substr(0,title.indexOf(' ')); 
-    
-    
-    // if we have hiddenField use that, if not do our original process
-    
-    if(lastSrc != hiddenField.value )
+    function updateHelper()
     {
-        lastSrc = hiddenField.value;
+        // Contao 5 puts the file path in the preview's alt (it used to be the title)
+        var preview = legend.querySelector("#ctrl_slide_image ~ .selector_container img.gimage");
+        var src = (preview != null) ? preview.alt : "";
+
+        // Skip if the selected image hasn't changed
+        if (src == lastSrc)
+            return;
+        lastSrc = src;
+
         var deleteOld = document.getElementById("modal_helper");
-        if(deleteOld != null)
-        deleteOld.remove();
-        toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + hiddenField.value + "'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><div class='clicked_wrapper'><p><strong>Clicked Hotspot X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot Y:</strong><span id='y'></span></p></div></div>");
+        if (deleteOld != null)
+            deleteOld.remove();
+
+        // Nothing selected yet, so there is nothing to click on
+        if (src == "")
+            return;
+
+        legend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' alt=''><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><div class='clicked_wrapper'><p><strong>Clicked Hotspot X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot Y:</strong><span id='y'></span></p></div></div>");
 
         var myImg = document.getElementById("hotspot_image");
+        myImg.src = src;
         myImg.onmousedown = GetCoordinates;
     }
 
-    else
-    {
-    
-        if(src != '') {
-            if(lastSrc != src )
-            {
-                lastSrc = src;
-                var deleteOld = document.getElementById("modal_helper");
-                if(deleteOld != null)
-                    deleteOld.remove();
-                toAppend.insertAdjacentHTML("afterend", "<div id='modal_helper' class='clr widget' style='padding-top:5px;'><h3>Modal Coordinate Helper</h3><img id='hotspot_image' src='" + src + "'><br><p class='tl_help tl_tip'>Click on the image to get X/Y coordinates in percentages, use them below for where you'd like the modal link to show.</p><div class='clicked_wrapper'><p><strong>Clicked Hotspot X:</strong><span id='x'></span></p><p><strong>Clicked Hotspot Y:</strong><span id='y'></span></p></div></div>");
-
-                var myImg = document.getElementById("hotspot_image");
-                myImg.onmousedown = GetCoordinates;
-
-                // add the image full address to the hidden field so we can access it every time
-                hiddenField.value = src;
-
-
-                //stop running once we have found our image
-                //clearInterval(intervalId) 
-            }
-        }
-        
-    }
-    
-}, 1000);
-
-
-
-function FindPosition(oElement)
-{
-  if(typeof( oElement.offsetParent ) != "undefined")
-  {
-    for(var posX = 0, posY = 0; oElement; oElement = oElement.offsetParent)
-    {
-      posX += oElement.offsetLeft;
-      posY += oElement.offsetTop;
-    }
-      return [ posX, posY ];
-    }
-    else
-    {
-      return [ oElement.x, oElement.y ];
-    }
-}
+    // Draw the helper for the saved image, then redraw whenever the picker swaps the preview
+    updateHelper();
+    new MutationObserver(updateHelper).observe(legend, { childList: true, subtree: true });
+});
 
 function GetCoordinates(e)
 {
-  var PosX = 0;
-  var PosY = 0;
-  var ImgPos;
-  var myImg = document.getElementById("hotspot_image");
-  ImgPos = FindPosition(myImg);
-  if (!e) var e = window.event;
-  if (e.pageX || e.pageY)
-  {
-    PosX = e.pageX;
-    PosY = e.pageY;
-  }
-  else if (e.clientX || e.clientY)
-    {
-      PosX = e.clientX + document.body.scrollLeft
-        + document.documentElement.scrollLeft;
-      PosY = e.clientY + document.body.scrollTop
-        + document.documentElement.scrollTop;
-    }
-  PosX = PosX - ImgPos[0];
-  PosY = PosY - ImgPos[1];
-    
-  document.getElementById("x").innerHTML = " " + Math.trunc((PosX / myImg.width) * 100);
-  document.getElementById("y").innerHTML = " " + Math.trunc((PosY / myImg.height) * 100);
+    // Measure against the rendered image so scrolling and scaling don't skew the result
+    var rect = e.currentTarget.getBoundingClientRect();
+
+    document.getElementById("x").innerHTML = " " + Math.trunc(((e.clientX - rect.left) / rect.width) * 100);
+    document.getElementById("y").innerHTML = " " + Math.trunc(((e.clientY - rect.top) / rect.height) * 100);
 }
