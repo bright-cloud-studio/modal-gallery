@@ -16,6 +16,7 @@ use Bcs\Model\ModalGallery;
 use Bcs\Model\ModalGallerySlide;
 
 use Contao\Database;
+use Contao\FilesModel;
 use Contao\System;
 use Contao\BackendTemplate;
 use Contao\FrontendTemplate;
@@ -144,10 +145,13 @@ class ModalGalleryModule extends \Contao\Module
         foreach ($objSlides as $slide)
         {
 
+            // Resolve the path from the selected file so it can never drift from the picker
+            $slideImageUrl = FilesModel::findByUuid($slide->slide_image)?->path ?? '';
+
             $new_slide = [
                 'title' => $slide->caption_title,
                 'text'  => $slide->caption_body,
-                'image' => $slide->slide_image_url,
+                'image' => $slideImageUrl,
                 'alt'   => 'TEST 123'
             ];
             
@@ -172,7 +176,7 @@ class ModalGalleryModule extends \Contao\Module
             
             $arrSlide['slide_image']     = $slide->slide_image;
             $arrSlide['slide_name']      = $slide->slide_name;
-            $arrSlide['slide_image_url'] = $slide->slide_image_url;
+            $arrSlide['slide_image_url'] = $slideImageUrl;
 
             $arrSlide['hotspot_links']      = unserialize($slide->hotspot_links);
             $arrSlide['categories_room']    = unserialize($slide->category_room);
