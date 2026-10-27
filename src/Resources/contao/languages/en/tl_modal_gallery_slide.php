@@ -14,7 +14,9 @@
 /* Legends */
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_legend']        	= 'Slide Details';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_legend']      	= 'Hotspot Details';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_legend']      	= 'Caption';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_legend']      = 'Category Details';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['meta_legend']      	= 'Image Meta';
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['publish_legend']      	= 'Publish';
 
 /* Fields */
@@ -28,6 +30,9 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_url'] 	    = array(' 
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['slide_image_meta'] 	   = array('Slide Image Meta', 'Set the meta details');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_icon'] 	      	= array('Hotspot Icon', 'Insert code for the hotspot links\'s icon');
 
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_title'] 	    	= array('Caption Title', 'Shown by the Accordion and Comparison layouts, and required to publish slides in those galleries');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['caption_body'] 	    	= array('Caption Body', 'Shown by the Accordion layout under the caption title');
+
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_links']     	 	= array('Hotspot Links', 'These will display as hotspot icons on top of the slide image, when clicked the text will display in a modal');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_x']         	 	= array('Hotspot X', 'X coordinate for the hotspot link on the image');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_y'] 	        	 = array('Hotspot Y', 'Y coordinate for the hotspot link on the image');
@@ -37,7 +42,12 @@ $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspot_text']      	 	= array('H
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_room'] 	       		  = array('Room Category', 'Select the room categories this slide belongs to');
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['category_product'] 	       		  = array('Product Category', 'Select the product categories this slide belongs to');
 
-$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'] 		         = array('Published', 'Save this product\'s record.');
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['published'] 		         = array('Published', 'Show this slide on the website. Slides can be saved as drafts, but need an image, categories and complete hotspots to be published.');
+
+/* Publishing and list */
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['publishMissing']          = 'This slide can\'t be published yet. Missing: %s.';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['incomplete']              = 'Incomplete';
+$GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspotCount']            = '%s hotspot(s)';
  
  /* Buttons */
 $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['new']   		 			         = array('New Slide', 'Add a new slide');
