@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     // Palettes
     'palettes' => array
     (
-        'default'                     => '{slide_legend},slide_name,alias,slide_image,slide_image_url,slide_image_meta;{caption_legend}, caption_title, caption_body;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
+        'default'                     => '{slide_legend},slide_name,slide_image,slide_image_meta;{caption_legend}, caption_title, caption_body;{hotspot_legend},hotspot_links;{category_legend},category_room,category_product;{publish_legend},published;'
     ),
  
     // Fields
@@ -127,7 +127,7 @@ $GLOBALS['TL_DCA']['tl_modal_gallery_slide'] = array
     		'eval'                    => array('unique'=>true, 'rgxp'=>'alias', 'doNotCopy'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
     		'save_callback' => array
     		(
-    			array('Bcs\Backend\ModalGallerySlideBackend', 'generateAlias')
+    			array('Bcs\Backend\ModalGalleryBackend', 'generateAlias')
     		),
     		'sql'                     => "varchar(128) COLLATE utf8_bin NOT NULL default ''"
     
