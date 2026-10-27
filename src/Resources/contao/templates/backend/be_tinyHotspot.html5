@@ -1,0 +1,20 @@
+<?php
+
+// Slim editor for hotspot modal text. Extends be_tinyMCE so any site-level overrides
+// (e.g. extended_valid_elements allowing a[*]) still apply to the existing hotspot HTML.
+$this->extend('be_tinyMCE');
+
+?>
+
+<?php $this->block('menubar'); ?>
+      menubar: false,
+<?php $this->endblock(); ?>
+
+<?php $this->block('toolbar'); ?>
+      toolbar: 'link unlink | bold italic superscript | bullist | code',
+<?php $this->endblock(); ?>
+
+<?php $this->block('custom'); ?>
+      min_height: 180,
+      height: 220,
+<?php $this->endblock(); ?>
