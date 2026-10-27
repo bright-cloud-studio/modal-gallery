@@ -16,8 +16,11 @@ use Contao\Backend;
 use Contao\DataContainer;
 use Contao\Image;
 use Contao\Input;
+use Contao\Message;
 use Contao\StringUtil;
+use Contao\System;
 
+use Bcs\Model\ModalGallery;
 use Bcs\Model\ModalGallerySlide;
 use Contao\Database;
 
@@ -106,52 +109,130 @@ class ModalGallerySlideBackend extends Backend
     
 	public function listSlides($row)
 	{
-		return '<div class="tl_content_left">' . $row['slide_name'] . "</div>\n";
-	}
-	
-	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
-	{
-		if (strlen(Input::get('tid')))
+		// Show a small preview of the slide image
+		$thumb = '';
+		if ($row['slide_image'])
 		{
-			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
-			$this->redirect($this->getReferer());
-		}
+			$figure = System::getContainer()->get('contao.image.studio')
+				->createFigureBuilder()
+				->fromUuid($row['slide_image'])
+				->setSize(array(80, 50, 'crop'))
+				->buildIfResourceExists();
 
-		$href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
-
-		if (!$row['published'])
-		{
-			$icon = 'invisible.gif';
-		}
-
-		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-	}	
-	
-
-	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
-	{
-		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_modal_gallery_slide']['fields']['published']['save_callback']))
-		{
-			foreach ($GLOBALS['TL_DCA']['tl_modal_gallery_slide']['fields']['published']['save_callback'] as $callback)
+			if ($figure !== null)
 			{
-				if (is_array($callback))
+				$thumb = '<img src="' . $figure->getImage()->getImageSrc() . '" width="80" height="50" alt="">';
+			}
+		}
+
+		// Count the hotspots that have been given a title
+		$hotspots = count(array_filter(StringUtil::deserialize($row['hotspot_links'], true), static fn ($hotspot) => trim((string) ($hotspot['hotspot_title'] ?? '')) !== ''));
+
+		// Flag slides that couldn't be published as they are
+		$missing = $this->getMissingForPublish($row);
+		$badge = empty($missing) ? '' : ' <span class="mg_incomplete" title="' . StringUtil::specialchars(implode(', ', $missing)) . '">' . $GLOBALS['TL_LANG']['tl_modal_gallery_slide']['incomplete'] . '</span>';
+
+		return '<div class="tl_content_left mg_slide_row">' . $thumb . '<span><strong>' . StringUtil::specialchars($row['slide_name']) . '</strong>' . $badge . '<br><span class="tl_gray">' . sprintf($GLOBALS['TL_LANG']['tl_modal_gallery_slide']['hotspotCount'], $hotspots) . "</span></span></div>\n";
+	}
+
+	/**
+	 * Save callback for "published": slides can be saved as drafts, but only published once complete.
+	 *
+	 * Flow:
+	 * 1. Always allow unpublishing
+	 * 2. In the edit form, check the submitted values rather than the stored ones
+	 * 3. If anything is missing, show the error on the field (edit form) or as a message (list toggle)
+	 */
+	public function checkPublish($varValue, DataContainer $dc)
+	{
+		// Unpublishing is always allowed
+		if (!$varValue)
+		{
+			return $varValue;
+		}
+
+		$row = $dc->getCurrentRecord();
+
+		// The edit form saves every field in one request, so the stored record is still the old one
+		if (Input::get('act') == 'edit')
+		{
+			foreach (array('slide_image', 'caption_title', 'category_room', 'category_product', 'hotspot_links') as $field)
+			{
+				if (Input::post($field) !== null)
 				{
-					$this->import($callback[0]);
-					$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, ($dc ?: $this));
-				}
-				elseif (is_callable($callback))
-				{
-					$blnVisible = $callback($blnVisible, ($dc ?: $this));
+					$row[$field] = Input::post($field);
 				}
 			}
 		}
 
-		// Update the database
-		Database::getInstance()->prepare("UPDATE tl_modal_gallery_slide SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
-					   ->execute($intId);
+		// Return if the slide is complete
+		$missing = $this->getMissingForPublish($row);
+		if (empty($missing))
+		{
+			return $varValue;
+		}
 
-		
+		$message = sprintf($GLOBALS['TL_LANG']['tl_modal_gallery_slide']['publishMissing'], implode(', ', $missing));
+
+		// Core's list toggle doesn't catch exceptions, so report it there and leave the slide unpublished
+		if (Input::get('act') == 'toggle')
+		{
+			Message::addError($message);
+			return '';
+		}
+
+		throw new \Exception($message);
+	}
+
+	/**
+	 * Return the labels of everything a slide still needs before it can be published.
+	 */
+	public function getMissingForPublish(array $row): array
+	{
+		$labels = $GLOBALS['TL_LANG']['tl_modal_gallery_slide'];
+		$missing = array();
+
+		if (!$row['slide_image'])
+		{
+			$missing[] = $labels['slide_image'][0];
+		}
+
+		// Only the Accordion and Comparison layouts show the caption title
+		$gallery = ModalGallery::findByPk($row['pid']);
+		if ($gallery !== null && in_array($gallery->template_style, array('accordion', 'comparison')) && trim((string) $row['caption_title']) === '')
+		{
+			$missing[] = $labels['caption_title'][0];
+		}
+
+		// The front end filters need at least one category of each type
+		if (!array_filter(StringUtil::deserialize($row['category_room'], true)))
+		{
+			$missing[] = $labels['category_room'][0];
+		}
+		if (!array_filter(StringUtil::deserialize($row['category_product'], true)))
+		{
+			$missing[] = $labels['category_product'][0];
+		}
+
+		// Need at least one hotspot, and every row filled in so none render empty on the front end
+		$hotspots = StringUtil::deserialize($row['hotspot_links'], true);
+		$complete = !empty($hotspots);
+		foreach ($hotspots as $hotspot)
+		{
+			foreach (array('hotspot_x', 'hotspot_y', 'hotspot_title', 'hotspot_text') as $key)
+			{
+				if (trim(strip_tags((string) ($hotspot[$key] ?? ''))) === '')
+				{
+					$complete = false;
+				}
+			}
+		}
+		if (!$complete)
+		{
+			$missing[] = $labels['hotspot_links'][0];
+		}
+
+		return $missing;
 	}
 	
 	public function generateAlias($varValue, DataContainer $dc)
@@ -162,7 +243,7 @@ class ModalGallerySlideBackend extends Backend
 		if ($varValue == '')
 		{
 			$autoAlias = true;
-			$varValue = StringUtil::standardize(StringUtil::restoreBasicEntities($dc->activeRecord->slide_name));
+			$varValue = standardize(StringUtil::restoreBasicEntities($dc->activeRecord->name));
 		}
 
 		$objAlias = Database::getInstance()->prepare("SELECT id FROM tl_modal_gallery_slide WHERE id=? OR alias=?")
@@ -173,7 +254,7 @@ class ModalGallerySlideBackend extends Backend
 		{
 			if (!$autoAlias)
 			{
-				throw new \Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
+				throw new Exception(sprintf($GLOBALS['TL_LANG']['ERR']['aliasExists'], $varValue));
 			}
 
 			$varValue .= '-' . $dc->id;
