@@ -157,7 +157,7 @@ class ModalGalleryModule extends \Contao\Module
             
             $hotspot = [];
             $new_slide['hotspots'] = []; // start with an empty array
-            foreach (unserialize($slide->hotspot_links) as $hotspot_data) {
+            foreach (StringUtil::deserialize($slide->hotspot_links, true) as $hotspot_data) {
                 $hotspot = [
                     'top'   => $hotspot_data['hotspot_y'] . '%',
                     'left'  => $hotspot_data['hotspot_x'] . '%',
@@ -178,7 +178,7 @@ class ModalGalleryModule extends \Contao\Module
             $arrSlide['slide_name']      = $slide->slide_name;
             $arrSlide['slide_image_url'] = $slideImageUrl;
 
-            $arrSlide['hotspot_links']      = unserialize($slide->hotspot_links);
+            $arrSlide['hotspot_links']      = StringUtil::deserialize($slide->hotspot_links, true);
             $arrSlide['categories_room']    = unserialize($slide->category_room);
             $arrSlide['categories_product'] = unserialize($slide->category_product);
 
