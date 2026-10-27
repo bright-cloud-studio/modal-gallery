@@ -2,21 +2,100 @@ td.long.mcwUpdateFields.tinymce {
     padding-bottom: 60px;
 }
 
+/* Coordinate helper */
 #modal_helper h3 {
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: 1.0rem;
 }
 
-#modal_helper .clicked_wrapper {
-    margin-top: 15px;
-    display: flex;
-}
-#modal_helper .clicked_wrapper p {
-    margin-right: 15px;
+#modal_helper .mg_stage {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
 }
 
+/* Cap the height so the hotspot rows stay in view while clicking */
 #hotspot_image {
-    width: 100%;
-    max-width: 1500px;
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: 420px;
+    cursor: crosshair;
+}
+
+#modal_helper .mg_markers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+#modal_helper .mg_marker {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    margin: -11px 0 0 -11px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: #185fa5;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 18px;
+    opacity: 0.65;
+}
+
+#modal_helper .mg_marker.mg_active {
+    background: #d85a30;
+    opacity: 1;
+}
+
+#modal_helper .mg_readout {
+    margin-top: 6px;
+    font-size: 0.75rem;
+    min-height: 1em;
+}
+
+/* Hotspot rows: highlight the one the helper will fill */
+#ctrl_hotspot_links > tbody > tr {
+    cursor: pointer;
+}
+
+#ctrl_hotspot_links > tbody > tr.mg_active > td {
+    background: rgba(216, 90, 48, 0.08);
+}
+
+#ctrl_hotspot_links > tbody > tr.mg_active > td:first-child {
+    box-shadow: inset 3px 0 0 #d85a30;
+}
+
+/* Categories: two columns of checkboxes in each half */
+.mg_categories .tl_checkbox_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 12px;
+}
+
+/* Slide list: thumbnail, name and status */
+.mg_slide_row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mg_slide_row img {
+    border-radius: 3px;
+    object-fit: cover;
+}
+
+.mg_incomplete {
+    margin-left: 6px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    background: #faeeda;
+    color: #854f0b;
+    font-size: 0.7rem;
+    font-weight: normal;
 }
