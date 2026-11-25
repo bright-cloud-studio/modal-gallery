@@ -15,8 +15,10 @@ namespace Bcs\Module;
 use Bcs\Model\ModalGallery;
 use Bcs\Model\ModalGallerySlide;
 
+use Contao\CoreBundle\Util\LocaleUtil;
 use Contao\Database;
 use Contao\FilesModel;
+use Contao\PageModel;
 use Contao\System;
 use Contao\BackendTemplate;
 use Contao\FrontendTemplate;
@@ -146,13 +148,14 @@ class ModalGalleryModule extends \Contao\Module
         {
 
             // Resolve the path from the selected file so it can never drift from the picker
-            $slideImageUrl = FilesModel::findByUuid($slide->slide_image)?->path ?? '';
+            $objSlideFile  = FilesModel::findByUuid($slide->slide_image);
+            $slideImageUrl = $objSlideFile?->path ?? '';
 
             $new_slide = [
                 'title' => $slide->caption_title,
                 'text'  => $slide->caption_body,
                 'image' => $slideImageUrl,
-                'alt'   => 'TEST 123'
+                'alt'   => $this->getImageAltText($objSlideFile, $slide->slide_name)
             ];
             
             $hotspot = [];
@@ -275,6 +278,40 @@ class ModalGalleryModule extends \Contao\Module
         
         //echo "Template: " . $this->strTemplate;
         //die();
-        
+
+    }
+
+    /**
+     * Return the alt text for a slide image.
+     *
+     * Reads the alt from the file's own meta, which is where the AI alt-text
+     * package writes, so a slide never carries a second hand-typed copy that
+     * can fall out of step. Falls back to the slide name when the file has no
+     * alt yet.
+     */
+    protected function getImageAltText(?FilesModel $objFile, string $strFallback): string
+    {
+        if (!$objFile)
+        {
+            return $strFallback;
+        }
+
+        // Same lookup order core uses: page language first, then the root fallback
+        $arrLocales = [];
+        $objPage    = $GLOBALS['objPage'] ?? null;
+
+        if ($objPage instanceof PageModel)
+        {
+            $arrLocales[] = LocaleUtil::formatAsLocale($objPage->language);
+
+            if ($objPage->rootFallbackLanguage !== null)
+            {
+                $arrLocales[] = LocaleUtil::formatAsLocale($objPage->rootFallbackLanguage);
+            }
+        }
+
+        $strAlt = $objFile->getMetadata(...array_unique(array_filter($arrLocales)))?->getAlt() ?? '';
+
+        return $strAlt !== '' ? $strAlt : $strFallback;
     }
 }
